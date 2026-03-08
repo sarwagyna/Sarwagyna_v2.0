@@ -1,0 +1,35 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import AiIt from './pages/AiIt';
+import Trade from './pages/Trade';
+import HoldingCompany from './pages/HoldingCompany';
+import ProductsHub from './pages/products/ProductsHub';
+import SarwHub from './pages/products/SarwHub';
+import SarwCal from './pages/products/SarwCal';
+import SarwBill from './pages/products/SarwBill';
+import Careers from './pages/Careers';
+import Investors from './pages/Investors';
+import Contact from './pages/Contact';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<HoldingCompany />} />
+          <Route path="ai-it" element={<AiIt />} />
+          <Route path="trade" element={<Trade />} />
+          <Route path="products" element={<ProductsHub />} />
+          <Route path="products/sarwhub" element={<SarwHub />} />
+          <Route path="products/sarwcal" element={<SarwCal />} />
+          <Route path="products/sarwbill" element={<SarwBill />} />
+          <Route path="careers" element={<Careers />} />
+          <Route path="investors" element={<Investors />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}

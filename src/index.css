@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#000000] text-white font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-[-0.03em] text-white;
+  }
+  p {
+    @apply text-white/[0.45] leading-[1.7];
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/[0.04] border border-white/[0.09] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300;
+  }
+  .glass-panel:hover {
+    @apply bg-white/[0.08] border-white/[0.22];
+  }
+  .glass-button-primary {
+    @apply bg-white text-black rounded-[10px] font-display font-semibold transition-all duration-300 hover:bg-white/[0.88] hover:shadow-[0_0_40px_rgba(255,255,255,0.15)];
+  }
+  .glass-button-ghost {
+    @apply bg-white/[0.04] border border-white/[0.18] backdrop-blur-2xl text-white rounded-[10px] font-display font-semibold transition-all duration-300 hover:bg-white/[0.08];
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-white/60;
+  }
+  .section-label {
+    @apply text-[11px] font-semibold tracking-[0.14em] uppercase text-white/[0.35] flex items-center;
+  }
+  .section-label::before {
+    content: '';
+    @apply inline-block w-[28px] h-[1px] bg-current mr-3;
+  }
+  
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+  
+  .animate-spin-slow {
+    animation: spin 15s linear infinite;
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
