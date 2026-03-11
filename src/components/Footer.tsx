@@ -128,7 +128,7 @@ export default function GraphyFooter() {
               position: "relative",
             }}
           >
-            Ready to transform your data?
+            Ready to Build Something Extraordinary?
           </h2>
 
           <p
@@ -141,8 +141,7 @@ export default function GraphyFooter() {
               position: "relative",
             }}
           >
-            Join thousands of data-driven professionals who are creating beautiful
-            visualizations in minutes.
+            Let's talk about your next AI project, business partnership, or investment opportunity.
           </p>
 
           <button
@@ -165,7 +164,7 @@ export default function GraphyFooter() {
               ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#ffffff")
             }
           >
-            Start for free
+            <Link to="/contact" className="px-2 py-1">Schedule a Call</Link>
           </button>
         </div>
 
