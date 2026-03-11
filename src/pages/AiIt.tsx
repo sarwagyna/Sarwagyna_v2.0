@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Bot, Workflow, Code2, BrainCircuit, Rocket, Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
 import SEO from '../components/SEO';
+import { Link } from 'react-router-dom';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 24 },
@@ -17,11 +17,8 @@ const staggerContainer = {
 };
 
 export default function AiIt() {
-  const [formStep, setFormStep] = useState(1);
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', projectType: '', budget: '', details: '' });
-
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       <SEO 
         title="AI & IT Services | Enterprise Intelligence | Sarwagyna"
         description="Enterprise AI agents, workflow automation, custom software, and web development. Scalable technology solutions by Sarwagyna."
@@ -31,9 +28,9 @@ export default function AiIt() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center pt-32 pb-16 overflow-hidden">
-        {/* CSS Particle Dots Background */}
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <section className="relative min-h-[80vh] flex items-center pt-32 pb-16 overflow-hidden bg-[var(--color-bg)]">
+        {/* Light grid background */}
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(rgba(14,40,29,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center">
           <motion.div 
@@ -46,19 +43,19 @@ export default function AiIt() {
               AI-FIRST TECHNOLOGY SERVICES
             </motion.div>
             
-            <motion.h1 variants={fadeIn} className="text-5xl sm:text-6xl lg:text-[80px] font-display font-extrabold leading-[1.05] tracking-tight mb-6">
-              <span className="text-white block">Enterprise Intelligence.</span>
+            <motion.h1 variants={fadeIn} className="text-[46px] sm:text-[56px] lg:text-[64px] font-display font-extrabold leading-[1.05] tracking-[-0.06em] mb-6">
+              <span className="text-[var(--color-text)] block">Enterprise Intelligence.</span>
               <span className="text-gradient block">Delivered.</span>
             </motion.h1>
             
-            <motion.p variants={fadeIn} className="text-lg text-white/45 font-light mb-10 max-w-2xl mx-auto leading-[1.7]">
+            <motion.p variants={fadeIn} className="text-[17px] text-[var(--color-text-secondary)] font-normal mb-10 max-w-2xl mx-auto leading-[1.75]">
               AI agents, intelligent workflows, enterprise web development, custom AI models, startup launchpads, and scalable enterprise software. We build the future of your business.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={() => document.getElementById('proposal-form')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-primary px-8 py-4">
-                Start a Project
-              </button>
+              <Link to="/contact" className="glass-button-primary px-8 py-4">
+                Contact Us
+              </Link>
               <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
                 Explore Services
               </button>
@@ -76,8 +73,8 @@ export default function AiIt() {
           variants={staggerContainer}
           className="mb-16"
         >
-          <motion.div variants={fadeIn} className="section-label mb-4">Our Capabilities</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+          <motion.div variants={fadeIn} className="section-label justify-center mb-4">Our Capabilities</motion.div>
+          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] text-center">
             End-to-End Engineering
           </motion.h2>
         </motion.div>
@@ -97,22 +94,34 @@ export default function AiIt() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-panel p-8 rounded-2xl group border-t border-t-white/50 flex flex-col h-full"
+              className="card p-8 rounded-2xl group flex flex-col h-full"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-white">
+              <div className="w-12 h-12 rounded-[8px] bg-[var(--color-green-light)] flex items-center justify-center mb-6 text-[var(--color-green-icon)]">
                 {service.icon}
               </div>
-              <h3 className="text-[22px] font-display font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-[15px] text-white/45 mb-6 flex-grow leading-[1.7]">
+              <h3 className="text-[20px] font-display font-semibold text-[var(--color-text)] mb-3">
+                {service.title}
+              </h3>
+              <p className="text-[15px] text-[var(--color-text-secondary)] mb-6 flex-grow leading-[1.7]">
                 {service.desc}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {service.tags.map(tag => (
-                  <span key={tag} className="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-white/60 uppercase tracking-wider">{tag}</span>
+                  <span
+                    key={tag}
+                    className="px-2 py-1 rounded-full bg-[var(--color-green-light)] text-[10px] font-mono text-[var(--color-primary)] uppercase tracking-wider"
+                  >
+                    {tag}
+                  </span>
                 ))}
               </div>
-              <div className="pt-4 border-t border-white/10 mt-auto">
-                <p className="text-xs font-semibold text-white uppercase tracking-wider">Best For: <span className="text-white/60 font-normal">{service.for}</span></p>
+              <div className="pt-4 border-t border-[var(--color-border-subtle)] mt-auto">
+                <p className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
+                  Best For:{' '}
+                  <span className="text-[var(--color-text)] font-normal normal-case">
+                    {service.for}
+                  </span>
+                </p>
               </div>
             </motion.div>
           ))}
@@ -120,8 +129,8 @@ export default function AiIt() {
       </section>
 
       {/* Process Section */}
-      <section className="py-[120px] relative">
-        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+      <section className="py-[120px] relative bg-[var(--color-bg)]">
+        <div className="absolute inset-0 pointer-events-none" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <motion.div 
             initial="hidden"
@@ -131,14 +140,14 @@ export default function AiIt() {
             className="mb-16 text-center"
           >
             <motion.div variants={fadeIn} className="section-label justify-center mb-4">How We Work</motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] text-center">
               The Delivery Pipeline
             </motion.h2>
           </motion.div>
 
           <div className="relative">
             {/* Connecting Line (Desktop) */}
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2 border-t border-dashed border-white/30" />
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-[var(--color-border-subtle)] -translate-y-1/2 border-t border-dashed" />
             
             <div className="grid grid-cols-1 md:grid-cols-6 gap-6 relative z-10">
               {[
@@ -157,11 +166,11 @@ export default function AiIt() {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className="flex flex-col items-center text-center"
                 >
-                  <div className="w-16 h-16 rounded-full glass-panel flex items-center justify-center text-xl font-display font-bold text-white mb-6 bg-black">
+                  <div className="w-16 h-16 rounded-full card flex items-center justify-center text-xl font-display font-bold text-[var(--color-text)] mb-6 bg-[var(--color-surface)]">
                     {item.step}
                   </div>
-                  <h4 className="text-lg font-display font-bold text-white mb-2">{item.title}</h4>
-                  <p className="text-sm text-white/45 leading-[1.6]">{item.desc}</p>
+                  <h4 className="text-lg font-display font-bold text-[var(--color-text)] mb-2">{item.title}</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] leading-[1.6]">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -179,7 +188,7 @@ export default function AiIt() {
           className="mb-16 text-center"
         >
           <motion.div variants={fadeIn} className="section-label justify-center mb-4">Our Arsenal</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] text-center">
             Modern Tech Stack
           </motion.h2>
         </motion.div>
@@ -200,11 +209,11 @@ export default function AiIt() {
               className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 p-6 rounded-2xl glass-panel"
             >
               <div className="w-full md:w-48 flex-shrink-0">
-                <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider">{row.category}</h4>
+                <h4 className="text-sm font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{row.category}</h4>
               </div>
               <div className="flex flex-wrap gap-3">
                 {row.tech.map(t => (
-                  <span key={t} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/60 hover:text-white hover:border-white/50 transition-colors cursor-default">
+                  <span key={t} className="px-4 py-2 rounded-full bg-[var(--color-green-light)] text-[var(--color-primary)] text-sm font-medium transition-colors cursor-default">
                     {t}
                   </span>
                 ))}
@@ -215,8 +224,8 @@ export default function AiIt() {
       </section>
 
       {/* Engagement Models */}
-      <section className="py-[120px] relative">
-        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+      <section className="py-[120px] relative bg-[var(--color-bg)]">
+        <div className="absolute inset-0 pointer-events-none" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <motion.div 
             initial="hidden"
@@ -226,7 +235,7 @@ export default function AiIt() {
             className="mb-16 text-center"
           >
             <motion.div variants={fadeIn} className="section-label justify-center mb-4">Partnership Options</motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] text-center">
               Engagement Models
             </motion.h2>
           </motion.div>
@@ -246,122 +255,16 @@ export default function AiIt() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="glass-panel p-8 rounded-2xl relative overflow-hidden"
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white to-transparent opacity-5 rounded-bl-full`} />
-                <h3 className="text-2xl font-display font-bold text-white mb-4 relative z-10">{model.title}</h3>
-                <p className="text-white/45 leading-[1.7] relative z-10">{model.desc}</p>
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-[var(--color-green-light)] flex items-center justify-center rounded-bl-full`} />
+                <h3 className="text-2xl font-display font-bold text-[var(--color-text)] mb-4 relative z-10">{model.title}</h3>
+                <p className="text-[var(--color-text-secondary)] leading-[1.7] relative z-10">{model.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Proposal Form */}
-      <section id="proposal-form" className="py-[120px] max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-white/50" />
-          
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-display font-bold text-white mb-4">Request a Proposal</h2>
-            <p className="text-white/45">Tell us about your project, and our engineering team will get back to you within 24 hours.</p>
-          </div>
-
-          {/* Progress Indicator */}
-          <div className="flex justify-between mb-8 relative">
-            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/10 -translate-y-1/2 z-0" />
-            <div className="absolute top-1/2 left-0 h-[2px] bg-white -translate-y-1/2 z-0 transition-all duration-500" style={{ width: `${((formStep - 1) / 2) * 100}%` }} />
-            
-            {[1, 2, 3].map(step => (
-              <div key={step} className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold relative z-10 transition-colors duration-300 ${formStep >= step ? 'bg-white text-black' : 'bg-black border border-white/20 text-white/40'}`}>
-                {step}
-              </div>
-            ))}
-          </div>
-
-          <div className="relative overflow-hidden min-h-[300px]">
-            <AnimatePresence mode="wait">
-              {formStep === 1 && (
-                <motion.div 
-                  key="step1"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  className="space-y-6 absolute w-full"
-                >
-                  <div>
-                    <label className="block text-[11px] font-semibold tracking-[0.14em] uppercase text-white/60 mb-2">Full Name</label>
-                    <input type="text" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="John Doe" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] font-semibold tracking-[0.14em] uppercase text-white/60 mb-2">Work Email</label>
-                    <input type="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors" placeholder="john@company.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
-                  </div>
-                  <button onClick={() => setFormStep(2)} className="w-full glass-button-primary py-4 mt-4 flex items-center justify-center">
-                    Next Step <ArrowRight className="ml-2 w-4 h-4" />
-                  </button>
-                </motion.div>
-              )}
-
-              {formStep === 2 && (
-                <motion.div 
-                  key="step2"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  className="space-y-6 absolute w-full"
-                >
-                  <div>
-                    <label className="block text-[11px] font-semibold tracking-[0.14em] uppercase text-white/60 mb-2">Project Type</label>
-                    <select className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors appearance-none" value={formData.projectType} onChange={e => setFormData({...formData, projectType: e.target.value})}>
-                      <option value="">Select a service...</option>
-                      <option value="ai-agents">AI Agents & Automation</option>
-                      <option value="web-dev">Web Development</option>
-                      <option value="enterprise">Enterprise Software</option>
-                      <option value="consulting">AI Consulting</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-[11px] font-semibold tracking-[0.14em] uppercase text-white/60 mb-2">Estimated Budget</label>
-                    <select className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors appearance-none" value={formData.budget} onChange={e => setFormData({...formData, budget: e.target.value})}>
-                      <option value="">Select budget range...</option>
-                      <option value="10k-25k">$10k - $25k</option>
-                      <option value="25k-50k">$25k - $50k</option>
-                      <option value="50k-100k">$50k - $100k</option>
-                      <option value="100k+">$100k+</option>
-                    </select>
-                  </div>
-                  <div className="flex gap-4 mt-4">
-                    <button onClick={() => setFormStep(1)} className="w-1/3 glass-button-ghost py-4">Back</button>
-                    <button onClick={() => setFormStep(3)} className="w-2/3 glass-button-primary py-4 flex items-center justify-center">
-                      Next Step <ArrowRight className="ml-2 w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {formStep === 3 && (
-                <motion.div 
-                  key="step3"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  className="space-y-6 absolute w-full"
-                >
-                  <div>
-                    <label className="block text-[11px] font-semibold tracking-[0.14em] uppercase text-white/60 mb-2">Project Details</label>
-                    <textarea rows={4} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors resize-none" placeholder="Briefly describe your goals, timeline, and current challenges..." value={formData.details} onChange={e => setFormData({...formData, details: e.target.value})} />
-                  </div>
-                  <div className="flex gap-4 mt-4">
-                    <button onClick={() => setFormStep(2)} className="w-1/3 glass-button-ghost py-4">Back</button>
-                    <button className="w-2/3 glass-button-primary py-4 flex items-center justify-center">
-                      Submit Request <CheckCircle2 className="ml-2 w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
+      {/* Proposal form removed */}
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default function Trade() {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">
         {/* Coral Tint Background */}
-        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+        <div className="absolute inset-0 bg-[var(--color-bg)]/5 pointer-events-none" />
         
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center">
           <motion.div 
@@ -44,19 +44,19 @@ export default function Trade() {
             </motion.div>
             
             <motion.h1 variants={fadeIn} className="text-5xl sm:text-6xl lg:text-[80px] font-display font-extrabold leading-[1.05] tracking-tight mb-6">
-              <span className="text-white block">Connecting Markets.</span>
+              <span className="text-[var(--color-text)] block">Connecting Markets.</span>
               <span className="text-gradient block">Without Borders.</span>
             </motion.h1>
             
-            <motion.p variants={fadeIn} className="text-lg text-white/45 font-light mb-10 max-w-2xl mx-auto leading-[1.7]">
+            <motion.p variants={fadeIn} className="text-lg text-[var(--color-text-secondary)] font-light mb-10 max-w-2xl mx-auto leading-[1.7]">
               End-to-end import and export facilitation. We handle sourcing, logistics, customs compliance, and risk management to streamline your international supply chain.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="glass-button-primary px-8 py-4">
+              <Link to="/contact" className="glass-button-primary px-8 py-4 text-[var(--color-text)]">
                 Discuss Your Supply Chain
               </Link>
-              <button onClick={() => document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
+              <button onClick={() => document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4 text-[var(--color-text)]">
                 View Capabilities
               </button>
             </motion.div>
@@ -74,7 +74,7 @@ export default function Trade() {
           className="mb-16 text-center"
         >
           <motion.div variants={fadeIn} className="section-label justify-center mb-4">Core Services</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)]">
             End-to-End Facilitation
           </motion.h2>
         </motion.div>
@@ -91,13 +91,13 @@ export default function Trade() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-panel p-8 rounded-2xl group border-t border-t-white/35 flex flex-col"
+              className="glass-panel p-8 rounded-2xl group border-t border-t-[var(--color-border-subtle)] flex flex-col"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-white">
+              <div className="w-12 h-12 rounded-xl bg-[var(--color-bg)]/5 flex items-center justify-center mb-6 text-[var(--color-text)]">
                 {service.icon}
               </div>
-              <h3 className="text-[22px] font-display font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-[15px] text-white/45 leading-[1.7] flex-grow">
+              <h3 className="text-[22px] font-display font-bold text-[var(--color-text)] mb-4">{service.title}</h3>
+              <p className="text-[15px] text-[var(--color-text-secondary)] leading-[1.7] flex-grow">
                 {service.desc}
               </p>
             </motion.div>
@@ -107,7 +107,7 @@ export default function Trade() {
 
       {/* Commodities Grid */}
       <section className="py-[120px] relative">
-        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+        <div className="absolute inset-0 bg-[var(--color-bg)]/5 pointer-events-none" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <motion.div 
             initial="hidden"
@@ -117,7 +117,7 @@ export default function Trade() {
             className="mb-16 text-center"
           >
             <motion.div variants={fadeIn} className="section-label justify-center mb-4">Sectors</motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)]">
               Key Commodities
             </motion.h2>
           </motion.div>
@@ -135,13 +135,13 @@ export default function Trade() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="glass-panel p-8 rounded-2xl text-center flex flex-col items-center justify-center border-t border-t-white/35"
+                className="glass-panel p-8 rounded-2xl text-center flex flex-col items-center justify-center border-t border-t-[var(--color-border-subtle)]"
               >
-                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6 text-white">
+                <div className="w-16 h-16 rounded-full bg-[var(--color-bg)]/5 flex items-center justify-center mb-6 text-[var(--color-text)]">
                   {item.icon}
                 </div>
-                <h4 className="text-xl font-display font-bold text-white mb-2">{item.title}</h4>
-                <p className="text-sm text-white/45">{item.desc}</p>
+                <h4 className="text-xl font-display font-bold text-[var(--color-text)] mb-2">{item.title}</h4>
+                <p className="text-sm text-[var(--color-text-secondary)]">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -151,11 +151,11 @@ export default function Trade() {
       {/* CTA Section */}
       <section className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="glass-panel rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
+          <div className="absolute inset-0 bg-[var(--color-bg)]/5 to-transparent opacity-50" />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">Ready to expand your market?</h2>
-            <p className="text-lg text-white/60 mb-10">Partner with Sarwagyna to navigate the complexities of international trade with confidence.</p>
-            <Link to="/contact" className="glass-button-primary px-10 py-5 text-lg inline-flex items-center">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] mb-6">Ready to expand your market?</h2>
+            <p className="text-lg text-[var(--color-text-secondary)] mb-10">Partner with Sarwagyna to navigate the complexities of international trade with confidence.</p>
+            <Link to="/contact" className="glass-button-primary px-10 py-5 text-lg inline-flex items-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
               Contact Trade Desk <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>

@@ -3,37 +3,13 @@ import { FileText, Check, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-rea
 import SEO from '../../components/SEO';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
-  <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-    <h4 className="text-lg font-bold text-gray-900 mb-3">{title}</h4>
-    <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-  </div>
-);
-
-const PricingCard = ({ name, price, tagline, features, cta, isPopular = false, bestFor }: any) => (
-  <div className={`relative bg-white p-8 rounded-2xl border ${isPopular ? 'border-emerald-500 shadow-lg' : 'border-gray-200 shadow-sm'} flex flex-col h-full`}>
-    {isPopular && (
-      <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-        Most Popular
-      </span>
-    )}
-    <h4 className="text-xl font-bold text-gray-900 mb-2">{name}</h4>
-    <p className="text-sm text-gray-500 mb-6 h-10">{tagline}</p>
-    <div className="mb-6">
-      <span className="text-4xl font-extrabold text-gray-900">{price}</span>
-      {price !== 'Free' && price !== 'Custom' && <span className="text-gray-500">/month</span>}
-    </div>
-    <ul className="space-y-4 mb-8 flex-grow">
-      {features.map((feature: string, idx: number) => (
-        <li key={idx} className="flex items-start">
-          <Check className={`w-5 h-5 mr-3 shrink-0 ${isPopular ? 'text-emerald-500' : 'text-gray-400'}`} />
-          <span className="text-gray-700 text-sm">{feature}</span>
-        </li>
-      ))}
-    </ul>
-    <button className={`w-full py-3 rounded-lg font-semibold transition-colors mb-4 ${isPopular ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'}`}>
-      {cta}
-    </button>
-    <p className="text-xs text-center text-gray-500">{bestFor}</p>
+  <div className="card p-7">
+    <h4 className="font-display text-[18px] font-semibold text-[#0D1F1A] mb-3">
+      {title}
+    </h4>
+    <p className="text-[15px] text-[#8A9590] leading-[1.7]">
+      {description}
+    </p>
   </div>
 );
 
@@ -52,7 +28,7 @@ const Accordion = ({ question, answer }: { question: string, answer: string }) =
 
 export default function SarwBill() {
   return (
-    <div className="bg-white pt-20">
+    <div className="bg-[var(--color-bg)] pt-20">
       <SEO 
         title="SarwBill: GST Invoicing & Billing Software | Sarwagyna"
         description="Ditch the Excel sheets. SarwBill is the CA-verified GST billing software for Indian SMEs. Generate e-invoices, track inventory, and get paid faster."
@@ -60,27 +36,44 @@ export default function SarwBill() {
         ogDescription="Create compliant GST invoices in seconds, automate payment reminders, and manage your inventory with SarwBill. Built for growing Indian businesses."
         url="/products/sarwbill"
       />
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-[var(--color-bg)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-              <FileText className="w-4 h-4" />
-              <span>CA-Verified GST Invoicing & Billing</span>
+            <div className="inline-flex items-center space-x-2 bg-[var(--color-green-light)] text-[var(--color-primary)] px-4 py-1.5 rounded-full text-[13px] font-medium mb-6">
+              <FileText className="w-4 h-4 text-[var(--color-green-icon)]" />
+              <span>CA-Verified GST Invoicing &amp; Billing</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Ditch the Excel Sheets. Bill Like a Pro.</h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <h1 className="text-[46px] md:text-[60px] font-display font-extrabold tracking-[-0.06em] text-[#0D1F1A] mb-6">
+              Ditch the Excel Sheets. Bill Like a Pro.
+            </h1>
+            <p className="text-[17px] text-[#4A5550] leading-[1.75]">
               Indian SMEs lose hours every week wrestling with manual invoices and chasing payments on WhatsApp. SarwBill automates your entire billing workflow—from GST-compliant e-invoicing to automated payment reminders—so you get paid faster and stay perfectly compliant.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <button className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors">Start Billing Free</button>
-              <button className="px-8 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition-colors">Talk to an Expert</button>
+              <button className="glass-button-primary">
+                Start Billing Free
+              </button>
+              <button className="glass-button-ghost">
+                Talk to an Expert
+              </button>
             </div>
           </div>
 
-          <div className="flex justify-center gap-8 mb-20 text-sm font-medium text-gray-500">
-            <div className="flex items-center"><ShieldCheck className="w-5 h-5 text-emerald-500 mr-2" /> CA-Verified Templates</div>
-            <div className="flex items-center"><ShieldCheck className="w-5 h-5 text-emerald-500 mr-2" /> 100% GST Compliant</div>
-            <div className="flex items-center"><ShieldCheck className="w-5 h-5 text-emerald-500 mr-2" /> Bank-Grade Security</div>
+          <div className="flex flex-wrap justify-center items-center gap-4 mb-20 text-[14px] font-medium text-[#4A5550]">
+            <div className="flex items-center">
+              <ShieldCheck className="w-4 h-4 text-[var(--color-green-icon)] mr-2 rounded-[8px]" />
+              CA-Verified Templates
+            </div>
+            <span className="w-1 h-1 rounded-full bg-[var(--color-button-outline)]" />
+            <div className="flex items-center">
+              <ShieldCheck className="w-4 h-4 text-[var(--color-green-icon)] mr-2 rounded-[8px]" />
+              100% GST Compliant
+            </div>
+            <span className="w-1 h-1 rounded-full bg-[var(--color-button-outline)]" />
+            <div className="flex items-center">
+              <ShieldCheck className="w-4 h-4 text-[var(--color-green-icon)] mr-2 rounded-[8px]" />
+              Bank-Grade Security
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
@@ -110,51 +103,43 @@ export default function SarwBill() {
             />
           </div>
 
-          <div className="bg-emerald-50 rounded-2xl p-8 md:p-12 mb-20">
+          <div className="bg-[var(--color-green-light)] rounded-2xl p-8 md:p-12 mb-20">
             <div className="max-w-3xl mx-auto text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Trusted by Growing Indian Businesses</h3>
+              <h3 className="text-2xl font-display font-semibold text-[#0D1F1A] mb-8">Trusted by Growing Indian Businesses</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <p className="text-gray-600 italic mb-4 text-sm">"SarwBill cut our invoicing time in half. The automated reminders alone have improved our cash flow by 30%."</p>
-                  <p className="font-bold text-gray-900 text-sm">Owner, Retail Chain</p>
+                <div className="card p-6">
+                  <p className="text-[#4A5550] italic mb-4 text-sm">"SarwBill cut our invoicing time in half. The automated reminders alone have improved our cash flow by 30%."</p>
+                  <p className="font-semibold text-[#0D1F1A] text-sm">Owner, Retail Chain</p>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <p className="text-gray-600 italic mb-4 text-sm">"Finally, a billing software that actually understands Indian GST rules without being overly complicated."</p>
-                  <p className="font-bold text-gray-900 text-sm">Freelance Consultant</p>
+                <div className="card p-6">
+                  <p className="text-[#4A5550] italic mb-4 text-sm">"Finally, a billing software that actually understands Indian GST rules without being overly complicated."</p>
+                  <p className="font-semibold text-[#0D1F1A] text-sm">Freelance Consultant</p>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <p className="text-gray-600 italic mb-4 text-sm">"My CA loves the reports SarwBill generates. It makes month-end reconciliation a breeze."</p>
-                  <p className="font-bold text-gray-900 text-sm">Director, Manufacturing SME</p>
+                <div className="card p-6">
+                  <p className="text-[#4A5550] italic mb-4 text-sm">"My CA loves the reports SarwBill generates. It makes month-end reconciliation a breeze."</p>
+                  <p className="font-semibold text-[#0D1F1A] text-sm">Director, Manufacturing SME</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Pricing Built for Indian SMEs</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">No hidden fees, no complex tiers. Just straightforward pricing that grows with your business.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
-            <PricingCard 
-              name="Starter" price="Free" tagline="For freelancers and micro-businesses."
-              features={['Up to 50 invoices/month', 'Basic GST templates', 'Client management', 'Email support']}
-              cta="Start Billing Free" bestFor="Best for solo entrepreneurs"
-            />
-            <PricingCard 
-              name="Business" price="₹999" tagline="For growing SMEs that need automation."
-              features={['Unlimited invoices', 'Automated reminders', 'Inventory tracking', 'Expense management', 'CA access portal']}
-              cta="Start 14-Day Trial" isPopular={true} bestFor="Best for established SMEs"
-            />
-            <PricingCard 
-              name="Enterprise" price="Custom" tagline="For large operations needing scale."
-              features={['E-invoicing & E-way bills', 'Multi-user access', 'API integrations', 'Dedicated account manager', 'Custom reporting']}
-              cta="Contact Sales" bestFor="Best for high-volume businesses"
-            />
+          <div className="rounded-2xl p-8 md:p-16 mb-20 text-center bg-[var(--color-text)] text-white">
+            <h3 className="text-white text-3xl font-display font-semibold mb-6">Ready to Streamline Your Billing?</h3>
+            <p className="text-white text-lg mb-10 max-w-2xl mx-auto">
+              Our pricing is as flexible as your business needs. Whether you're a solo entrepreneur or a large enterprise, we have a plan for you.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <button className="glass-button-primary bg-white text-[var(--color-primary)] hover:bg-[var(--color-primary-hover)]">
+                Get Started Free
+              </button>
+              <button className="glass-button-ghost bg-transparent text-[var(--color-text)] border-[var(--color-border-subtle)] hover:border-[var(--color-border-subtle)]">
+                Contact for Custom Pricing
+              </button>
+            </div>
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">Common Questions from SME Owners</h4>
+            <h4 className="text-xl font-display font-semibold text-[#0D1F1A] mb-6 text-center">Common Questions from SME Owners</h4>
             <Accordion question="Is my financial data secure?" answer="Absolutely. We use bank-grade 256-bit encryption and host your data on secure AWS servers located in India, ensuring full compliance with local data localization laws." />
             <Accordion question="Can my CA access my reports directly?" answer="Yes, on the Business and Enterprise plans, you can invite your CA with read-only access so they can download GSTR reports directly without you having to email them." />
             <Accordion question="Do you support e-invoicing?" answer="Yes, our Enterprise plan fully supports direct e-invoice (IRN) generation and e-way bill creation in compliance with the latest government mandates." />

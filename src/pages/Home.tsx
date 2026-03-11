@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Cpu, Globe, Briefcase, Zap, Shield, BarChart3, Users, Layers } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowRight, Cpu, Globe, Briefcase, Layers } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 import SEO from '../components/SEO';
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -20,8 +20,8 @@ const staggerContainer = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <SEO 
+    <div className="flex flex-col min-h-screen bg-bg text-text">
+      <SEO
         title="Sarwagyna | Intelligence. Trade. Growth."
         description="India's emerging multi-industry powerhouse delivering enterprise-grade AI, global trade, and SaaS products."
         ogTitle="Sarwagyna: India's Next-Gen Multi-Industry Company"
@@ -30,10 +30,10 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-bg">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <motion.div 
+            <motion.div
               className="flex-1 text-left"
               initial="hidden"
               animate="visible"
@@ -42,72 +42,72 @@ export default function Home() {
               <motion.div variants={fadeIn} className="section-label mb-6">
                 INDIA'S NEXT-GEN MULTI-INDUSTRY COMPANY
               </motion.div>
-              
-              <motion.h1 variants={fadeIn} className="text-5xl sm:text-6xl lg:text-[88px] font-display font-extrabold leading-[1.05] tracking-tight mb-6">
-                <span className="text-white block">Where Intelligence</span>
+
+              <motion.h1 variants={fadeIn} className="text-[46px] sm:text-[56px] lg:text-[64px] font-display font-extrabold leading-[1.05] tracking-[-0.06em] mb-6">
+                <span className="text-text block">Where Intelligence</span>
                 <span className="text-gradient block">Meets Enterprise</span>
               </motion.h1>
-              
-              <motion.p variants={fadeIn} className="text-lg text-white/45 font-light mb-8 max-w-[520px] leading-[1.7]">
+
+              <motion.p variants={fadeIn} className="text-[17px] text-text-secondary font-normal mb-8 max-w-[520px] leading-[1.75]">
                 AI & IT Solutions. Global Trade. Strategic Holdings. We build the infrastructure for modern business, combining deep technical expertise with global market access to drive unprecedented growth.
               </motion.p>
-              
+
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Link to="/ai-it" className="glass-button-primary px-8 py-4 text-center">
                   Explore Our Divisions
                 </Link>
-                <Link to="/investors" className="glass-button-ghost px-8 py-4 text-center">
-                  View Investor Deck
+                <Link to="/partner" className="glass-button-ghost px-8 py-4 text-center">
+                  Partner with Us
                 </Link>
               </motion.div>
-              
+
               <motion.div variants={fadeIn} className="flex flex-wrap gap-2">
                 {['AI-Powered', 'Global Reach', 'DPIIT Recognized', 'ISO Compliant'].map((chip) => (
-                  <span key={chip} className="px-4 py-2 rounded-full glass-panel text-[11px] font-semibold tracking-[0.14em] uppercase text-white/80">
+                  <span key={chip} className="px-4 py-2 rounded-full bg-green-light text-[13px] font-medium tracking-[0.08em] uppercase text-(--color-primary)">
                     {chip}
                   </span>
                 ))}
               </motion.div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="flex-1 w-full max-w-lg lg:max-w-none relative"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="relative rounded-2xl glass-panel p-1 overflow-hidden group">
-                <div className="absolute inset-0 bg-white/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative bg-black/80 backdrop-blur-xl rounded-xl p-6 h-[400px] flex flex-col border border-white/5">
+                <div className="absolute inset-0 bg-bg-[var(--color-bg)]/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative bg-white dark:bg-black/80 backdrop-blur-xl rounded-xl p-6 h-[400px] flex flex-col border border-black/5 dark:border-white/5 transition-colors duration-300">
                   {/* Mock Dashboard UI */}
-                  <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+                  <div className="flex justify-between items-center mb-6 pb-4 border-b border-border-subtle transition-colors duration-300">
                     <div className="flex space-x-2">
-                      <div className="w-3 h-3 rounded-full bg-white/20" />
-                      <div className="w-3 h-3 rounded-full bg-white/40" />
-                      <div className="w-3 h-3 rounded-full bg-white/60" />
+                      <div className="w-3 h-3 rounded-full bg-bg/10 dark:bg-white/20" />
+                      <div className="w-3 h-3 rounded-full bg-bg/20 dark:bg-white/40" />
+                      <div className="w-3 h-3 rounded-full bg-bg/30 dark:bg-white/60" />
                     </div>
-                    <div className="text-xs font-mono text-white/40">SYSTEM.STATUS: OPTIMAL</div>
+                    <div className="text-xs font-mono text-text-muted dark:text-white/40">SYSTEM.STATUS: OPTIMAL</div>
                   </div>
                   <div className="flex-1 flex flex-col gap-4">
-                    <div className="h-24 rounded-lg bg-white/5 border border-white/5 flex items-end p-4 gap-2">
+                    <div className="h-24 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex items-end p-4 gap-2 transition-colors duration-300">
                       {[40, 70, 45, 90, 65, 85, 100].map((h, i) => (
-                        <motion.div 
+                        <motion.div
                           key={i}
                           initial={{ height: 0 }}
                           animate={{ height: `${h}%` }}
                           transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                          className="flex-1 bg-white/40 rounded-t-sm opacity-80"
+                          className="flex-1 bg-(--color-lavender) dark:bg-white/40 rounded-t-sm opacity-80"
                         />
                       ))}
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="h-20 rounded-lg bg-white/5 border border-white/5 p-4 flex flex-col justify-center">
-                        <div className="text-xs text-white/40 mb-1">Global Nodes</div>
-                        <div className="text-xl font-display font-bold text-white">15+ Active</div>
+                      <div className="h-20 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 p-4 flex flex-col justify-center transition-colors duration-300">
+                        <div className="text-xs text-text-muted dark:text-white/40 mb-1">Global Nodes</div>
+                        <div className="text-xl font-display font-bold text-text dark:text-white">15+ Active</div>
                       </div>
-                      <div className="h-20 rounded-lg bg-white/5 border border-white/5 p-4 flex flex-col justify-center">
-                        <div className="text-xs text-white/40 mb-1">Processing</div>
-                        <div className="text-xl font-display font-bold text-white">99.99%</div>
+                      <div className="h-20 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 p-4 flex flex-col justify-center transition-colors duration-300">
+                        <div className="text-xs text-text-muted dark:text-white/40 mb-1">Processing</div>
+                        <div className="text-xl font-display font-bold text-text dark:text-white">99.99%</div>
                       </div>
                     </div>
                   </div>
@@ -119,16 +119,16 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="border-y border-white/[0.07] bg-white/[0.01] py-12">
+      <section className="border-y border-border-subtle bg-surface py-12">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/[0.07]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-black/10 dark:divide-white/[0.07]">
             {[
               { number: '50+', label: 'Enterprise Clients' },
               { number: '3', label: 'Business Verticals' },
-              { number: '15+', label: 'Countries Reached' },
+              { number: '2+', label: 'Countries Reached' },
               { number: '3', label: 'SaaS Products' }
             ].map((stat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -137,7 +137,7 @@ export default function Home() {
                 className="text-center px-4"
               >
                 <div className="text-4xl md:text-[56px] font-display font-extrabold text-gradient mb-2">{stat.number}</div>
-                <div className="text-[13px] text-white/45 font-medium uppercase tracking-wider">{stat.label}</div>
+                <div className="text-[13px] text-text-secondary font-medium uppercase tracking-wider">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -146,7 +146,7 @@ export default function Home() {
 
       {/* Divisions Section */}
       <section className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -154,94 +154,183 @@ export default function Home() {
           className="mb-16"
         >
           <motion.div variants={fadeIn} className="section-label mb-4">Our Business Verticals</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
             Engineered for Scale
           </motion.h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="glass-panel p-8 rounded-2xl group relative overflow-hidden flex flex-col h-full border-t border-t-white/50"
+            className="card p-8 group relative overflow-hidden flex flex-col h-full"
           >
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-white">
+            <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
               <Cpu className="w-6 h-6" />
             </div>
-            <h3 className="text-[22px] font-display font-bold text-white mb-4">AI-First Technology Services</h3>
-            <p className="text-[15px] text-white/45 mb-8 flex-grow">
+            <h3 className="text-[20px] font-display font-semibold text-text mb-4">
+              AI-First Technology Services
+            </h3>
+            <p className="text-[15px] text-text-muted mb-8 grow">
               Enterprise AI agents, custom software, web platforms, and startup solutions designed to automate workflows and accelerate growth.
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {['AI Agents', 'Web Dev', 'Automation', 'Startups'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full glass-panel text-[11px] font-semibold text-white/60">{tag}</span>
+                <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
+                  {tag}
+                </span>
               ))}
             </div>
-            <Link to="/ai-it" className="inline-flex items-center text-white font-semibold hover:text-white/80 transition-colors mt-auto">
+            <Link to="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
               Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
 
           {/* Card 2 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass-panel p-8 rounded-2xl group relative overflow-hidden flex flex-col h-full border-t border-t-white/35"
+            className="card p-8 group relative overflow-hidden flex flex-col h-full"
           >
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-white">
+            <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
               <Globe className="w-6 h-6" />
             </div>
-            <h3 className="text-[22px] font-display font-bold text-white mb-4">Global Trade Solutions</h3>
-            <p className="text-[15px] text-white/45 mb-8 flex-grow">
+            <h3 className="text-[20px] font-display font-semibold text-text mb-4">
+              Global Trade Solutions
+            </h3>
+            <p className="text-[15px] text-text-muted mb-8 grow">
               End-to-end import and export operations for any product, anywhere in the world. We handle sourcing, logistics, and compliance.
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {['Sourcing', 'Logistics', 'Customs', 'B2B Trade'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full glass-panel text-[11px] font-semibold text-white/60">{tag}</span>
+                <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
+                  {tag}
+                </span>
               ))}
             </div>
-            <Link to="/trade" className="inline-flex items-center text-white font-semibold hover:text-white/80 transition-colors mt-auto">
+            <Link to="/trade" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
               Explore Trade <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
 
           {/* Card 3 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-panel p-8 rounded-2xl group relative overflow-hidden flex flex-col h-full border-t border-t-white/60"
+            className="card p-8 group relative overflow-hidden flex flex-col h-full"
           >
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 text-white">
+            <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
               <Briefcase className="w-6 h-6" />
             </div>
-            <h3 className="text-[22px] font-display font-bold text-white mb-4">Strategic Holdings & Investments</h3>
-            <p className="text-[15px] text-white/45 mb-8 flex-grow">
+            <h3 className="text-[20px] font-display font-semibold text-text mb-4">
+              Strategic Holdings &amp; Investments
+            </h3>
+            <p className="text-[15px] text-text-muted mb-8 grow">
               Cross-vertical portfolio management, strategic investments, and the incubation of high-potential SaaS products.
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {['Investments', 'SaaS', 'Incubation', 'M&A'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full glass-panel text-[11px] font-semibold text-white/60">{tag}</span>
+                <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
+                  {tag}
+                </span>
               ))}
             </div>
-            <Link to="/holding-company" className="inline-flex items-center text-white font-semibold hover:text-white/80 transition-colors mt-auto">
+            <Link to="/holding-company" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
               Explore Holdings <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-[120px] relative">
-        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+      <section id="objectives" className="py-[120px] relative">
+        <div className="absolute inset-0 bg-bg pointer-events-none" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <motion.div 
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="mb-12 text-center"
+          >
+            <motion.div variants={fadeIn} className="section-label justify-center mb-4">Main Objects of the Company</motion.div>
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
+              Objectives
+            </motion.h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
+            <div className="space-y-6">
+              {[
+                {
+                  num: "1.",
+                  icon: <Cpu className="w-5 h-5" />,
+                  accent: "from-[#7C3AED]",
+                  text:
+                    "To design, develop, research, manufacture, license, customize, implement, operate, maintain and commercialize artificial intelligence (AI), machine learning (ML), deep learning, data analytics, automation and software products, including software applications, platforms, algorithms, tools, and digital solutions for businesses, governments and individuals across industries."
+                },
+                {
+                  num: "2.",
+                  icon: <Layers className="w-5 h-5" />,
+                  accent: "from-[#22D3EE]",
+                  text:
+                    "To provide software development, technology consulting, implementation, integration, technical support, maintenance, and managed services relating to artificial intelligence solutions, enterprise software, cloud computing, data processing, digital transformation, and information technology enabled services."
+                },
+                {
+                  num: "3.",
+                  icon: <Globe className="w-5 h-5" />,
+                  accent: "from-[#F59E0B]",
+                  text:
+                    "To create, own, acquire, license, distribute, market and monetize software products, SaaS platforms, mobile applications, digital platforms, and AI-enabled solutions, and to provide related services including training, support, upgrades, analytics, automation solutions and technology infrastructure services in India and internationally."
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="card p-6 flex gap-4 items-start"
+                >
+                  <div className="w-12 h-12 rounded-[10px] bg-green-light flex items-center justify-center text-(--color-green-icon)">
+                    {item.icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-sm font-semibold text-text-secondary">
+                        {item.num}
+                      </span>
+                      <div className="h-px w-16 bg-border-subtle" />
+                    </div>
+                    <p className="text-[15px] text-text-secondary leading-[1.8]">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="hidden lg:flex flex-col items-center">
+              <div className="w-[2px] h-full bg-black/10 dark:bg-white/10 rounded-full relative transition-colors duration-300">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-[120px] relative bg-bg">
+        <div className="absolute inset-0 pointer-events-none" />
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -249,98 +338,101 @@ export default function Home() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="section-label mb-4">Built for Modern Business</motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
               Our SaaS Portfolio
             </motion.h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* SarwHub */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="glass-panel p-8 rounded-2xl relative overflow-hidden flex flex-col h-full border-t border-t-[rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.10)] hover:bg-[rgba(59,130,246,0.03)] transition-all duration-300"
+              className="card p-8 relative overflow-hidden flex flex-col h-full"
             >
-              <h3 className="text-2xl font-display font-bold text-white mb-2">SarwHub</h3>
-              <p className="text-sm text-[rgba(59,130,246,0.7)] font-medium mb-6">Event Management & Ticketing</p>
-              
-              <ul className="space-y-3 mb-8 flex-grow">
+              <h3 className="text-[20px] font-display font-semibold text-text mb-1">
+                SarwHub
+              </h3>
+              <p className="text-[13px] text-text-muted font-medium mb-6 uppercase tracking-[0.12em]">
+                Event Management &amp; Ticketing
+              </p>
+
+              <ul className="space-y-3 mb-8 grow">
                 {['Seamless ticket sales & QR check-ins', 'Real-time analytics dashboard', 'Multi-organizer support'].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-white/60">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[rgba(59,130,246,0.7)] mt-1.5 mr-3 flex-shrink-0" />
+                  <li key={i} className="flex items-start text-sm text-text-secondary">
+                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-green-icon) mt-1.5 mr-3 shrink-0" />
                     {feature}
                   </li>
                 ))}
               </ul>
-              
-              <div className="h-32 rounded-xl bg-white/5 border border-white/5 mb-8 relative overflow-hidden backdrop-blur-md">
-                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(59,130,246,0.1)] to-transparent" />
-                {/* Placeholder for screenshot */}
-              </div>
-              
-              <Link to="/products/sarwhub" className="glass-button-ghost w-full py-3 text-center border-[rgba(59,130,246,0.3)] hover:border-[rgba(59,130,246,0.6)] hover:bg-[rgba(59,130,246,0.1)]">
+
+              <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
+
+              <Link to="/products/sarwhub" className="glass-button-ghost w-full text-center">
                 Explore SarwHub
               </Link>
             </motion.div>
 
             {/* SarwCal */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="glass-panel p-8 rounded-2xl relative overflow-hidden flex flex-col h-full border-t border-t-[rgba(139,92,246,0.5)] hover:shadow-[0_0_30px_rgba(139,92,246,0.10)] hover:bg-[rgba(139,92,246,0.03)] transition-all duration-300"
+              className="card p-8 relative overflow-hidden flex flex-col h-full"
             >
-              <h3 className="text-2xl font-display font-bold text-white mb-2">SarwCal</h3>
-              <p className="text-sm text-[rgba(139,92,246,0.7)] font-medium mb-6">Smart Calendar Booking</p>
-              
-              <ul className="space-y-3 mb-8 flex-grow">
+              <h3 className="text-[20px] font-display font-semibold text-text mb-1">
+                SarwCal
+              </h3>
+              <p className="text-[13px] text-text-muted font-medium mb-6 uppercase tracking-[0.12em]">
+                Smart Calendar Booking
+              </p>
+
+              <ul className="space-y-3 mb-8 grow">
                 {['Automated scheduling & reminders', 'GST-compliant payment collection', 'Custom booking pages'].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-white/60">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[rgba(139,92,246,0.7)] mt-1.5 mr-3 flex-shrink-0" />
+                  <li key={i} className="flex items-start text-sm text-text-secondary">
+                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-green-icon) mt-1.5 mr-3 shrink-0" />
                     {feature}
                   </li>
                 ))}
               </ul>
-              
-              <div className="h-32 rounded-xl bg-white/5 border border-white/5 mb-8 relative overflow-hidden backdrop-blur-md">
-                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(139,92,246,0.1)] to-transparent" />
-                {/* Placeholder for screenshot */}
-              </div>
-              
-              <Link to="/products/sarwcal" className="glass-button-ghost w-full py-3 text-center border-[rgba(139,92,246,0.3)] hover:border-[rgba(139,92,246,0.6)] hover:bg-[rgba(139,92,246,0.1)]">
+
+              <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
+
+              <Link to="/products/sarwcal" className="glass-button-ghost w-full text-center">
                 Explore SarwCal
               </Link>
             </motion.div>
 
             {/* SarwBill */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="glass-panel p-8 rounded-2xl relative overflow-hidden flex flex-col h-full border-t border-t-[rgba(132,153,56,0.5)] hover:shadow-[0_0_30px_rgba(132,153,56,0.10)] hover:bg-[rgba(132,153,56,0.03)] transition-all duration-300"
+              className="card p-8 relative overflow-hidden flex flex-col h-full"
             >
-              <h3 className="text-2xl font-display font-bold text-white mb-2">SarwBill</h3>
-              <p className="text-sm text-[rgba(132,153,56,0.7)] font-medium mb-6">Invoicing & Expense Analytics</p>
-              
-              <ul className="space-y-3 mb-8 flex-grow">
-                {['1-click GST invoice generation', 'Automated payment follow-ups', 'Visual expense tracking'].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-white/60">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[rgba(132,153,56,0.7)] mt-1.5 mr-3 flex-shrink-0" />
+              <h3 className="text-[20px] font-display font-semibold text-text mb-1">
+                SarwBill
+              </h3>
+              <p className="text-[13px] text-text-muted font-medium mb-6 uppercase tracking-[0.12em]">
+                Invoicing &amp; GST Billing
+              </p>
+
+              <ul className="space-y-3 mb-8 grow">
+                {['One-click GST invoices', 'Inventory tracking & alerts', 'Client ledger management'].map((feature, i) => (
+                  <li key={i} className="flex items-start text-sm text-text-secondary">
+                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-green-icon) mt-1.5 mr-3 shrink-0" />
                     {feature}
                   </li>
                 ))}
               </ul>
-              
-              <div className="h-32 rounded-xl bg-white/5 border border-white/5 mb-8 relative overflow-hidden backdrop-blur-md">
-                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(132,153,56,0.1)] to-transparent" />
-                {/* Placeholder for screenshot */}
-              </div>
-              
-              <Link to="/products/sarwbill" className="glass-button-ghost w-full py-3 text-center border-[rgba(132,153,56,0.3)] hover:border-[rgba(132,153,56,0.6)] hover:bg-[rgba(132,153,56,0.1)]">
+
+              <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
+
+              <Link to="/products/sarwbill" className="glass-button-ghost w-full text-center">
                 Explore SarwBill
               </Link>
             </motion.div>
@@ -348,119 +440,466 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Sarwagyna */}
-      <section className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="mb-16 text-center"
-        >
-          <motion.div variants={fadeIn} className="section-label justify-center mb-4">The Sarwagyna Advantage</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-white">
-            Why Partner With Us
-          </motion.h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { icon: <Zap className="w-6 h-6 text-white" />, title: "Rapid Execution", desc: "We move fast. Our agile methodology ensures quick deployment of solutions without compromising on quality." },
-            { icon: <Shield className="w-6 h-6 text-white" />, title: "Enterprise Security", desc: "Bank-grade security protocols and ISO compliance built into every product and service we deliver." },
-            { icon: <Globe className="w-6 h-6 text-white" />, title: "Global Network", desc: "Access our established network of international partners, suppliers, and distributors across 15+ countries." },
-            { icon: <BarChart3 className="w-6 h-6 text-white" />, title: "Data-Driven", desc: "Every decision, from trade routes to software architecture, is backed by rigorous data analysis." },
-            { icon: <Users className="w-6 h-6 text-white" />, title: "Expert Team", desc: "A diverse team of engineers, trade specialists, and strategists dedicated to your success." },
-            { icon: <Layers className="w-6 h-6 text-white" />, title: "Scalable Infrastructure", desc: "Solutions designed to grow with your business, from early-stage startup to enterprise scale." }
-          ].map((feature, i) => (
-            <motion.div 
-              key={i}
+      {/* Why Sarwagyna Section */}
+      <section className="py-24 relative bg-bg border-t border-border-subtle overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-linear-to-r from-orange-500/5 to-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="text-center mb-16 max-w-[700px] mx-auto">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="glass-panel p-8 rounded-2xl group hover:bg-white/[0.08]"
+              transition={{ duration: 0.5 }}
+              className="section-label mb-4 justify-center"
             >
-              <div className="mb-6">{feature.icon}</div>
-              <h3 className="text-xl font-display font-bold text-white mb-3">{feature.title}</h3>
-              <p className="text-sm text-white/45 leading-[1.7]">{feature.desc}</p>
+              WHY SARWAGYNA
             </motion.div>
-          ))}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-text mb-6 tracking-tight"
+            >
+              Why Leading Businesses Choose Sarwagyna
+            </motion.h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "1. AI-Native Approach",
+                description: "We don't bolt AI on as an afterthought. Every solution we build starts with intelligence at its core — so your business doesn't just keep up with the future, it leads it."
+              },
+              {
+                title: "2. End-to-End Ownership",
+                description: "From strategy and design to development, deployment, and ongoing support — we own the entire journey. One team, full accountability, zero handoff chaos."
+              },
+              {
+                title: "3. India-Rooted, Global-Ready",
+                description: "Deep local market knowledge combined with international execution capability. We understand the Indian business landscape and build solutions that scale across borders."
+              },
+              {
+                title: "4. Startup Speed, Enterprise Grade",
+                description: "We move with the urgency of a startup and the discipline of an enterprise. Fast delivery doesn't mean cutting corners — it means smarter processes and sharper focus."
+              },
+              {
+                title: "5. Multi-Industry Perspective",
+                description: "Operating across AI, trade, and software gives us a cross-industry lens that pure-play firms simply don't have. Better context means better solutions."
+              },
+              {
+                title: "6. Transparent Partnerships",
+                description: "Fixed-scope engagements, milestone-based billing, and full project visibility from day one. No surprises on scope, timeline, or cost."
+              }
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="card p-8 group hover:border-border-subtle transition-all duration-300 relative overflow-hidden"
+              >
+                {/* Subtle hover gradient */}
+                <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <h3 className="text-xl font-display font-semibold text-text mb-4 relative z-10 group-hover:text-amber-400 transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-text-secondary leading-relaxed relative z-10 text-[15px]">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Investor Teaser */}
-      <section className="py-12 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="glass-panel rounded-3xl p-8 md:p-12 border-l-4 border-l-white/60 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
-          
-          <div className="flex-1 relative z-10">
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-4">Invest in the Future of Enterprise</h2>
-            <p className="text-white/60 mb-8 max-w-xl">
-              Sarwagyna's diversified portfolio across high-margin IT services, global trade, and scalable SaaS products creates a resilient, high-growth investment opportunity.
-            </p>
-            <div className="flex flex-wrap gap-3 mb-8">
-              {['Multi-Stream Revenue', 'Capital Efficient', 'High Growth', 'Global Market'].map(chip => (
-                <span key={chip} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/20 text-xs font-semibold text-white">
-                  {chip}
-                </span>
-              ))}
-            </div>
-            <Link to="/investors" className="glass-button-ghost inline-flex px-6 py-3">
-              Explore Investor Relations
-            </Link>
+      {/* Our Values Section */}
+      <section className="py-24 relative bg-surface border-t border-border-subtle overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="text-center mb-16 max-w-[800px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="section-label mb-4 justify-center"
+            >
+              OUR VALUES
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-text mb-6 tracking-tight"
+            >
+              The Core Values &amp; Principles That Drive Us
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-[17px] text-text-secondary leading-relaxed"
+            >
+              Everything we build, every partnership we form, and every decision we make is guided by a set of principles we don't compromise on.
+            </motion.p>
           </div>
-          
-          <div className="flex-1 w-full relative z-10 hidden md:block">
-            {/* Abstract Chart SVG */}
-            <svg viewBox="0 0 400 200" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-              <path d="M0,200 L0,150 C50,150 80,180 130,120 C180,60 220,100 280,40 C330,-10 380,20 400,0 L400,200 Z" fill="url(#white-gradient)" opacity="0.1" />
-              <path d="M0,150 C50,150 80,180 130,120 C180,60 220,100 280,40 C330,-10 380,20 400,0" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeOpacity="0.6" />
-              <circle cx="130" cy="120" r="6" fill="#000" stroke="white" strokeWidth="3" strokeOpacity="0.8" />
-              <circle cx="280" cy="40" r="6" fill="#000" stroke="white" strokeWidth="3" strokeOpacity="0.8" />
-              <circle cx="400" cy="0" r="6" fill="#000" stroke="white" strokeWidth="3" strokeOpacity="0.8" />
-              <defs>
-                <linearGradient id="white-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="white" />
-                  <stop offset="100%" stopColor="white" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "1. Intelligence First",
+                description: "We believe technology should think, not just execute. Every product we build and every service we deliver starts with a question: how can intelligence make this better, faster, and smarter?"
+              },
+              {
+                title: "2. Integrity Always",
+                description: "We say what we mean and deliver what we promise. In a world of overpromising, we've built our reputation on honest communication, transparent pricing, and accountable delivery."
+              },
+              {
+                title: "3. Client Obsession",
+                description: "Our clients' success is our success. We don't close a project and walk away — we stay invested in outcomes, not just outputs, and measure our performance by the results our clients achieve."
+              },
+              {
+                title: "4. Speed with Quality",
+                description: "Speed without quality is just noise. We've built our processes to move fast without sacrificing security, reliability, or craftsmanship — because our clients deserve both."
+              },
+              {
+                title: "5. Global Mindset",
+                description: "We were born in India and built for the world. Every solution we create is designed with global standards, international scalability, and cross-border ambition in mind."
+              },
+              {
+                title: "6. Inclusive Growth",
+                description: "We grow when our clients, partners, employees, and communities grow. We actively build opportunities that extend beyond our walls — because sustainable business is shared business."
+              }
+            ].map((value, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="card p-8 group hover:border-border-subtle transition-all duration-300 relative overflow-hidden bg-bg"
+              >
+                {/* Subtle hover gradient */}
+                <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <h3 className="text-xl font-display font-semibold text-text mb-4 relative z-10 group-hover:text-amber-400 transition-colors duration-300">
+                  {value.title}
+                </h3>
+                <p className="text-text-secondary leading-relaxed relative z-10 text-[15px]">
+                  {value.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Final CTA Banner */}
-      <section className="py-[120px] px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-[1000px] mx-auto rounded-[24px] p-12 md:p-20 text-center relative overflow-hidden glass-panel border border-white/10"
-        >
-          <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">Ready to Accelerate Your Growth?</h2>
-            <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-              Whether you need enterprise AI solutions, global trade facilitation, or powerful SaaS tools, Sarwagyna is your partner for the future.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="glass-button-primary px-8 py-4">
-                Start a Conversation
-              </Link>
-              <Link to="/about" className="glass-button-ghost px-8 py-4">
-                Learn More About Us
-              </Link>
+      {/* Perspectives & Insights Section */}
+      <section className="py-24 relative bg-bg border-t border-border-subtle overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          
+          {/* Header */}
+          <div className="mb-16 max-w-[800px]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="section-label mb-4"
+            >
+              PERSPECTIVES & INSIGHTS
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-text mb-6 tracking-tight"
+            >
+              Our Thinking
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-[17px] text-text-secondary leading-relaxed mb-6"
+            >
+              Ideas, perspectives, and insights from the people building Sarwagyna.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-[16px] text-text-muted leading-relaxed"
+            >
+              We don't just build products and close deals. We think deeply about the industries we operate in, the problems worth solving, and the direction the world is heading. This is where we share that thinking — honestly and without the jargon.
+            </motion.p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-12">
+            
+            {/* Left Column: Categories List */}
+            <div className="flex-1 space-y-8">
+              {[
+                {
+                  title: "Category 1: AI & Technology",
+                  description: "From large language models to enterprise automation, we break down what's real, what's hype, and what actually moves the needle for businesses adopting AI today."
+                },
+                {
+                  title: "Category 2: Global Trade",
+                  description: "The world of imports and exports is changing faster than most people realize. We share ground-level perspectives on supply chains, sourcing strategies, and what smart trade looks like in a fragmented world."
+                },
+                {
+                  title: "Category 3: Product & Design",
+                  description: "Behind every SarwHub event page, every SarwCal booking flow, and every SarwBill dashboard is a design decision. We talk about how we think about building software that people actually want to use."
+                },
+                {
+                  title: "Category 4: Business & Strategy",
+                  description: "What does it take to build a multi-industry company from India? We share lessons from the trenches — on growth, on capital, on hiring, and on the hard calls that don't make it into pitch decks."
+                },
+                {
+                  title: "Category 5: India & the World",
+                  description: "India is at an inflection point. We write about the opportunity, the infrastructure, the policy shifts, and what it means for entrepreneurs, investors, and enterprises operating here."
+                }
+              ].map((category, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className="group"
+                >
+                  <h3 className="text-xl font-display font-semibold text-text mb-2 group-hover:text-amber-400 transition-colors duration-300">
+                    {category.title}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed text-[15px]">
+                    {category.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Right Column: Featured Post & CTAs */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:w-[480px] shrink-0"
+            >
+              <div className="card p-8 lg:p-10 sticky top-28 bg-surface border-border-subtle overflow-hidden group">
+                {/* Subtle gradient background effect */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-orange-500/5 to-transparent rounded-bl-full pointer-events-none" />
+                
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-semibold tracking-wide uppercase mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  Featured Post
+                </div>
+                
+                <h3 className="text-2xl font-display font-bold text-text mb-4 leading-snug group-hover:text-amber-400 transition-colors duration-300 cursor-pointer">
+                  Why We Built Three Businesses Instead of One
+                </h3>
+                
+                <p className="text-text-secondary mb-8 leading-relaxed">
+                  Most founders are told to focus. We disagreed — here's why building across AI, trade, and software made us stronger, not thinner.
+                </p>
+                
+                <div className="flex flex-col gap-4">
+                  <Link to="/insights" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
+                    Read Our Latest 
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link to="/newsletter" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
+                    Subscribe to Our Newsletter
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* How We Work Section */}
+      <section className="py-24 relative bg-surface border-t border-border-subtle overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          
+          {/* Main Header */}
+          <div className="text-center mb-20 max-w-[800px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="section-label mb-4 justify-center"
+            >
+              HOW WE WORK
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl sm:text-5xl font-display font-bold text-text mb-6 tracking-tight"
+            >
+              Our Approach
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-[18px] sm:text-[20px] text-text-secondary leading-relaxed mb-6 font-medium"
+            >
+              We don't just deliver projects. We build partnerships — and every partnership starts with the same commitment to doing things the right way.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-[16px] text-text-muted leading-relaxed"
+            >
+              Most agencies will tell you what you want to hear to win the deal. We'd rather tell you what you need to hear to actually succeed. That's the foundation of how we work — honest, structured, and relentlessly focused on outcomes over optics.
+            </motion.p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-16 mb-24">
+            {/* The Way We Think */}
+            <div className="flex-1">
+              <h3 className="text-2xl font-display font-bold text-text mb-8 border-b border-border-subtle pb-4">The Way We Think</h3>
+              <div className="space-y-6">
+                {[
+                  { title: "Outcomes Before Outputs", desc: "A beautiful website that generates no leads is a failure. A perfectly written AI agent that nobody uses is a waste. We measure our work by what it produces for your business — not by what it looks like on a portfolio slide." },
+                  { title: "Simplicity is the Hardest Thing to Build", desc: "It's easy to make things complicated. The real craft is in making complex problems feel simple for the people using your product. We obsess over clarity — in design, in code, and in communication." },
+                  { title: "Technology Serves the Business, Not the Other Way Around", desc: "We're not here to implement the trendiest stack or recommend AI because it's fashionable. Every technology decision we make is grounded in one question: does this actually solve your problem better?" },
+                  { title: "Transparency as a Default", desc: "You'll always know where your project stands. Budget, timeline, blockers, risks — we surface everything, early. No surprises at delivery." }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="card p-6 bg-bg group hover:border-border-subtle transition-all duration-300 relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-linear-to-r from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <h4 className="text-[17px] font-semibold text-text mb-2 relative z-10 group-hover:text-amber-400 transition-colors">{item.title}</h4>
+                    <p className="text-[14px] text-text-secondary leading-relaxed relative z-10">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* How We Engage */}
+            <div className="flex-1">
+              <h3 className="text-2xl font-display font-bold text-text mb-8 border-b border-border-subtle pb-4">How We Engage</h3>
+              <div className="space-y-6">
+                {[
+                  { title: "Discovery First, Always", desc: "Before we write a line of code or move a single shipment, we invest time understanding your business, your constraints, and your definition of success. Skipping discovery is how projects fail." },
+                  { title: "Fixed Scope, Milestone-Based", desc: "We don't believe in open-ended retainers that quietly drain budgets. Our engagements are scoped clearly, priced honestly, and structured around milestones you can see and sign off on." },
+                  { title: "Collaborative, Not Transactional", desc: "You're not a ticket in our queue. Your team works alongside ours — with regular demos, open communication channels, and a shared sense of ownership over the outcome." },
+                  { title: "Built to Last, Not Just to Launch", desc: "We build with maintainability, security, and scalability in mind from day one. What we hand over to you should be something you can grow into — not something you'll need to rebuild in 18 months." }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="card p-6 bg-bg group hover:border-border-subtle transition-all duration-300 relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-linear-to-l from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <h4 className="text-[17px] font-semibold text-text mb-2 relative z-10 group-hover:text-amber-400 transition-colors">{item.title}</h4>
+                    <p className="text-[14px] text-text-secondary leading-relaxed relative z-10">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        </motion.div>
+
+          {/* Our Process & Expectations */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16 items-start">
+            
+            {/* Process */}
+            <div>
+              <h3 className="text-2xl font-display font-bold text-text mb-8">Our Process</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { step: "01", title: "Discover", desc: "We immerse ourselves in your world. Stakeholder interviews, competitive analysis, technical audits, and goal-setting sessions to build a complete picture before anything else." },
+                  { step: "02", title: "Strategize", desc: "We map out the optimal path — architecture decisions, project roadmap, risk identification, and resource planning. You see the full plan before we start." },
+                  { step: "03", title: "Design", desc: "Every interface, flow, and user experience is prototyped and reviewed before development begins. We don't design and build simultaneously — that's how rework happens." },
+                  { step: "04", title: "Build", desc: "Agile development in focused two-week sprints. You see working software regularly — not just at the end. Feedback loops are built into the rhythm, not bolted on at the finish line." },
+                  { step: "05", title: "Deploy", desc: "Rigorous QA, security review, performance testing, and a structured go-live process. Launch day is planned, not scrambled." },
+                  { step: "06", title: "Evolve", desc: "Post-launch isn't the end — it's the beginning of optimization. We monitor, measure, and continuously improve what we've built together." }
+                ].map((process, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.05 }}
+                    className="flex gap-4 p-5 rounded-xl hover:bg-white/5 transition-colors group"
+                  >
+                    <div className="text-2xl font-bold text-amber-500/50 group-hover:text-amber-500 transition-colors font-display w-8 shrink-0">
+                      {process.step}
+                    </div>
+                    <div>
+                      <h4 className="text-[16px] font-semibold text-text mb-1">{process.title}</h4>
+                      <p className="text-[13px] text-text-secondary leading-relaxed">{process.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Expectations & CTA */}
+            <div className="card p-8 bg-bg border-border-subtle sticky top-28">
+              <h3 className="text-xl font-display font-bold text-text mb-6">What You Can Always Expect From Us</h3>
+              
+              <ul className="space-y-4 mb-10">
+                {[
+                  "A single point of contact who knows your project inside out",
+                  "Weekly progress updates without you having to ask",
+                  "Honest timelines — including when something is going to take longer than planned",
+                  "Clean, documented, handover-ready deliverables",
+                  "A team that treats your budget like it's their own"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-[14px] text-text-secondary leading-relaxed">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center text-xs mt-0.5">
+                      ✓
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col gap-4">
+                <Link to="/contact" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
+                  Start a Conversation
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+                <Link to="/" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
+                  See How We've Worked With Others
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </section>
+
     </div>
   );
 }

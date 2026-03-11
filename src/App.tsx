@@ -9,8 +9,13 @@ import SarwHub from './pages/products/SarwHub';
 import SarwCal from './pages/products/SarwCal';
 import SarwBill from './pages/products/SarwBill';
 import Careers from './pages/Careers';
-import Investors from './pages/Investors';
+import PartnerWithUs from './pages/PartnerWithUs';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
+import RefundPolicy from './pages/RefundPolicy';
 
 export default function App() {
   return (
@@ -19,6 +24,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<HoldingCompany />} />
+          <Route path="holding-company" element={<HoldingCompany />} />
           <Route path="ai-it" element={<AiIt />} />
           <Route path="trade" element={<Trade />} />
           <Route path="products" element={<ProductsHub />} />
@@ -26,8 +32,13 @@ export default function App() {
           <Route path="products/sarwcal" element={<SarwCal />} />
           <Route path="products/sarwbill" element={<SarwBill />} />
           <Route path="careers" element={<Careers />} />
-          <Route path="investors" element={<Investors />} />
+          <Route path="partner" element={<PartnerWithUs />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="cookie-policy" element={<CookiePolicy />} />
+          <Route path="refund-policy" element={<RefundPolicy />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
