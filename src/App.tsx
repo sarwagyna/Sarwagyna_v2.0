@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import AiIt from './pages/AiIt';
-import Trade from './pages/Trade';
 import HoldingCompany from './pages/HoldingCompany';
 import ProductsHub from './pages/products/ProductsHub';
 import SarwHub from './pages/products/SarwHub';
@@ -26,7 +25,6 @@ export default function App() {
           <Route path="about" element={<HoldingCompany />} />
           <Route path="holding-company" element={<HoldingCompany />} />
           <Route path="ai-it" element={<AiIt />} />
-          <Route path="trade" element={<Trade />} />
           <Route path="products" element={<ProductsHub />} />
           <Route path="products/sarwhub" element={<SarwHub />} />
           <Route path="products/sarwcal" element={<SarwCal />} />

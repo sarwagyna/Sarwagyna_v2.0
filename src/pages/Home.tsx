@@ -22,10 +22,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
       <SEO
-        title="Sarwagyna | Intelligence. Trade. Growth."
-        description="India's emerging multi-industry powerhouse delivering enterprise-grade AI, global trade, and SaaS products."
+        title="Sarwagyna | Intelligence. Growth."
+        description="India's emerging multi-industry powerhouse delivering enterprise-grade AI, and SaaS products."
         ogTitle="Sarwagyna: India's Next-Gen Multi-Industry Company"
-        ogDescription="Discover Sarwagyna Pvt Ltd. We build enterprise AI solutions, manage global trade operations, and develop scalable SaaS products."
+        ogDescription="Discover Sarwagyna Pvt Ltd. We build enterprise AI solutions, manage global operations, and develop scalable SaaS products."
         url="/"
       />
 
@@ -49,7 +49,7 @@ export default function Home() {
               </motion.h1>
 
               <motion.p variants={fadeIn} className="text-[17px] text-text-secondary font-normal mb-8 max-w-[520px] leading-[1.75]">
-                AI & IT Solutions. Global Trade. Strategic Holdings. We build the infrastructure for modern business, combining deep technical expertise with global market access to drive unprecedented growth.
+                AI & IT Solutions. Strategic Holdings. We build the infrastructure for modern business, combining deep technical expertise with global market access to drive unprecedented growth.
               </motion.p>
 
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -188,36 +188,34 @@ export default function Home() {
               Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
-
           {/* Card 2 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5 }}
             className="card p-8 group relative overflow-hidden flex flex-col h-full"
           >
             <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
-              <Globe className="w-6 h-6" />
+              <Cpu className="w-6 h-6" />
             </div>
             <h3 className="text-[20px] font-display font-semibold text-text mb-4">
-              Global Trade Solutions
+              AI Products & Digital Platforms
             </h3>
             <p className="text-[15px] text-text-muted mb-8 grow">
-              End-to-end import and export operations for any product, anywhere in the world. We handle sourcing, logistics, and compliance.
+              Development and commercialization of AI-powered software products, SaaS platforms, mobile applications, and automation tools for global markets.
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
-              {['Sourcing', 'Logistics', 'Customs', 'B2B Trade'].map(tag => (
+              {['SaaS', 'AI Platforms', 'Mobile Apps', 'Automation'].map(tag => (
                 <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
                   {tag}
                 </span>
               ))}
             </div>
-            <Link to="/trade" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
-              Explore Trade <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Link to="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
+              Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
-
           {/* Card 3 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -248,84 +246,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      <section id="objectives" className="py-[120px] relative">
-        <div className="absolute inset-0 bg-bg pointer-events-none" />
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-12 text-center"
-          >
-            <motion.div variants={fadeIn} className="section-label justify-center mb-4">Main Objects of the Company</motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
-              Objectives
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
-            <div className="space-y-6">
-              {[
-                {
-                  num: "1.",
-                  icon: <Cpu className="w-5 h-5" />,
-                  accent: "from-[#7C3AED]",
-                  text:
-                    "To design, develop, research, manufacture, license, customize, implement, operate, maintain and commercialize artificial intelligence (AI), machine learning (ML), deep learning, data analytics, automation and software products, including software applications, platforms, algorithms, tools, and digital solutions for businesses, governments and individuals across industries."
-                },
-                {
-                  num: "2.",
-                  icon: <Layers className="w-5 h-5" />,
-                  accent: "from-[#22D3EE]",
-                  text:
-                    "To provide software development, technology consulting, implementation, integration, technical support, maintenance, and managed services relating to artificial intelligence solutions, enterprise software, cloud computing, data processing, digital transformation, and information technology enabled services."
-                },
-                {
-                  num: "3.",
-                  icon: <Globe className="w-5 h-5" />,
-                  accent: "from-[#F59E0B]",
-                  text:
-                    "To create, own, acquire, license, distribute, market and monetize software products, SaaS platforms, mobile applications, digital platforms, and AI-enabled solutions, and to provide related services including training, support, upgrades, analytics, automation solutions and technology infrastructure services in India and internationally."
-                }
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                  className="card p-6 flex gap-4 items-start"
-                >
-                  <div className="w-12 h-12 rounded-[10px] bg-green-light flex items-center justify-center text-(--color-green-icon)">
-                    {item.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-sm font-semibold text-text-secondary">
-                        {item.num}
-                      </span>
-                      <div className="h-px w-16 bg-border-subtle" />
-                    </div>
-                    <p className="text-[15px] text-text-secondary leading-[1.8]">
-                      {item.text}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="hidden lg:flex flex-col items-center">
-              <div className="w-[2px] h-full bg-black/10 dark:bg-white/10 rounded-full relative transition-colors duration-300">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Products Section */}
       <section className="py-[120px] relative bg-bg">
         <div className="absolute inset-0 pointer-events-none" />
@@ -444,7 +364,7 @@ export default function Home() {
       <section className="py-24 relative bg-bg border-t border-border-subtle overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-linear-to-r from-orange-500/5 to-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
-        
+
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <div className="text-center mb-16 max-w-[700px] mx-auto">
             <motion.div
@@ -487,7 +407,7 @@ export default function Home() {
               },
               {
                 title: "5. Multi-Industry Perspective",
-                description: "Operating across AI, trade, and software gives us a cross-industry lens that pure-play firms simply don't have. Better context means better solutions."
+                description: "Operating across AI, and software gives us a cross-industry lens that pure-play firms simply don't have. Better context means better solutions."
               },
               {
                 title: "6. Transparent Partnerships",
@@ -504,7 +424,7 @@ export default function Home() {
               >
                 {/* Subtle hover gradient */}
                 <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 <h3 className="text-xl font-display font-semibold text-text mb-4 relative z-10 group-hover:text-amber-400 transition-colors duration-300">
                   {feature.title}
                 </h3>
@@ -587,7 +507,7 @@ export default function Home() {
               >
                 {/* Subtle hover gradient */}
                 <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 <h3 className="text-xl font-display font-semibold text-text mb-4 relative z-10 group-hover:text-amber-400 transition-colors duration-300">
                   {value.title}
                 </h3>
@@ -603,7 +523,7 @@ export default function Home() {
       {/* Perspectives & Insights Section */}
       <section className="py-24 relative bg-bg border-t border-border-subtle overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          
+
           {/* Header */}
           <div className="mb-16 max-w-[800px]">
             <motion.div
@@ -645,7 +565,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-12">
-            
+
             {/* Left Column: Categories List */}
             <div className="flex-1 space-y-8">
               {[
@@ -654,19 +574,15 @@ export default function Home() {
                   description: "From large language models to enterprise automation, we break down what's real, what's hype, and what actually moves the needle for businesses adopting AI today."
                 },
                 {
-                  title: "Category 2: Global Trade",
-                  description: "The world of imports and exports is changing faster than most people realize. We share ground-level perspectives on supply chains, sourcing strategies, and what smart trade looks like in a fragmented world."
-                },
-                {
-                  title: "Category 3: Product & Design",
+                  title: "Category 2: Product & Design",
                   description: "Behind every SarwHub event page, every SarwCal booking flow, and every SarwBill dashboard is a design decision. We talk about how we think about building software that people actually want to use."
                 },
                 {
-                  title: "Category 4: Business & Strategy",
+                  title: "Category 3: Business & Strategy",
                   description: "What does it take to build a multi-industry company from India? We share lessons from the trenches — on growth, on capital, on hiring, and on the hard calls that don't make it into pitch decks."
                 },
                 {
-                  title: "Category 5: India & the World",
+                  title: "Category 4: India & the World",
                   description: "India is at an inflection point. We write about the opportunity, the infrastructure, the policy shifts, and what it means for entrepreneurs, investors, and enterprises operating here."
                 }
               ].map((category, i) => (
@@ -689,7 +605,7 @@ export default function Home() {
             </div>
 
             {/* Right Column: Featured Post & CTAs */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -699,23 +615,23 @@ export default function Home() {
               <div className="card p-8 lg:p-10 sticky top-28 bg-surface border-border-subtle overflow-hidden group">
                 {/* Subtle gradient background effect */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-orange-500/5 to-transparent rounded-bl-full pointer-events-none" />
-                
+
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-semibold tracking-wide uppercase mb-6">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   Featured Post
                 </div>
-                
+
                 <h3 className="text-2xl font-display font-bold text-text mb-4 leading-snug group-hover:text-amber-400 transition-colors duration-300 cursor-pointer">
                   Why We Built Three Businesses Instead of One
                 </h3>
-                
+
                 <p className="text-text-secondary mb-8 leading-relaxed">
-                  Most founders are told to focus. We disagreed — here's why building across AI, trade, and software made us stronger, not thinner.
+                  Most founders are told to focus. We disagreed — here's why building across AI, and software made us stronger, not thinner.
                 </p>
-                
+
                 <div className="flex flex-col gap-4">
                   <Link to="/insights" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
-                    Read Our Latest 
+                    Read Our Latest
                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                   <Link to="/newsletter" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
@@ -733,7 +649,7 @@ export default function Home() {
       {/* How We Work Section */}
       <section className="py-24 relative bg-surface border-t border-border-subtle overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          
+
           {/* Main Header */}
           <div className="text-center mb-20 max-w-[800px] mx-auto">
             <motion.div
@@ -830,7 +746,7 @@ export default function Home() {
 
           {/* Our Process & Expectations */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16 items-start">
-            
+
             {/* Process */}
             <div>
               <h3 className="text-2xl font-display font-bold text-text mb-8">Our Process</h3>
@@ -866,7 +782,7 @@ export default function Home() {
             {/* Expectations & CTA */}
             <div className="card p-8 bg-bg border-border-subtle sticky top-28">
               <h3 className="text-xl font-display font-bold text-text mb-6">What You Can Always Expect From Us</h3>
-              
+
               <ul className="space-y-4 mb-10">
                 {[
                   "A single point of contact who knows your project inside out",

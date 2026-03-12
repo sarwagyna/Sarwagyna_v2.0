@@ -5,15 +5,15 @@ import SEO from '../components/SEO';
 export default function Careers() {
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text pt-16">
-      <SEO 
-        title="Careers | Sarwagyna" 
+      <SEO
+        title="Careers | Sarwagyna"
         description="Join the team at Sarwagyna. We're looking for people who are restless, rigorous, and ready to do the best work of their lives."
       />
-      
+
       {/* Join the Team Section */}
       <section className="py-24 relative bg-surface overflow-hidden" id="careers">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          
+
           {/* Main Careers Header */}
           <div className="text-center mb-20 max-w-[800px] mx-auto">
             <motion.div
@@ -50,20 +50,20 @@ export default function Careers() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-[16px] text-text-muted leading-relaxed"
             >
-              We're not building just another company. We're building something that sits at the intersection of AI, global trade, and software — and we're doing it from India, for the world. If that excites you, you're our kind of person.
+              We're not building just another company. We're building something that sits at the intersection of AI and software — and we're doing it from India, for the world. If that excites you, you're our kind of person.
             </motion.p>
           </div>
 
           {/* Life at Sarwagyna + Culture Values */}
           <div className="mb-24">
             <div className="max-w-[800px] mx-auto mb-16 text-center">
-               <h3 className="text-3xl font-display font-bold text-text mb-6">Life at Sarwagyna: What It's Actually Like to Work Here</h3>
-               <p className="text-[16px] text-text-secondary leading-relaxed mb-6">
-                 We're a small team doing big things. That means you'll wear multiple hats, make real decisions, and see the direct impact of your work — sometimes within days. There's no bureaucracy to navigate, no politics to play. Just smart people working on hard problems together.
-               </p>
-               <p className="text-[16px] text-text-secondary leading-relaxed">
-                 We're remote-friendly, async-first, and deeply committed to giving everyone the space to do their best thinking. We care about output, not optics.
-               </p>
+              <h3 className="text-3xl font-display font-bold text-text mb-6">Life at Sarwagyna: What It's Actually Like to Work Here</h3>
+              <p className="text-[16px] text-text-secondary leading-relaxed mb-6">
+                We're a small team doing big things. That means you'll wear multiple hats, make real decisions, and see the direct impact of your work — sometimes within days. There's no bureaucracy to navigate, no politics to play. Just smart people working on hard problems together.
+              </p>
+              <p className="text-[16px] text-text-secondary leading-relaxed">
+                We're remote-friendly, async-first, and deeply committed to giving everyone the space to do their best thinking. We care about output, not optics.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -93,7 +93,7 @@ export default function Careers() {
 
           {/* Why Work Here + Open Positions Split */}
           <div className="flex flex-col lg:flex-row gap-16 mb-24">
-            
+
             {/* Benefits List */}
             <div className="flex-1">
               <h3 className="text-2xl font-display font-bold text-text mb-8">Why Work Here</h3>
@@ -102,7 +102,6 @@ export default function Careers() {
                   { title: "Competitive Compensation", description: "Market-rate salaries with performance-linked bonuses and future equity options as the company scales." },
                   { title: "Flexible Hours", description: "We care about when you deliver, not when you log in. Build a schedule that works for your life." },
                   { title: "Remote-First", description: "Work from anywhere in India. We have no mandatory office days — just optional ones for team sprints and offsites." },
-                  { title: "Health Coverage", description: "Comprehensive health insurance for you and your immediate family from day one." },
                   { title: "Learning Budget", description: "Annual budget for courses, books, conferences, and certifications — because your growth is our growth." },
                   { title: "International Exposure", description: "Work on projects with clients and partners across multiple countries. Your work has a global footprint from day one." },
                   { title: "Open-Door Leadership", description: "Direct access to founders and senior leadership. Your ideas will be heard — not filtered through three layers of management." },
@@ -126,7 +125,7 @@ export default function Careers() {
             <div className="flex-1 lg:max-w-[500px]">
               <div className="card p-8 bg-bg border-border-subtle sticky top-28">
                 <h3 className="text-2xl font-display font-bold text-text mb-8">Open Positions</h3>
-                
+
                 <div className="space-y-8">
                   <div>
                     <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Engineering</h4>
@@ -155,7 +154,7 @@ export default function Careers() {
                   <div>
                     <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Sales & Growth</h4>
                     <ul className="space-y-3">
-                      {["Business Development Manager — AI & IT", "Sales Executive — Imports & Exports", "Growth & Marketing Associate"].map((role, i) => (
+                      {["Business Development Manager — AI & IT", "Growth & Marketing Associate"].map((role, i) => (
                         <li key={i} className="text-text-secondary hover:text-text transition-colors cursor-pointer text-[15px] flex items-center gap-2 group">
                           <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 transition-all text-amber-500" />
                           {role}
@@ -167,7 +166,7 @@ export default function Careers() {
                   <div>
                     <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Operations</h4>
                     <ul className="space-y-3">
-                      {["Trade Operations Executive", "Client Success Manager"].map((role, i) => (
+                      {["Client Success Manager"].map((role, i) => (
                         <li key={i} className="text-text-secondary hover:text-text transition-colors cursor-pointer text-[15px] flex items-center gap-2 group">
                           <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 transition-all text-amber-500" />
                           {role}
@@ -191,11 +190,11 @@ export default function Careers() {
           {/* Hiring Process */}
           <div className="max-w-[1000px] mx-auto text-center">
             <h3 className="text-2xl font-display font-bold text-text mb-12">Our Hiring Process</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
               {/* Connecting line for desktop */}
               <div className="hidden md:block absolute top-[28px] left-[10%] right-[10%] h-px bg-border-subtle z-0" />
-              
+
               {[
                 { step: "Step 1", title: "Apply", desc: "Send us your resume and a short note on why Sarwagyna and why now." },
                 { step: "Step 2", title: "Intro Call", desc: "A 30-minute conversation with our team to understand your background." },

@@ -1,5 +1,5 @@
 import { motion, Variants } from 'framer-motion';
-import { Target, Eye, Users, ArrowRight, Building2, Globe, Zap, ShieldCheck, Layers, BarChart3 } from 'lucide-react';
+import { Target, Eye, Users, ArrowRight, Building2, Globe, Zap, ShieldCheck, Layers, BarChart3, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
@@ -21,7 +21,7 @@ export default function HoldingCompany() {
     <div className="flex flex-col min-h-screen bg-bg text-text">
       <SEO
         title="About Sarwagyna | The Holding Company"
-        description="Learn about Sarwagyna's mission, vision, and leadership. We are building the infrastructure for modern enterprises across AI, trade, and SaaS."
+        description="Learn about Sarwagyna's mission, vision, and leadership. We are building the infrastructure for modern enterprises across AI, and SaaS."
         ogTitle="About Sarwagyna: Building the Future"
         ogDescription="Discover the story behind Sarwagyna, our core values, and the leadership team driving our multi-industry growth."
         url="/about"
@@ -57,7 +57,7 @@ export default function HoldingCompany() {
             </motion.h1>
 
             <motion.p variants={fadeIn} className="text-[17px] text-text-secondary font-normal mb-10 max-w-2xl mx-auto leading-[1.75]">
-              Sarwagyna is a diversified holding company operating at the intersection of enterprise AI, global trade logistics, and scalable SaaS products. We build resilient businesses that power the modern economy.
+              Sarwagyna is a diversified holding company operating at the intersection of enterprise AI, and scalable SaaS products. We build resilient businesses that power the modern economy.
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex justify-center">
@@ -143,7 +143,7 @@ export default function HoldingCompany() {
             </div>
             <h2 className="text-3xl font-display font-bold text-text mb-6">Our Mission</h2>
             <p className="text-lg text-text-secondary leading-[1.8]">
-              To democratize access to enterprise-grade technology and global markets. We empower businesses of all sizes to scale efficiently by providing them with the AI tools, software infrastructure, and trade networks previously reserved for the Fortune 500.
+              To democratize access to enterprise-grade technology and global markets. We empower businesses of all sizes to scale efficiently by providing them with the AI tools, software infrastructure, and global networks previously reserved for the Fortune 500.
             </p>
           </motion.div>
 
@@ -162,6 +162,79 @@ export default function HoldingCompany() {
               To become the foundational operating system for the next generation of Indian and global enterprises. We envision a future where complex operations—from international logistics to autonomous customer support—are seamlessly managed through Sarwagyna's interconnected ecosystem.
             </p>
           </motion.div>
+        </div>
+      </section>
+      <section id="objectives" className="py-[120px] relative">
+        <div className="absolute inset-0 bg-bg pointer-events-none" />
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="mb-12 text-center"
+          >
+            <motion.div variants={fadeIn} className="section-label justify-center mb-4">Main Objects of the Company</motion.div>
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
+              Objectives
+            </motion.h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
+            <div className="space-y-6">
+              {[
+                {
+                  num: "1.",
+                  icon: <Cpu className="w-5 h-5" />,
+                  accent: "from-[#7C3AED]",
+                  text: "To design, develop, research, manufacture, license, customize, implement, operate, maintain and commercialize artificial intelligence (AI), machine learning (ML), deep learning, data analytics, automation and software products, including software applications, platforms, algorithms, tools, and digital solutions for businesses, governments and individuals across industries."
+                },
+                {
+                  num: "2.",
+                  icon: <Layers className="w-5 h-5" />,
+                  accent: "from-[#22D3EE]",
+                  text: "To provide software development, technology consulting, implementation, integration, technical support, maintenance, and managed services relating to artificial intelligence solutions, enterprise software, cloud computing, data processing, digital transformation, and information technology enabled services."
+                },
+                {
+                  num: "3.",
+                  icon: <Globe className="w-5 h-5" />,
+                  accent: "from-[#F59E0B]",
+                  text: "To create, own, acquire, license, distribute, market and monetize software products, SaaS platforms, mobile applications, digital platforms, and AI-enabled solutions, and to provide related services including training, support, upgrades, analytics, automation solutions and technology infrastructure services in India and internationally."
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="card p-6 flex gap-4 items-start"
+                >
+                  <div className="w-12 h-12 rounded-[10px] bg-green-light flex items-center justify-center text-(--color-green-icon)">
+                    {item.icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-sm font-semibold text-text-secondary">
+                        {item.num}
+                      </span>
+                      <div className="h-px w-16 bg-border-subtle" />
+                    </div>
+                    <p className="text-[15px] text-text-secondary leading-[1.8]">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="hidden lg:flex flex-col items-center">
+              <div className="w-[2px] h-full bg-black/10 dark:bg-white/10 rounded-full relative transition-colors duration-300">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -226,7 +299,7 @@ export default function HoldingCompany() {
         <div className="grid grid-cols-1 sm:grid-cols-2 text-center lg:grid-cols-3 gap-8">
           {[
             { name: "Sarwan Thondamalla", role: "Chief Executive Officer", desc: "Leading the company’s vision, strategy, and innovation in artificial intelligence, software solutions, and global technology initiatives. He focuses on building scalable products and driving the company’s long-term growth.", initials: "ST" },
-            { name: "Gali Chandu Kumar", role: "Chief Operating Officer", desc: "Responsible for business development, operations, and global partnerships. He works on expanding the company’s international trade network and strengthening its technology-driven business ecosystem.", initials: "GCK" },
+            { name: "Gali Chandu Kumar", role: "Chief Operating Officer", desc: "Responsible for business development, operations, and global partnerships. He works on expanding the company’s international network and strengthening its technology-driven business ecosystem.", initials: "GCK" },
           ].map((leader, i) => (
             <motion.div
               key={i}
@@ -282,16 +355,10 @@ export default function HoldingCompany() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             { label: "Legal Company Name", value: "Sarwagyna Pvt Ltd" },
-            { label: "Corporate Identification Number (CIN)", value: "To be updated" },
-            { label: "Date of Incorporation", value: "To be updated" },
+            { label: "Corporate Identification Number (CIN)", value: "U62013AP2026PTC124652" },
             { label: "Type of Company", value: "Private Limited" },
-            { label: "Registered Office Address", value: "To be updated" },
-            { label: "Jurisdiction of Registrar of Companies (ROC)", value: "To be updated" },
-            { label: "Authorized Share Capital", value: "To be updated" },
-            { label: "Paid-up Share Capital", value: "To be updated" },
-            { label: "Directors / Founders", value: "To be updated" },
-            { label: "Company PAN", value: "Optional – To be updated" },
-            { label: "GSTIN", value: "If applicable – To be updated" },
+            { label: "Registered Office Address", value: "D NO. 7-7-24/2, Block 10, VIP RD 2nd Line, Ongole, Prakasam- 523001, Andhra Pradesh" },
+            { label: "Directors / Founders", value: "Sarwan Thondamalla" },
             { label: "Official Email Address", value: "contact@sarwagyna.com" },
             { label: "Corporate Website", value: "www.sarwagyna.com" },
           ].map((row, i) => (
@@ -301,15 +368,12 @@ export default function HoldingCompany() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.03 }}
-              className="card p-5 rounded-2xl flex items-center justify-between"
+              className="card p-5 rounded-2xl flex items-start justify-between gap-6"
             >
-              <span className="text-text-secondary text-sm">{row.label}</span>
-              <span className="text-text font-medium text-sm">{row.value}</span>
+              <span className="text-text-secondary text-sm shrink-0">{row.label}</span>
+              <span className="text-text font-medium text-sm text-right">{row.value}</span>
             </motion.div>
           ))}
-        </div>
-        <div className="text-text-muted text-xs mt-6">
-          Information presented follows the disclosure norms under the Companies Act, 2013 (India). Update values as statutory details change.
         </div>
       </section>
     </div>

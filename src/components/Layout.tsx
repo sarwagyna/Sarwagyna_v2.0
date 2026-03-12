@@ -64,7 +64,6 @@ export default function Layout() {
         items={[
           { label: 'Home', href: '/' },
           { label: 'AI & IT', href: '/ai-it' },
-          { label: 'Trade', href: '/trade' },
           { label: 'About', href: '/holding-company' },
           { label: 'Products', href: '/products' },
           { label: 'Partner', href: '/partner' },

@@ -41,7 +41,6 @@ const navColumns = [
       { name: "Enterprise Workflows", path: "/ai-it#enterprise-workflows" },
       { name: "Web Development", path: "/ai-it#web-development" },
       { name: "Custom Software", path: "/ai-it#custom-software" },
-      { name: "Import/Export", path: "/trade" },
     ],
   },
   {
@@ -219,7 +218,7 @@ export default function GraphyFooter() {
                   margin: "0 0 20px",
                 }}
               >
-                Sarwagyna Pvt Ltd is a technology-driven enterprise focused on artificial intelligence, digital products, and global trade. We build scalable solutions that help businesses innovate, automate, and grow across industries.
+                Sarwagyna Pvt Ltd is a technology-driven enterprise focused on artificial intelligence and digital products. We build scalable solutions that help businesses innovate, automate, and grow across industries.
               </p>
 
               {/* Social icons */}
