@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { TrendingUp, Shield, Globe, Zap, ArrowRight, Download, Building2, BarChart3, Users, Briefcase, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,

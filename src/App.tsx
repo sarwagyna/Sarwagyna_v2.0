@@ -15,6 +15,9 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import CookiePolicy from './pages/CookiePolicy';
 import RefundPolicy from './pages/RefundPolicy';
+import VerifyCertificate from './pages/VerifyCertificate';
+import AdminCertificates from './pages/AdminCertificates';
+import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
   return (
@@ -36,6 +39,10 @@ export default function App() {
           <Route path="terms-of-service" element={<TermsOfService />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
           <Route path="refund-policy" element={<RefundPolicy />} />
+          <Route path="verify" element={<VerifyCertificate />} />
+          <Route path="verify/:id" element={<VerifyCertificate />} />
+          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/certificates" element={<AdminCertificates />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

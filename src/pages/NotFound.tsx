@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import SEO from '../components/SEO';
 import { AlertTriangle } from 'lucide-react';
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } }
 };
 
 export default function NotFound() {

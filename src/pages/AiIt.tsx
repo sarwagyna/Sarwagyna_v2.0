@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { Bot, Workflow, Code2, BrainCircuit, Rocket, Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,

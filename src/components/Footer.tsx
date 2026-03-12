@@ -29,35 +29,35 @@ const navColumns = [
     heading: "Company",
     links: [
       { name: "About", path: "/about" },
-      { name: "Leadership", path: "/about#leadership" },
+      { name: "Holding Company", path: "/holding-company" },
       { name: "Careers", path: "/careers" },
-      { name: "Press", path: "/about#press" },
+      { name: "Partner With Us", path: "/partner" },
+      { name: "Contact", path: "/contact" },
     ],
   },
   {
     heading: "Services",
     links: [
-      { name: "AI Agents", path: "/ai-it" },
-      { name: "Enterprise Workflows", path: "/ai-it#enterprise-workflows" },
-      { name: "Web Development", path: "/ai-it#web-development" },
-      { name: "Custom Software", path: "/ai-it#custom-software" },
+      { name: "AI & IT", path: "/ai-it" },
+      { name: "AI Agents", path: "/ai-it#services" },
+      { name: "Web Development", path: "/ai-it#services" },
+      { name: "Enterprise Software", path: "/ai-it#services" },
     ],
   },
   {
     heading: "Products",
     links: [
+      { name: "All Products", path: "/products" },
       { name: "SarwHub", path: "/products/sarwhub" },
       { name: "SarwCal", path: "/products/sarwcal" },
       { name: "SarwBill", path: "/products/sarwbill" },
     ],
   },
   {
-    heading: "Investors",
+    heading: "Tools",
     links: [
-      { name: "Investor Relations", path: "/about#investors" },
-      { name: "Annual Report", path: "/about#annual-report" },
-      { name: "ESG", path: "/about#esg" },
-      { name: "Governance", path: "/about#governance" },
+      { name: "Verify Certificate", path: "/verify" },
+      { name: "Contact", path: "/contact" },
     ],
   },
   {
