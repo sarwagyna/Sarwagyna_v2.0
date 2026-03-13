@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { ShieldCheck, LogOut, AlertTriangle, Lock, Mail } from 'lucide-react';
+import { ShieldCheck, LogOut, AlertTriangle, Lock, Mail, Users } from 'lucide-react';
 import { useAdminAuth } from '../hooks/useAdminAuth';
 import { supabase } from '../lib/supabaseClient';
 
@@ -19,7 +19,15 @@ const adminTools = [
     path: '/admin/certificates',
     badge: 'Active',
   },
+  {
+    icon: <Users className="w-8 h-8" />,
+    title: 'Client Management',
+    desc: 'Manage clients, projects, invoices and payment tracking.',
+    path: '/admin/clients',
+    badge: 'Active',
+  },
 ];
+
 
 function LoginForm() {
   const [email, setEmail] = useState('');
