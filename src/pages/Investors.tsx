@@ -1,8 +1,9 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { TrendingUp, Shield, Globe, Zap, ArrowRight, Download, Building2, BarChart3, Users, Briefcase, Layers } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import Link from 'next/link';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -20,13 +21,6 @@ const staggerContainer: Variants = {
 export default function Investors() {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
-        title="Investor Relations | Sarwagyna Holdings"
-        description="Invest in Sarwagyna's diversified portfolio of high-margin IT services, global trade operations, and scalable SaaS products."
-        ogTitle="Invest in Sarwagyna: Capital, Strategy & Growth"
-        ogDescription="Explore investment opportunities with India's emerging multi-industry powerhouse. Resilient, high-growth, capital-efficient."
-        url="/investors"
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">

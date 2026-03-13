@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { ShieldCheck, LogOut, AlertTriangle, Lock, Mail, Users } from 'lucide-react';
@@ -115,7 +117,7 @@ function LoginForm() {
 }
 
 export default function AdminDashboard() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { session, loading, signOut } = useAdminAuth();
 
   if (loading) {
@@ -155,7 +157,7 @@ export default function AdminDashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              onClick={() => navigate(tool.path)}
+              onClick={() => router.push(tool.path)}
               className="card p-8 rounded-2xl text-left group hover:scale-[1.02] transition-transform duration-200 cursor-pointer w-full"
             >
               <div className="flex items-start justify-between mb-6">

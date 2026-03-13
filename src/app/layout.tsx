@@ -1,13 +1,59 @@
-import { Outlet, useLocation } from 'react-router-dom';
-import PillNav from './PillNav';
-import GraphyFooter from './Footer';
+'use client';
+
+import './globals.css';
+import PillNav from '@/components/PillNav';
+import GraphyFooter from '@/components/Footer';
+import { ThemeProvider } from '@/context/ThemeContext';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
-export default function Layout() {
-  const location = useLocation();
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+          rel="stylesheet" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Sarwagyna Pvt Ltd." />
+        <title>Sarwagyna Pvt Ltd</title>
+        <meta name="description" content="India's emerging multi-industry powerhouse delivering enterprise-grade AI, and SaaS products." />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Sarwagyna: India's Next-Gen Multi-Industry Company" />
+        <meta property="og:description" content="Discover Sarwagyna Pvt Ltd. We build enterprise AI solutions, manage global operations, and develop scalable SaaS products." />
+        <meta property="twitter:card" content="summary_large_image" />
+      </head>
+      <body>
+        <ThemeProvider>
+          <LayoutShell>{children}</LayoutShell>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+
+function LayoutShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
 
   useEffect(() => {
-    const hash = location.hash?.replace('#', '');
+    // Handle hash scrolling
+    const hash = window.location.hash?.replace('#', '');
     if (hash) {
       const el = document.getElementById(decodeURIComponent(hash));
       if (el) {
@@ -16,7 +62,7 @@ export default function Layout() {
       }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname, location.hash]);
+  }, [pathname]);
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-bg text-text dark:bg-bg-dark dark:text-white relative selection:bg-white/20 transition-colors duration-300">
@@ -70,7 +116,7 @@ export default function Layout() {
           { label: 'Careers', href: '/careers' }
         ]}
         cta={{ label: 'Contact', href: '/contact' }}
-        activeHref={location.pathname}
+        activeHref={pathname ?? undefined}
         className="fixed top-4 left-1/2 -translate-x-1/2 w-max! px-0!"
         baseColor="var(--color-primary)"
         pillColor="var(--color-surface)"
@@ -78,7 +124,7 @@ export default function Layout() {
         pillTextColor="var(--color-text)"
       />
       <main id="main-content" className="grow relative z-10">
-        <Outlet />
+        {children}
       </main>
       {/* Footer */}
       <div className="relative z-10" style={{ color: '#0D1F1A' }}>

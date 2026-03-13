@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 
 const TwitterIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -163,7 +165,7 @@ export default function GraphyFooter() {
               ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#ffffff")
             }
           >
-            <Link to="/contact" className="px-2 py-1">Schedule a Call</Link>
+            <Link href="/contact" className="px-2 py-1">Schedule a Call</Link>
           </button>
         </div>
 
@@ -267,7 +269,7 @@ export default function GraphyFooter() {
                     {links.map((link) => (
                       <li key={link.name} style={{ marginBottom: "10px" }}>
                         <Link
-                          to={link.path}
+                          href={link.path}
                           style={{
                             fontSize: "13px",
                             color: "#6b6b6b",

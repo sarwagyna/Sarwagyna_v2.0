@@ -1,7 +1,9 @@
+'use client';
+
 // pages/ClientManagement.tsx
 import { useState } from 'react'
 import { Users, FolderKanban, FileText, CreditCard, Search, X, ArrowLeft } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation';
 import ClientsTab from '../components/clients/ClientsTab'
 import ProjectsTab from '../components/clients/ProjectsTab'
 import InvoicesTab from '../components/clients/InvoicesTab'
@@ -17,7 +19,7 @@ const TABS: { id: Tab; label: string; icon: React.ReactNode }[] = [
 ]
 
 export default function ClientManagement() {
-  const navigate = useNavigate()
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<Tab>('clients')
   const [search, setSearch] = useState('')
   const [selectedClientId, setSelectedClientId] = useState<string | null>(null)
@@ -32,7 +34,7 @@ export default function ClientManagement() {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <button
-                onClick={() => navigate('/admin')}
+                onClick={() => router.push('/admin')}
                 className="flex items-center gap-2 text-sm text-text-secondary hover:text-text transition-colors"
               >
                 <ArrowLeft size={14} />

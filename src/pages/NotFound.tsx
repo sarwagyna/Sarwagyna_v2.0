@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import SEO from '../components/SEO';
 import { AlertTriangle } from 'lucide-react';
 
 const fadeIn: Variants = {
@@ -12,14 +13,6 @@ const fadeIn: Variants = {
 export default function NotFound() {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO
-        title="Page Not Found | Sarwagyna"
-        description="The page you’re looking for doesn’t exist. Navigate back to the homepage or explore our divisions."
-        ogTitle="404 — Page Not Found"
-        ogDescription="This route is not available. Return to the homepage or contact us."
-        url="/404"
-        canonicalPath="/404"
-      />
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-[var(--color-bg)]/5 pointer-events-none" />
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
@@ -32,10 +25,10 @@ export default function NotFound() {
               The page you requested could not be found. Check the URL or use the actions below to continue.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/" className="glass-button-primary px-8 py-4 text-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
+              <Link href="/" className="glass-button-primary px-8 py-4 text-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
                 Go to Homepage
               </Link>
-              <Link to="/ai-it" className="glass-button-ghost px-8 py-4 text-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
+              <Link href="/ai-it" className="glass-button-ghost px-8 py-4 text-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
                 Explore AI & IT
               </Link>
             </div>

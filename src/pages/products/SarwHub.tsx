@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Ticket, Check, ChevronDown, ChevronUp } from 'lucide-react';
-import SEO from '../../components/SEO';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="glass-panel p-6 rounded-xl hover:bg-[var(--color-bg)]/5 transition-colors">
@@ -25,13 +26,6 @@ const Accordion = ({ question, answer }: { question: string, answer: string }) =
 export default function SarwHub() {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
-        title="SarwHub: Event Management & Ticketing Platform | Sarwagyna"
-        description="Sell out your next event stress-free with SarwHub. Get smart ticketing, lightning-fast QR check-ins, and real-time analytics for Indian event organizers."
-        ogTitle="SarwHub: The All-in-One Event Management Platform"
-        ogDescription="Stop wrestling with multiple tools. SarwHub brings ticketing, landing pages, and real-time analytics under one roof for seamless event execution."
-        url="/products/sarwhub"
-      />
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-[var(--color-bg)]/5 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

@@ -1,7 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Handshake, Rocket, Users, ArrowRight } from 'lucide-react';
-import SEO from '../components/SEO';
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { supabase } from '../lib/supabaseClient';
@@ -55,11 +56,6 @@ export default function PartnerWithUs() {
   };
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO
-        title="Partner With Us | Sarwagyna Holdings"
-        description="Join forces with Sarwagyna to scale your business, leverage our AI expertise, and explore global opportunities."
-        url="/partner"
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">

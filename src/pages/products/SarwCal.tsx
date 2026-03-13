@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Calendar, Check, ChevronDown, ChevronUp } from 'lucide-react';
-import SEO from '../../components/SEO';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
@@ -12,13 +13,6 @@ const FeatureCard = ({ title, description }: { title: string, description: strin
 export default function SarwCal() {
   return (
     <div className="bg-white pt-20">
-      <SEO 
-        title="SarwCal: Smart Scheduling for Indian Professionals | Sarwagyna"
-        description="Stop the back-and-forth emails. SarwCal is the smart scheduling tool built for India, featuring UPI payments, WhatsApp reminders, and IST-native booking."
-        ogTitle="SarwCal: The Calendly Alternative for India"
-        ogDescription="Book meetings, collect payments, and send WhatsApp reminders automatically. SarwCal is designed specifically for Indian consultants and teams."
-        url="/products/sarwcal"
-      />
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">

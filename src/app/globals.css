@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-bg: #FFFFFF;
+  --color-bg-dark: #0F0F14;
+  --color-surface: #F7F8F7;
+  --color-primary: #000000;
+  --color-primary-hover: #1a1a1a;
+  --color-green-light: #f0f0f0;
+  --color-green-icon: #000000;
+  --color-text: #0D1F1A;
+  --color-text-secondary: #4A5550;
+  --color-text-muted: #8A9590;
+  --color-border-subtle: #E8EDEB;
+  --color-button-outline: #E2E8E5;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased transition-colors duration-300 bg-bg text-text;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-[-0.03em] text-text transition-colors duration-300;
+  }
+
+  p {
+    @apply leading-[1.75] transition-colors duration-300 text-text-secondary;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  img {
+    @apply rounded-[18px];
+  }
+
+  input,
+  select,
+  textarea {
+    @apply rounded-[10px] bg-white border border-border-subtle focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  [id] {
+    scroll-margin-top: 84px;
+  }
+
+  .text-accessible {
+    @apply text-text-secondary transition-colors duration-300;
+  }
+
+  .glass-panel {
+    @apply bg-white rounded-[16px] border border-border-subtle transition-all duration-200;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+  .glass-panel:hover {
+    @apply -translate-y-[3px];
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.10);
+  }
+
+  .card {
+    @apply bg-white rounded-[16px] border border-border-subtle transition-all duration-200;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+  .card:hover {
+    @apply -translate-y-[3px];
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.10);
+  }
+
+  .glass-button-primary {
+    @apply rounded-[100px] font-sans font-semibold text-[15px] px-7 py-[14px] bg-primary text-white transition-colors duration-150 hover:bg-primary-hover;
+  }
+
+  .glass-button-ghost {
+    @apply rounded-[100px] font-sans font-semibold text-[15px] px-7 py-[14px] bg-button-outline text-text border border-button-outline transition-colors duration-150 hover:border-[#CBD5D0];
+  }
+
+  .text-gradient {
+    @apply text-primary;
+  }
+
+  .orb-bg {
+    @apply absolute inset-0 -z-10 pointer-events-none bg-bg;
+  }
+
+  .lavender-glow {
+    box-shadow: 0 0 80px rgba(107, 127, 191, 0.30);
+  }
+
+  .section-label {
+    @apply text-[12px] font-medium tracking-[0.14em] uppercase text-text-muted flex items-center;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply inline-block w-[28px] h-px bg-current mr-3;
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 15s linear infinite;
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

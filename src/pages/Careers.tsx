@@ -1,14 +1,11 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import SEO from '../components/SEO';
 
 export default function Careers() {
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text pt-16">
-      <SEO
-        title="Careers | Sarwagyna"
-        description="Join the team at Sarwagyna. We're looking for people who are restless, rigorous, and ready to do the best work of their lives."
-      />
 
       {/* Join the Team Section */}
       <section className="py-24 relative bg-surface overflow-hidden" id="careers">

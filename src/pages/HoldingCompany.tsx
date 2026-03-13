@@ -1,7 +1,8 @@
+'use client';
+
 import { motion, Variants } from 'framer-motion';
 import { Target, Eye, Users, ArrowRight, Building2, Globe, Zap, ShieldCheck, Layers, BarChart3, Cpu } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import Link from 'next/link';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -19,23 +20,6 @@ const staggerContainer: Variants = {
 export default function HoldingCompany() {
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
-      <SEO
-        title="About Sarwagyna | The Holding Company"
-        description="Learn about Sarwagyna's mission, vision, and leadership. We are building the infrastructure for modern enterprises across AI, and SaaS."
-        ogTitle="About Sarwagyna: Building the Future"
-        ogDescription="Discover the story behind Sarwagyna, our core values, and the leadership team driving our multi-industry growth."
-        url="/about"
-        canonicalPath="/about"
-        organization={{
-          name: "Sarwagyna Pvt Ltd",
-          url: "https://sarwagyna.com",
-          logo: "https://sarwagyna.com/logo.png",
-          foundingDate: "2025-01-01",
-          founders: ["Rahul Sharma", "Priya Patel", "Anand Desai"],
-          address: "Registered Office - To be updated",
-          email: "contact@sarwagyna.com"
-        }}
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden bg-bg">
@@ -327,10 +311,10 @@ export default function HoldingCompany() {
             <h2 className="text-4xl md:text-5xl font-display font-bold text-text mb-6">Join our journey</h2>
             <p className="text-lg text-text-secondary mb-10">Whether you're looking to partner, invest, or join our team, we're always looking for exceptional people.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="glass-button-primary px-8 py-4">
+              <Link href="/contact" className="glass-button-primary px-8 py-4">
                 Contact Us
               </Link>
-              <Link to="/careers" className="glass-button-ghost px-8 py-4">
+              <Link href="/careers" className="glass-button-ghost px-8 py-4">
                 View Careers
               </Link>
             </div>

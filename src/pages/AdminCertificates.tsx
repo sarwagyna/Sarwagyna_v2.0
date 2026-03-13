@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Plus, Trash2, ShieldCheck, FileText, ArrowLeft, LogOut } from 'lucide-react';
@@ -23,7 +25,7 @@ interface Certificate {
 }
 
 export default function AdminCertificates() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { session, loading: authLoading, signOut } = useAdminAuth();
 
   const [certs, setCerts] = useState<Certificate[]>([]);
@@ -58,9 +60,9 @@ export default function AdminCertificates() {
   // Redirect to /admin if not authenticated
   useEffect(() => {
     if (!authLoading && !session) {
-      navigate('/admin', { replace: true });
+      router.replace('/admin');
     }
-  }, [authLoading, session, navigate]);
+  }, [authLoading, session, router]);
 
   if (authLoading || !session) {
     return (
@@ -113,7 +115,7 @@ export default function AdminCertificates() {
         {/* Header */}
         <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
           <div className="flex items-center gap-4">
-            <button onClick={() => navigate('/admin')} className="glass-button-ghost p-2.5 rounded-xl">
+            <button onClick={() => router.push('/admin')} className="glass-button-ghost p-2.5 rounded-xl">
               <ArrowLeft className="w-4 h-4" />
             </button>
             <div className="w-12 h-12 rounded-2xl bg-green-light flex items-center justify-center text-(--color-green-icon)">

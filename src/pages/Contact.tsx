@@ -1,9 +1,10 @@
+'use client';
+
 import { useState } from 'react';
 import type { ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Mail, MessageSquare, ArrowRight, Building2, Bot } from 'lucide-react';
-import SEO from '../components/SEO';
 import { supabase } from '../lib/supabaseClient';
 
 const fadeIn: Variants = {
@@ -58,13 +59,6 @@ export default function Contact() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO
-        title="Contact Us | Sarwagyna"
-        description="Get in touch with Sarwagyna's sales, support, or investor relations teams. We're here to help you build the future."
-        ogTitle="Contact Sarwagyna: Let's Build Together"
-        ogDescription="Reach out to our teams across AI & IT services, and SaaS products. We're ready to partner with you."
-        url="/contact"
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">

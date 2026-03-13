@@ -1,6 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
 import { FileText, Check, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
-import SEO from '../../components/SEO';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="card p-7">
@@ -29,13 +30,6 @@ const Accordion = ({ question, answer }: { question: string, answer: string }) =
 export default function SarwBill() {
   return (
     <div className="bg-[var(--color-bg)] pt-20">
-      <SEO 
-        title="SarwBill: GST Invoicing & Billing Software | Sarwagyna"
-        description="Ditch the Excel sheets. SarwBill is the CA-verified GST billing software for Indian SMEs. Generate e-invoices, track inventory, and get paid faster."
-        ogTitle="SarwBill: Professional GST Billing Made Simple"
-        ogDescription="Create compliant GST invoices in seconds, automate payment reminders, and manage your inventory with SarwBill. Built for growing Indian businesses."
-        url="/products/sarwbill"
-      />
       <section className="py-24 bg-[var(--color-bg)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">

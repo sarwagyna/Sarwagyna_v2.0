@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { ArrowRight, Cpu, Globe, Briefcase, Layers } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
-import SEO from '../components/SEO';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -21,13 +22,6 @@ const staggerContainer: Variants = {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
-      <SEO
-        title="Sarwagyna | Intelligence. Growth."
-        description="India's emerging multi-industry powerhouse delivering enterprise-grade AI, and SaaS products."
-        ogTitle="Sarwagyna: India's Next-Gen Multi-Industry Company"
-        ogDescription="Discover Sarwagyna Pvt Ltd. We build enterprise AI solutions, manage global operations, and develop scalable SaaS products."
-        url="/"
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-bg">
@@ -53,10 +47,10 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Link to="/ai-it" className="glass-button-primary px-8 py-4 text-center">
+                <Link href="/ai-it" className="glass-button-primary px-8 py-4 text-center">
                   Explore Our Divisions
                 </Link>
-                <Link to="/partner" className="glass-button-ghost px-8 py-4 text-center">
+                <Link href="/partner" className="glass-button-ghost px-8 py-4 text-center">
                   Partner with Us
                 </Link>
               </motion.div>
@@ -184,7 +178,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <Link to="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
+            <Link href="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
               Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -212,7 +206,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <Link to="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
+            <Link href="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
               Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -240,7 +234,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <Link to="/holding-company" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
+            <Link href="/holding-company" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
               Explore Holdings <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -290,7 +284,7 @@ export default function Home() {
 
               <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
 
-              <Link to="/products/sarwhub" className="glass-button-ghost w-full text-center">
+              <Link href="/products/sarwhub" className="glass-button-ghost w-full text-center">
                 Explore SarwHub
               </Link>
             </motion.div>
@@ -321,7 +315,7 @@ export default function Home() {
 
               <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
 
-              <Link to="/products/sarwcal" className="glass-button-ghost w-full text-center">
+              <Link href="/products/sarwcal" className="glass-button-ghost w-full text-center">
                 Explore SarwCal
               </Link>
             </motion.div>
@@ -352,7 +346,7 @@ export default function Home() {
 
               <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
 
-              <Link to="/products/sarwbill" className="glass-button-ghost w-full text-center">
+              <Link href="/products/sarwbill" className="glass-button-ghost w-full text-center">
                 Explore SarwBill
               </Link>
             </motion.div>
@@ -630,11 +624,11 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-col gap-4">
-                  <Link to="/insights" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
+                  <Link href="/insights" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
                     Read Our Latest
                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
-                  <Link to="/newsletter" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
+                  <Link href="/newsletter" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
                     Subscribe to Our Newsletter
                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
@@ -801,11 +795,11 @@ export default function Home() {
               </ul>
 
               <div className="flex flex-col gap-4">
-                <Link to="/contact" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
+                <Link href="/contact" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
                   Start a Conversation
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
-                <Link to="/" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
+                <Link href="/" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
                   See How We've Worked With Others
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Link>

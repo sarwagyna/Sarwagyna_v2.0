@@ -1,8 +1,9 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Globe, Ship, ShieldCheck, ArrowRight, Package, TrendingUp, Anchor, FileText } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import Link from 'next/link';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -20,13 +21,6 @@ const staggerContainer: Variants = {
 export default function Trade() {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
-        title="Global Trade & Logistics | Sarwagyna"
-        description="End-to-end import and export solutions. Sourcing, logistics, and compliance for global commodities."
-        ogTitle="Sarwagyna Trade: Connecting Global Markets"
-        ogDescription="Streamline your international supply chain with our comprehensive trade facilitation services."
-        url="/trade"
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-32 pb-16 overflow-hidden">
@@ -54,7 +48,7 @@ export default function Trade() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="glass-button-primary px-8 py-4 text-[var(--color-text)]">
+              <Link href="/contact" className="glass-button-primary px-8 py-4 text-[var(--color-text)]">
                 Discuss Your Supply Chain
               </Link>
               <button onClick={() => document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4 text-[var(--color-text)]">
@@ -156,7 +150,7 @@ export default function Trade() {
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] mb-6">Ready to expand your market?</h2>
             <p className="text-lg text-[var(--color-text-secondary)] mb-10">Partner with Sarwagyna to navigate the complexities of international trade with confidence.</p>
-            <Link to="/contact" className="glass-button-primary px-10 py-5 text-lg inline-flex items-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
+            <Link href="/contact" className="glass-button-primary px-10 py-5 text-lg inline-flex items-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
               Contact Trade Desk <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>

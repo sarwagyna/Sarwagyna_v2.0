@@ -1,10 +1,11 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { ShieldCheck, ShieldX, Search, Award, Calendar, User, Building2, Hash, Download } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-import SEO from '../components/SEO';
 import { supabase } from '../lib/supabaseClient';
 
 const fadeIn: Variants = {
@@ -23,8 +24,9 @@ interface Certificate {
 }
 
 export default function VerifyCertificate() {
-  const { id: routeId } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const params = useParams<{ id: string }>();
+  const routeId = params?.id;
+  const router = useRouter();
 
   const [inputId, setInputId] = useState(routeId ?? '');
   const [certificate, setCertificate] = useState<Certificate | null>(null);
@@ -49,7 +51,7 @@ export default function VerifyCertificate() {
       setNotFound(true);
     } else {
       setCertificate(data as Certificate);
-      navigate(`/verify/${encodeURIComponent(trimmed)}`, { replace: true });
+      router.replace(`/verify/${encodeURIComponent(trimmed)}`);
     }
   };
 
@@ -78,11 +80,7 @@ export default function VerifyCertificate() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
-      <SEO
-        title="Verify Certificate | Sarwagyna"
-        description="Instantly verify the authenticity of certificates issued by Sarwagyna Pvt Ltd."
-        url="/verify"
-      />
+
 
       {/* Hero */}
       <section className="relative pt-36 pb-16 flex flex-col items-center text-center px-4">

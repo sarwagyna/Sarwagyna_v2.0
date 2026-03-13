@@ -1,9 +1,10 @@
+'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Calendar, CreditCard, Users, BarChart3, Shield, Zap, Smartphone, Globe, Lock } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import Link from 'next/link';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -76,13 +77,6 @@ export default function ProductsHub() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
-      <SEO 
-        title="SaaS Products | SarwHub, SarwCal, SarwBill | Sarwagyna"
-        description="Explore Sarwagyna's suite of SaaS products: SarwHub for events, SarwCal for scheduling, and SarwBill for invoicing. Built for modern business."
-        ogTitle="Sarwagyna Products: Built for Modern Business"
-        ogDescription="Discover our scalable SaaS portfolio designed to streamline operations, manage events, and secure your finances."
-        url="/products"
-      />
 
       {/* Hero & Tabs */}
       <section className="pt-32 pb-12 relative overflow-hidden bg-[var(--color-bg)]">
@@ -199,7 +193,7 @@ export default function ProductsHub() {
                     Explore full product details or talk to our team for tailored guidance.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link to={`/products/${activeProduct.id}`} className="glass-button-primary px-8 py-3 text-center flex items-center justify-center">
+                    <Link href={`/products/${activeProduct.id}`} className="glass-button-primary px-8 py-3 text-center flex items-center justify-center">
                       Explore {activeProduct.name} <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                     <button className="glass-button-ghost px-8 py-3 text-center">
@@ -210,7 +204,7 @@ export default function ProductsHub() {
 
                 {/* CTA Row */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to={`/products/${activeProduct.id}`} className="glass-button-primary px-8 py-4 text-center flex items-center justify-center">
+                  <Link href={`/products/${activeProduct.id}`} className="glass-button-primary px-8 py-4 text-center flex items-center justify-center">
                     View Full Details <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                   <button className="glass-button-ghost px-8 py-4 text-center">

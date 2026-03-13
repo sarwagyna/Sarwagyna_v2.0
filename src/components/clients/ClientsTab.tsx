@@ -180,7 +180,7 @@ export default function ClientsTab({ search, selectedClientId, onSelectClient, o
             </div>
             <div>
               <label className={LABEL_CLS}>Company</label>
-              <input value={form.company} onChange={e => setForm(f => ({ ...f, company: e.target.value }))} className={INPUT_CLS} />
+              <input value={form.company ?? ''} onChange={e => setForm(f => ({ ...f, company: e.target.value }))} className={INPUT_CLS} />
             </div>
           </div>
 
@@ -191,13 +191,13 @@ export default function ClientsTab({ search, selectedClientId, onSelectClient, o
             </div>
             <div>
               <label className={LABEL_CLS}>Phone</label>
-              <input value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} className={INPUT_CLS} />
+               <input value={form.phone ?? ''} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} className={INPUT_CLS} />
             </div>
           </div>
 
           <div>
             <label className={LABEL_CLS}>Address</label>
-            <input value={form.address} onChange={e => setForm(f => ({ ...f, address: e.target.value }))} className={INPUT_CLS} />
+             <input value={form.address ?? ''} onChange={e => setForm(f => ({ ...f, address: e.target.value }))} className={INPUT_CLS} />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -211,7 +211,7 @@ export default function ClientsTab({ search, selectedClientId, onSelectClient, o
             </div>
             <div>
               <label className={LABEL_CLS}>Account Manager</label>
-              <input value={form.account_manager} onChange={e => setForm(f => ({ ...f, account_manager: e.target.value }))} className={INPUT_CLS} />
+               <input value={form.account_manager ?? ''} onChange={e => setForm(f => ({ ...f, account_manager: e.target.value }))} className={INPUT_CLS} />
             </div>
           </div>
 
@@ -236,7 +236,7 @@ export default function ClientsTab({ search, selectedClientId, onSelectClient, o
 
           <div>
             <label className={LABEL_CLS}>Notes</label>
-            <textarea value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} rows={3}
+             <textarea value={form.notes ?? ''} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} rows={3}
               className={INPUT_CLS + ' resize-none'} />
           </div>
 

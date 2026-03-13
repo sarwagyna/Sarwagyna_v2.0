@@ -1,8 +1,9 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Bot, Workflow, Code2, BrainCircuit, Rocket, Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
-import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -20,13 +21,6 @@ const staggerContainer: Variants = {
 export default function AiIt() {
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
-      <SEO 
-        title="AI & IT Services | Enterprise Intelligence | Sarwagyna"
-        description="Enterprise AI agents, workflow automation, custom software, and web development. Scalable technology solutions by Sarwagyna."
-        ogTitle="Sarwagyna AI & IT: Enterprise Intelligence Delivered"
-        ogDescription="Transform your business with our AI-first technology services. From custom AI agents to enterprise software development."
-        url="/ai-it"
-      />
 
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center pt-32 pb-16 overflow-hidden bg-[var(--color-bg)]">
@@ -54,7 +48,7 @@ export default function AiIt() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="glass-button-primary px-8 py-4">
+              <Link href="/contact" className="glass-button-primary px-8 py-4">
                 Contact Us
               </Link>
               <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">

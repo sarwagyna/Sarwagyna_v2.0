@@ -1,12 +1,15 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +21,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setMobileMenuOpen(false);
-  }, [location]);
+  }, [pathname]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -39,7 +42,7 @@ export default function Navbar() {
             }`}
         >
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+          <Link href="/" className="flex items-center gap-2.5 shrink-0">
             <div className="w-[30px] h-[30px] rounded-full bg-linear-to-br from-amber-400 via-orange-500 to-orange-600 flex items-center justify-center">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="4" />
@@ -63,8 +66,8 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.path}
-                className={`text-[13.5px] font-medium px-4 py-2 rounded-full transition-all duration-200 ${location.pathname === link.path
+                href={link.path}
+                className={`text-[13.5px] font-medium px-4 py-2 rounded-full transition-all duration-200 ${pathname === link.path
                   ? 'text-white bg-white/10'
                   : 'text-white/60 hover:text-white hover:bg-white/6'
                   }`}
@@ -77,7 +80,7 @@ export default function Navbar() {
           {/* Right side — CTA + Mobile toggle */}
           <div className="flex items-center gap-3">
             <Link
-              to="/contact"
+              href="/contact"
               className="hidden lg:inline-flex items-center text-[13px] font-semibold text-white border border-white/25 rounded-full px-5 py-2 transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
             >
               Get in Touch
@@ -124,8 +127,8 @@ export default function Navbar() {
                     transition={{ delay: i * 0.04 }}
                   >
                     <Link
-                      to={link.path}
-                      className={`block px-4 py-3.5 text-[15px] font-medium rounded-xl transition-all ${location.pathname === link.path
+                      href={link.path}
+                      className={`block px-4 py-3.5 text-[15px] font-medium rounded-xl transition-all ${pathname === link.path
                         ? 'bg-white/10 text-white'
                         : 'text-white/55 hover:bg-white/6 hover:text-white'
                         }`}
@@ -138,7 +141,7 @@ export default function Navbar() {
 
               <div className="px-3 pb-3">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="flex items-center justify-center w-full text-[14px] font-semibold text-white border border-white/20 rounded-xl py-3.5 transition-all hover:bg-white hover:text-black hover:border-white"
                 >
                   Get in Touch
