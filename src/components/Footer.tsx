@@ -59,7 +59,7 @@ const navColumns = [
     heading: "Tools",
     links: [
       { name: "Verify Certificate", path: "/verify" },
-      { name: "Contact", path: "/contact" },
+      { name: "Blog", path: "/blog" },
     ],
   },
   {
