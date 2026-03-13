@@ -14,7 +14,18 @@ const ContentSecurityPolicy = `
 `;
 
 const nextConfig: NextConfig = {
-  /*
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hzvhbnohuiodjhndotpb.supabase.co',
+      },
+    ],
+  },
   async headers() {
     return [
       {
@@ -44,7 +55,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  */
 };
 
 export default nextConfig;
