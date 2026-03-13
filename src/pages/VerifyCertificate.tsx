@@ -44,7 +44,7 @@ export default function VerifyCertificate() {
       .from('certificates')
       .select('*')
       .eq('certificate_id', trimmed)
-      .single();
+      .maybeSingle();
 
     setLoading(false);
     if (error || !data) {

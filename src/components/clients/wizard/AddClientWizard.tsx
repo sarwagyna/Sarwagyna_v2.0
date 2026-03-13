@@ -147,7 +147,7 @@ export default function AddClientWizard({ open, onClose, onDone }: Props) {
               .from('clients')
               .select('id')
               .eq('email', state.client.email)
-              .single()
+              .maybeSingle()
             if (existing) {
               clientId = existing.id
             } else {
