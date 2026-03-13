@@ -17,10 +17,10 @@ export default async function BlogPage() {
       {/* Header */}
       <div className="mb-20">
         <div className="section-label mb-4">Sarwagyna Journal</div>
-        <h1 className="text-[46px] sm:text-[56px] lg:text-[72px] font-display font-extrabold leading-[1.05] tracking-[-0.06em] mb-6">
+        <h1 className="text-[46px] sm:text-[56px] lg:text-[56px] font-display font-extrabold leading-[1.05] tracking-[-0.06em] mb-6">
           Ideas & <span className="text-gradient">Insights</span>
         </h1>
-        <p className="text-[17px] text-text-secondary font-normal max-w-[600px] leading-[1.75]">
+        <p className="text-[15px] text-text-secondary font-normal max-w-[600px] leading-[1.75]">
           Thoughts on AI, technology, and building the future of Indian enterprise.
         </p>
       </div>
@@ -120,8 +120,8 @@ export default async function BlogPage() {
                       {post.excerpt}
                     </p>
                   )}
-                  <div className="flex items-center justify-between text-[12px] font-medium text-text-muted mt-auto pt-6 border-t border-border-subtle">
-                    <span className="text-text">{post.author || 'Sarwagyna'}</span>
+                  <div className="flex items-center justify-between text-[12px] font-medium text-black mt-auto pt-6 border-t border-border-subtle">
+                    <span className="text-black">{post.author || 'Sarwagyna'}</span>
                     <span>
                       {post.publishedAt && new Date(post.publishedAt).toLocaleDateString('en-IN', {
                         month: 'short', day: 'numeric', year: 'numeric'
