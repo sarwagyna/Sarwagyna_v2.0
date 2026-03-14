@@ -112,6 +112,7 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
           { label: 'About', href: '/holding-company' },
           { label: 'Products', href: '/products' },
           { label: 'Partner', href: '/partner' },
+          { label: 'Blog', href: '/blog' },
           { label: 'Careers', href: '/careers' }
         ]}
         cta={{ label: 'Contact', href: '/contact' }}

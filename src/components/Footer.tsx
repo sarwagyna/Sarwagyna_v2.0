@@ -74,10 +74,10 @@ const navColumns = [
 ];
 
 const socialLinks = [
-  { icon: <LinkedInIcon />, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: <TwitterIcon />, label: "Twitter/X", href: "https://x.com" },
-  { icon: <InstagramIcon />, label: "Instagram", href: "https://instagram.com" },
-  { icon: <YouTubeIcon />, label: "YouTube", href: "https://youtube.com" },
+  { icon: <LinkedInIcon />, label: "LinkedIn", href: "https://linkedin.com/company/sarwagyna" },
+  { icon: <TwitterIcon />, label: "Twitter/X", href: "https://x.com/sarwagynahq" },
+  { icon: <InstagramIcon />, label: "Instagram", href: "https://instagram.com/sarwagyna" },
+  { icon: <YouTubeIcon />, label: "YouTube", href: "https://youtube.com/sarwagyna" },
 ];
 
 export default function GraphyFooter() {

@@ -189,8 +189,8 @@ export default function PartnerWithUs() {
               </div>
               {/* Floating Badge */}
               <div className="absolute -bottom-6 -right-6 glass-panel p-6 rounded-2xl animate-bounce-slow">
-                <div className="text-3xl font-bold text-text mb-1">50+</div>
-                <div className="text-[10px] uppercase tracking-widest text-text-secondary">Global Partners</div>
+                <div className="text-3xl font-bold text-text mb-1">5+</div>
+                <div className="text-[10px] uppercase tracking-widest text-text-secondary">Partners</div>
               </div>
             </motion.div>
           </div>

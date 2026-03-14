@@ -29,6 +29,7 @@ export default function Navbar() {
     { name: 'AI & IT', path: '/ai-it' },
     { name: 'Products', path: '/products' },
     { name: 'Partner', path: '/partner' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
 
