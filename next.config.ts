@@ -2,9 +2,9 @@ import type { NextConfig } from 'next';
 
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://core.sanity-cdn.com;
-  connect-src 'self' https://*.sanity.io https://core.sanity-cdn.com https://*.supabase.co wss://*.supabase.co;
-  img-src 'self' data: blob: https://cdn.sanity.io https://*.supabase.co;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://core.sanity-cdn.com https://sanity-cdn.com;
+  connect-src 'self' https://*.sanity.io https://core.sanity-cdn.com https://sanity-cdn.com https://*.supabase.co wss://*.supabase.co;
+  img-src 'self' data: blob: https://cdn.sanity.io https://*.supabase.co https://lh3.googleusercontent.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
   frame-src 'self' https://*.sanity.io;
@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'hzvhbnohuiodjhndotpb.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
       },
     ],
   },
