@@ -176,8 +176,8 @@ export default function Careers() {
                 <div className="mt-10 p-5 rounded-xl bg-surface border border-border-subtle">
                   <h5 className="text-[15px] font-semibold text-text mb-2">Don't see your role?</h5>
                   <p className="text-[13px] text-text-secondary mb-3">We hire for talent first. If you believe you can contribute to what we're building, send us your profile anyway.</p>
-                  <a href="mailto:careers@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors flex items-center gap-1">
-                    careers@sarwagyna.com <ArrowRight className="w-3 h-3" />
+                  <a href="mailto:contact@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors flex items-center gap-1">
+                    contact@sarwagyna.com <ArrowRight className="w-3 h-3" />
                   </a>
                 </div>
               </div>

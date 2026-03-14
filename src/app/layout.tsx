@@ -17,7 +17,6 @@ export default function RootLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

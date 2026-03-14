@@ -56,7 +56,7 @@ const navColumns = [
     ],
   },
   {
-    heading: "Tools",
+    heading: "Resources",
     links: [
       { name: "Verify Certificate", path: "/verify" },
       { name: "Blog", path: "/blog" },
@@ -77,7 +77,7 @@ const socialLinks = [
   { icon: <LinkedInIcon />, label: "LinkedIn", href: "https://linkedin.com/company/sarwagyna" },
   { icon: <TwitterIcon />, label: "Twitter/X", href: "https://x.com/sarwagynahq" },
   { icon: <InstagramIcon />, label: "Instagram", href: "https://instagram.com/sarwagyna" },
-  { icon: <YouTubeIcon />, label: "YouTube", href: "https://youtube.com/sarwagyna" },
+  { icon: <YouTubeIcon />, label: "YouTube", href: "https://youtube.com/@sarwagyna" },
 ];
 
 export default function GraphyFooter() {
@@ -225,10 +225,10 @@ export default function GraphyFooter() {
 
               {/* Social icons */}
               <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
-                {socialLinks.map(({ icon, label }) => (
+                {socialLinks.map(({ icon, label, href }) => (
                   <a
                     key={label}
-                    href="#"
+                    href={href}
                     aria-label={label}
                     style={{
                       color: "#6b6b6b",

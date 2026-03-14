@@ -56,7 +56,7 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeIn} className="flex flex-wrap gap-2">
-                {['AI-Powered', 'Global Reach', 'DPIIT Recognized', 'ISO Compliant'].map((chip) => (
+                {['AI-Powered', 'Global Reach', 'DPIIT Recognized'].map((chip) => (
                   <span key={chip} className="px-4 py-2 rounded-full bg-green-light text-[13px] font-medium tracking-[0.08em] uppercase text-(--color-primary)">
                     {chip}
                   </span>

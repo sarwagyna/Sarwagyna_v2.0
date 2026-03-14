@@ -41,7 +41,7 @@ export default function HoldingCompany() {
             </motion.h1>
 
             <motion.p variants={fadeIn} className="text-[17px] text-text-secondary font-normal mb-10 max-w-2xl mx-auto leading-[1.75]">
-              Sarwagyna is a diversified holding company operating at the intersection of enterprise AI, and scalable SaaS products. We build resilient businesses that power the modern economy.
+              Sarwagyna is an AI-first technology company building enterprise AI agents, SaaS platforms, and strategic investments — founded in India by an 18-year-old. We build resilient businesses that power the modern economy.
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex justify-center">
@@ -217,6 +217,114 @@ export default function HoldingCompany() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-text dark:bg-white" />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Milestone Journey Timeline */}
+      <section id="roadmap" className="py-[120px] relative bg-bg overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="mb-16 text-center"
+          >
+            <motion.div variants={fadeIn} className="section-label justify-center mb-4">Our Journey</motion.div>
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
+              Milestone Journey
+            </motion.h2>
+          </motion.div>
+
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-[21px] md:left-1/2 top-0 bottom-0 w-px bg-border-subtle md:-translate-x-1/2" />
+
+            <div className="space-y-12">
+              {[
+                {
+                  year: "Jun 2025",
+                  title: "The Idea Takes Shape",
+                  desc: "First discussions and conceptualization of an AI-first technology company.",
+                  status: "done"
+                },
+                {
+                  year: "06 Jul 2025",
+                  title: "Official Founding",
+                  desc: "Official founding date of Sarwagyna, marking the start of our journey.",
+                  status: "done"
+                },
+                {
+                  year: "Jul '25 – Feb '26",
+                  title: "Foundation Phase",
+                  desc: "Market research, capability testing, learning, building and experimenting with core AI technologies.",
+                  status: "done"
+                },
+                {
+                  year: "20 Feb 2026",
+                  title: "Incorporation Initiated",
+                  desc: "Official process to incorporate Sarwagyna Pvt Ltd as a legal entity was started.",
+                  status: "done"
+                },
+                {
+                  year: "12 Mar 2026",
+                  title: "Sarwagyna Pvt Ltd Incorporated",
+                  desc: "Successfully incorporated under MCA, India. A major milestone in our corporate history.",
+                  status: "done"
+                },
+                {
+                  year: "Mar 2026",
+                  title: "Startup India Registration",
+                  desc: "DPIIT registration process to officially recognize Sarwagyna as an Indian startup.",
+                  status: "in-progress"
+                },
+                {
+                  year: "TBD",
+                  title: "Public Launch",
+                  desc: "The official public launch of sarwagyna.com and our primary digital presence.",
+                  status: "in-progress"
+                }
+              ].map((milestone, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.05 }}
+                  className={`relative flex items-center mb-8 ${i % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
+                    }`}
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-0 md:left-1/2 w-11 h-11 rounded-full bg-white border border-border-subtle flex items-center justify-center z-20 md:-translate-x-1/2">
+                    <div className={`w-3 h-3 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.3)] ${milestone.status === 'done' ? 'bg-green-icon' :
+                        milestone.status === 'in-progress' ? 'bg-amber-500' :
+                          'bg-gray-300'
+                      }`} />
+                  </div>
+
+                  {/* Content Panel */}
+                  <div className={`ml-16 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16 text-left"
+                    }`}>
+                    <div className={`card p-8 rounded-2xl transition-all group ${milestone.status === 'done' ? 'hover:border-green-icon/30' :
+                        milestone.status === 'in-progress' ? 'hover:border-amber-500/30' :
+                          ''
+                      }`}>
+                      <span className={`text-sm font-bold mb-2 block uppercase tracking-wider ${milestone.status === 'done' ? 'text-green-icon' :
+                          milestone.status === 'in-progress' ? 'text-amber-600' :
+                            'text-text-secondary'
+                        }`}>{milestone.year}</span>
+                      <h3 className={`text-xl font-display font-bold text-text mb-3 transition-colors ${milestone.status === 'done' ? 'group-hover:text-green-icon' :
+                          milestone.status === 'in-progress' ? 'group-hover:text-amber-600' :
+                            ''
+                        }`}>{milestone.title}</h3>
+                      <p className="text-sm text-text-secondary leading-[1.8]">{milestone.desc}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>

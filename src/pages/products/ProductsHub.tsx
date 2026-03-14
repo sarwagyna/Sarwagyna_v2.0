@@ -37,7 +37,8 @@ export default function ProductsHub() {
           { icon: <Users />, title: 'Multi-organizer', desc: 'Collaborate with your team and manage multiple vendors easily.' },
           { icon: <CreditCard />, title: 'Instant Payouts', desc: 'Get paid faster with automated revenue splits and direct bank transfers.' },
           { icon: <Shield />, title: 'Fraud Prevention', desc: 'Bank-grade security and secure ticket transfers to prevent scalping.' }
-        ]
+        ],
+        isComingSoon: true
       },
       sarwcal: {
         id: 'sarwcal',
@@ -53,7 +54,8 @@ export default function ProductsHub() {
           { icon: <Users />, title: 'Team Scheduling', desc: 'Round-robin assignment and collective availability for teams.' },
           { icon: <Globe />, title: 'Timezone Intelligence', desc: 'Automatic timezone detection for international clients.' },
           { icon: <Zap />, title: 'Custom Workflows', desc: 'Trigger actions in your CRM or marketing tools after booking.' }
-        ]
+        ],
+        isComingSoon: true
       },
       sarwbill: {
         id: 'sarwbill',
@@ -69,17 +71,18 @@ export default function ProductsHub() {
           { icon: <Calendar />, title: 'Recurring Billing', desc: 'Automate subscription billing and payment follow-ups.' },
           { icon: <Lock />, title: 'CA Access', desc: 'Secure portal for your accountant to export data for filing.' },
           { icon: <Shield />, title: 'E-Invoicing Ready', desc: 'Fully compliant with the latest government e-invoicing mandates.' }
-        ]
+        ],
+        isComingSoon: true
       }
     };
 
   const activeProduct = products[activeTab as keyof typeof products];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="flex flex-col min-h-screen bg-bg text-text">
 
       {/* Hero & Tabs */}
-      <section className="pt-32 pb-12 relative overflow-hidden bg-[var(--color-bg)]">
+      <section className="pt-32 pb-12 relative overflow-hidden bg-bg">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center">
           <motion.div 
             initial="hidden"
@@ -92,7 +95,7 @@ export default function ProductsHub() {
             </motion.div>
             <motion.h1
               variants={fadeIn}
-              className="text-[46px] md:text-[56px] font-display font-extrabold tracking-[-0.06em] mb-6 text-[var(--color-text)]"
+              className="text-[46px] md:text-[56px] font-display font-extrabold tracking-[-0.06em] mb-6 text-text"
             >
               Built for Modern Business
             </motion.h1>
@@ -100,22 +103,29 @@ export default function ProductsHub() {
 
           {/* Tab Bar */}
           <div className="flex justify-center mb-12">
-            <div className="card p-2 rounded-2xl inline-flex gap-2 bg-[var(--color-surface)]">
+            <div className="card p-2 rounded-2xl inline-flex gap-2 bg-surface">
               {Object.values(products).map(product => (
                 <button
                   key={product.id}
                   onClick={() => setActiveTab(product.id)}
                   className={`px-8 py-3 rounded-xl font-display font-semibold text-sm transition-all duration-300 relative ${
                     activeTab === product.id
-                      ? 'text-[var(--color-text)]'
-                      : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
+                      ? 'text-text'
+                      : 'text-text-muted hover:text-text'
                   }`}
                 >
-                  {product.name}
+                  <div className="flex items-center gap-2">
+                    {product.name}
+                    {product.isComingSoon && (
+                      <span className="px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[9px] font-bold uppercase tracking-wider border border-amber-200">
+                        Soon
+                      </span>
+                    )}
+                  </div>
                   {activeTab === product.id && (
                     <motion.div 
                       layoutId="activeTab"
-                      className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-[var(--color-primary)]"
+                      className="absolute bottom-0 left-0 w-full h-1 rounded-full bg-primary"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
@@ -128,7 +138,7 @@ export default function ProductsHub() {
       </section>
 
       {/* Product Content */}
-      <section className="pb-[120px] bg-[var(--color-bg)]">
+      <section className="pb-[120px] bg-bg">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -142,13 +152,18 @@ export default function ProductsHub() {
               {/* Left Column: Features */}
               <div className="lg:w-[55%]">
                 <div className="mb-10">
-                  <h2 className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] mb-2">
+                  <h2 className="text-4xl md:text-5xl font-display font-bold text-text mb-2 flex items-center gap-4">
                     {activeProduct.name}
+                    {activeProduct.isComingSoon && (
+                      <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-600 text-xs font-bold uppercase tracking-[0.1em] border border-amber-100">
+                        Coming Soon
+                      </span>
+                    )}
                   </h2>
-                  <p className="text-sm uppercase tracking-[0.14em] text-[var(--color-text-muted)] mb-4">
+                  <p className="text-sm uppercase tracking-[0.14em] text-text-muted mb-4">
                     {activeProduct.tagline}
                   </p>
-                  <p className="text-lg text-[var(--color-text-secondary)] leading-[1.75] max-w-xl">
+                  <p className="text-lg text-text-secondary leading-[1.75] max-w-xl">
                     {activeProduct.description}
                   </p>
                 </div>
@@ -156,13 +171,13 @@ export default function ProductsHub() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {activeProduct.features.map((feature, i) => (
                     <div key={i} className="card p-6 rounded-2xl flex flex-col">
-                      <div className="w-10 h-10 rounded-[8px] bg-[var(--color-green-light)] flex items-center justify-center mb-4 text-[var(--color-green-icon)]">
+                      <div className="w-10 h-10 rounded-[8px] bg-green-light flex items-center justify-center mb-4 text-green-icon">
                         {feature.icon}
                       </div>
-                      <h4 className="text-lg font-display font-semibold text-[var(--color-text)] mb-2">
+                      <h4 className="text-lg font-display font-semibold text-text mb-2">
                         {feature.title}
                       </h4>
-                      <p className="text-sm text-[var(--color-text-secondary)] leading-[1.6]">
+                      <p className="text-sm text-text-secondary leading-[1.6]">
                         {feature.desc}
                       </p>
                     </div>
@@ -174,12 +189,12 @@ export default function ProductsHub() {
               <div className="lg:w-[45%] flex flex-col gap-12">
                 {/* Mockup Frame */}
                 <div className="relative rounded-3xl p-1 overflow-hidden group">
-                  <div className="relative bg-[var(--color-surface)] rounded-[22px] aspect-[4/3] border border-[var(--color-border-subtle)] flex items-center justify-center overflow-hidden">
+                  <div className="relative bg-surface rounded-[22px] aspect-4/3 border border-border-subtle flex items-center justify-center overflow-hidden">
                     <div className="text-center">
-                      <div className="w-16 h-16 rounded-2xl bg-[var(--color-green-light)] flex items-center justify-center mx-auto mb-4 text-[var(--color-green-icon)]">
+                      <div className="w-16 h-16 rounded-2xl bg-green-light flex items-center justify-center mx-auto mb-4 text-green-icon">
                         <BarChart3 className="w-8 h-8" />
                       </div>
-                      <p className="text-[var(--color-text-muted)] font-mono text-sm uppercase tracking-widest">
+                      <p className="text-text-muted font-mono text-sm uppercase tracking-widest">
                         {activeProduct.name} Dashboard
                       </p>
                     </div>
@@ -187,9 +202,9 @@ export default function ProductsHub() {
                 </div>
 
                 {/* CTA Panel */}
-                <div className="card rounded-2xl p-8 text-center bg-[var(--color-surface)]">
-                  <h3 className="text-2xl font-display font-bold text-[var(--color-text)] mb-4">Ready to Get Started?</h3>
-                  <p className="text-[var(--color-text-secondary)] mb-6">
+                <div className="card rounded-2xl p-8 text-center bg-surface">
+                  <h3 className="text-2xl font-display font-bold text-text mb-4">Ready to Get Started?</h3>
+                  <p className="text-text-secondary mb-6">
                     Explore full product details or talk to our team for tailored guidance.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -202,16 +217,7 @@ export default function ProductsHub() {
                   </div>
                 </div>
 
-                {/* CTA Row */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href={`/products/${activeProduct.id}`} className="glass-button-primary px-8 py-4 text-center flex items-center justify-center">
-                    View Full Details <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                  <button className="glass-button-ghost px-8 py-4 text-center">
-                    Book a Demo
-                  </button>
                 </div>
-              </div>
             </motion.div>
           </AnimatePresence>
         </div>
