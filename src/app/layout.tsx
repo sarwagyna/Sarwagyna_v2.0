@@ -102,33 +102,37 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <PillNav
-        logo="/favicon.svg"
-        logoAlt="Sarwagyna Logo"
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'AI & IT', href: '/ai-it' },
-          { label: 'About', href: '/holding-company' },
-          { label: 'Products', href: '/products' },
-          { label: 'Partner', href: '/partner' },
-          { label: 'Blog', href: '/blog' },
-          { label: 'Careers', href: '/careers' }
-        ]}
-        cta={{ label: 'Contact', href: '/contact' }}
-        activeHref={pathname ?? undefined}
-        className="fixed top-4 left-1/2 -translate-x-1/2 w-max! px-0!"
-        baseColor="var(--color-primary)"
-        pillColor="var(--color-surface)"
-        hoveredPillTextColor="var(--color-primary)"
-        pillTextColor="var(--color-text)"
-      />
+      {pathname !== '/links' && (
+        <PillNav
+          logo="/favicon.svg"
+          logoAlt="Sarwagyna Logo"
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'AI & IT', href: '/ai-it' },
+            { label: 'About', href: '/holding-company' },
+            { label: 'Products', href: '/products' },
+            { label: 'Partner', href: '/partner' },
+            { label: 'Blog', href: '/blog' },
+            { label: 'Careers', href: '/careers' }
+          ]}
+          cta={{ label: 'Contact', href: '/contact' }}
+          activeHref={pathname ?? undefined}
+          className="fixed top-4 left-1/2 -translate-x-1/2 w-max! px-0!"
+          baseColor="var(--color-primary)"
+          pillColor="var(--color-surface)"
+          hoveredPillTextColor="var(--color-primary)"
+          pillTextColor="var(--color-text)"
+        />
+      )}
       <main id="main-content" className="grow relative z-10">
         {children}
       </main>
       {/* Footer */}
-      <div className="relative z-10" style={{ color: '#0D1F1A' }}>
-        <GraphyFooter />
-      </div>
+      {pathname !== '/links' && (
+        <div className="relative z-10" style={{ color: '#0D1F1A' }}>
+          <GraphyFooter />
+        </div>
+      )}
     </div>
   );
 }
