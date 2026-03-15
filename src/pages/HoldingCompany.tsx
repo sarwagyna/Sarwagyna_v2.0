@@ -300,8 +300,8 @@ export default function HoldingCompany() {
                   {/* Timeline Dot */}
                   <div className="absolute left-0 md:left-1/2 w-11 h-11 rounded-full bg-white border border-border-subtle flex items-center justify-center z-20 md:-translate-x-1/2">
                     <div className={`w-3 h-3 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.3)] ${milestone.status === 'done' ? 'bg-green-icon' :
-                        milestone.status === 'in-progress' ? 'bg-amber-500' :
-                          'bg-gray-300'
+                      milestone.status === 'in-progress' ? 'bg-amber-500' :
+                        'bg-gray-300'
                       }`} />
                   </div>
 
@@ -309,16 +309,16 @@ export default function HoldingCompany() {
                   <div className={`ml-16 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16 text-left"
                     }`}>
                     <div className={`card p-8 rounded-2xl transition-all group ${milestone.status === 'done' ? 'hover:border-green-icon/30' :
-                        milestone.status === 'in-progress' ? 'hover:border-amber-500/30' :
-                          ''
+                      milestone.status === 'in-progress' ? 'hover:border-amber-500/30' :
+                        ''
                       }`}>
                       <span className={`text-sm font-bold mb-2 block uppercase tracking-wider ${milestone.status === 'done' ? 'text-green-icon' :
-                          milestone.status === 'in-progress' ? 'text-amber-600' :
-                            'text-text-secondary'
+                        milestone.status === 'in-progress' ? 'text-amber-600' :
+                          'text-text-secondary'
                         }`}>{milestone.year}</span>
                       <h3 className={`text-xl font-display font-bold text-text mb-3 transition-colors ${milestone.status === 'done' ? 'group-hover:text-green-icon' :
-                          milestone.status === 'in-progress' ? 'group-hover:text-amber-600' :
-                            ''
+                        milestone.status === 'in-progress' ? 'group-hover:text-amber-600' :
+                          ''
                         }`}>{milestone.title}</h3>
                       <p className="text-sm text-text-secondary leading-[1.8]">{milestone.desc}</p>
                     </div>
@@ -448,6 +448,7 @@ export default function HoldingCompany() {
           {[
             { label: "Legal Company Name", value: "Sarwagyna Pvt Ltd" },
             { label: "Corporate Identification Number (CIN)", value: "U62013AP2026PTC124652" },
+            { label: "GSTIN", value: "To be updated" },
             { label: "Type of Company", value: "Private Limited" },
             { label: "Registered Office Address", value: "D NO. 7-7-24/2, Block 10, VIP RD 2nd Line, Ongole, Prakasam- 523001, Andhra Pradesh" },
             { label: "Directors / Founders", value: "Sarwan Thondamalla" },
