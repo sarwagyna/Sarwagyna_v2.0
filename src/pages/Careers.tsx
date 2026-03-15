@@ -217,7 +217,7 @@ export default function Careers() {
             </div>
 
             <div className="mt-16 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:careers@sarwagyna.com" className="glass-button-primary px-8 py-4 text-center flex items-center justify-center gap-2 group/btn">
+              <a href="mailto:contact@sarwagyna.com" className="glass-button-primary px-8 py-4 text-center flex items-center justify-center gap-2 group/btn">
                 Send Speculative Application
                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
               </a>
