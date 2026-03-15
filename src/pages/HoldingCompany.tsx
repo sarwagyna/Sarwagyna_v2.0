@@ -264,12 +264,6 @@ export default function HoldingCompany() {
                   status: "done"
                 },
                 {
-                  year: "20 Feb 2026",
-                  title: "Incorporation Initiated",
-                  desc: "Official process to incorporate Sarwagyna Pvt Ltd as a legal entity was started.",
-                  status: "done"
-                },
-                {
                   year: "12 Mar 2026",
                   title: "Sarwagyna Pvt Ltd Incorporated",
                   desc: "Successfully incorporated under MCA, India. A major milestone in our corporate history.",

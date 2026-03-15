@@ -117,7 +117,7 @@ export default function Home() {
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-black/10 dark:divide-white/[0.07]">
             {[
-              { number: '50+', label: 'Enterprise Clients' },
+              { number: '10+', label: 'Enterprise Clients' },
               { number: '3', label: 'Business Verticals' },
               { number: '2+', label: 'Countries Reached' },
               { number: '3', label: 'SaaS Products' }
