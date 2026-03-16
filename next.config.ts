@@ -1,59 +1,25 @@
 import type { NextConfig } from 'next';
 
-const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://core.sanity-cdn.com https://sanity-cdn.com;
-  connect-src 'self' https://*.sanity.io https://core.sanity-cdn.com https://sanity-cdn.com https://*.supabase.co wss://*.supabase.co;
-  img-src 'self' data: blob: https://cdn.sanity.io https://*.supabase.co https://lh3.googleusercontent.com;
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  font-src 'self' https://fonts.gstatic.com;
-  frame-src 'self' https://*.sanity.io;
-  base-uri 'self';
-  form-action 'self';
-  upgrade-insecure-requests;
-`;
-
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-      },
-      {
-        protocol: 'https',
-        hostname: 'hzvhbnohuiodjhndotpb.supabase.co',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-      },
-    ],
-  },
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: ContentSecurityPolicy.replace(/\s+/g, ' ').trim(),
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://flowise-sarwagyna.up.railway.app https://core.sanity-cdn.com https://sanity-cdn.com",
+              "script-src-elem 'self' 'unsafe-inline' https://flowise-sarwagyna.up.railway.app https://core.sanity-cdn.com https://sanity-cdn.com",
+              "connect-src 'self' https://flowise-sarwagyna.up.railway.app wss://flowise-sarwagyna.up.railway.app https://*.api.sanity.io wss://*.api.sanity.io https://core.sanity-cdn.com https://sanity-cdn.com https://*.sanity.io",
+              "style-src 'self' 'unsafe-inline' https://core.sanity-cdn.com https://sanity-cdn.com https://fonts.googleapis.com",
+              "style-src-elem 'self' 'unsafe-inline' https://core.sanity-cdn.com https://sanity-cdn.com https://fonts.googleapis.com",
+              "font-src 'self' data: https://fonts.gstatic.com https://core.sanity-cdn.com https://sanity-cdn.com",
+              "img-src 'self' data: blob: https:",
+              "frame-src 'self' https://*.sanity.io",
+              "worker-src 'self' blob:",
+            ].join("; "),
           },
         ],
       },

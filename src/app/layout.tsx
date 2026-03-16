@@ -1,6 +1,7 @@
 'use client';
 
 import './globals.css';
+import Script from 'next/script';
 import PillNav from '@/components/PillNav';
 import GraphyFooter from '@/components/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -41,6 +42,52 @@ export default function RootLayout({
         <ThemeProvider>
           <LayoutShell>{children}</LayoutShell>
         </ThemeProvider>
+        <Script
+          id="flowise-chatbot"
+          strategy="lazyOnload"
+          type="module"
+          dangerouslySetInnerHTML={{
+            __html: `
+              import Chatbot from "https://flowise-sarwagyna.up.railway.app/dist/web.js";
+              Chatbot.init({
+                chatflowid: "5ba46320-c753-4618-9af7-83cc45643135",
+                apiHost: "https://flowise-sarwagyna.up.railway.app",
+                theme: {
+                  button: {
+                    backgroundColor: "#185FA5",
+                    right: 20,
+                    bottom: 20,
+                    size: 52,
+                    iconColor: "white",
+                  },
+                  chatWindow: {
+                    title: "Sarwa",
+                    titleAvatarSrc: "",
+                    welcomeMessage: "Hi! I am Sarwa, Sarwagyna's AI assistant. Ask me anything about our services, products, or how we can help your business.",
+                    backgroundColor: "#ffffff",
+                    height: 600,
+                    width: 380,
+                    botMessage: {
+                      backgroundColor: "#EBF5FB",
+                      textColor: "#1A1A1A",
+                      showAvatar: true,
+                    },
+                    userMessage: {
+                      backgroundColor: "#185FA5",
+                      textColor: "#ffffff",
+                    },
+                    textInput: {
+                      placeholder: "Ask me anything...",
+                      backgroundColor: "#ffffff",
+                      textColor: "#1A1A1A",
+                      sendButtonColor: "#185FA5",
+                    }
+                  }
+                }
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
