@@ -42,48 +42,45 @@ export default function RootLayout({
         <ThemeProvider>
           <LayoutShell>{children}</LayoutShell>
         </ThemeProvider>
-        <Script
-          id="flowise-chatbot"
-          strategy="lazyOnload"
-          type="module"
+        <script
           dangerouslySetInnerHTML={{
             __html: `
-              import Chatbot from "https://flowise-sarwagyna.up.railway.app/dist/web.js";
-              Chatbot.init({
-                chatflowid: "5ba46320-c753-4618-9af7-83cc45643135",
-                apiHost: "https://flowise-sarwagyna.up.railway.app",
-                theme: {
-                  button: {
-                    backgroundColor: "#185FA5",
-                    right: 20,
-                    bottom: 20,
-                    size: 52,
-                    iconColor: "white",
-                  },
-                  chatWindow: {
-                    title: "Sarwa",
-                    titleAvatarSrc: "",
-                    welcomeMessage: "Hi! I am Sarwa, Sarwagyna's AI assistant. Ask me anything about our services, products, or how we can help your business.",
-                    backgroundColor: "#ffffff",
-                    height: 600,
-                    width: 380,
-                    botMessage: {
-                      backgroundColor: "#EBF5FB",
-                      textColor: "#1A1A1A",
-                      showAvatar: true,
-                    },
-                    userMessage: {
-                      backgroundColor: "#185FA5",
-                      textColor: "#ffffff",
-                    },
-                    textInput: {
-                      placeholder: "Ask me anything...",
-                      backgroundColor: "#ffffff",
-                      textColor: "#1A1A1A",
-                      sendButtonColor: "#185FA5",
+              window.addEventListener('load', function() {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.innerHTML = \`
+                  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+                  Chatbot.init({
+                    chatflowid: "5ba46320-c753-4618-9af7-83cc45643135",
+                    apiHost: "https://flowise-sarwagyna.up.railway.app",
+                    theme: {
+                      button: {
+                        backgroundColor: "#185FA5",
+                        right: 20,
+                        bottom: 20,
+                        size: 52,
+                      },
+                      chatWindow: {
+                        title: "Sarwa — Sarwagyna AI",
+                        welcomeMessage: "Hi! I am Sarwa, Sarwagyna's AI assistant. Ask me anything about our services or products.",
+                        backgroundColor: "#ffffff",
+                        botMessage: {
+                          backgroundColor: "#EBF5FB",
+                          textColor: "#1A1A1A",
+                        },
+                        userMessage: {
+                          backgroundColor: "#185FA5",
+                          textColor: "#ffffff",
+                        },
+                        textInput: {
+                          placeholder: "Ask me anything...",
+                          sendButtonColor: "#185FA5",
+                        }
+                      }
                     }
-                  }
-                }
+                  });
+                \`;
+                document.head.appendChild(script);
               });
             `,
           }}
