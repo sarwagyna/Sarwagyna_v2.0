@@ -1,12 +1,13 @@
 'use client';
 
 import './globals.css';
-import Script from 'next/script';
+import Script from 'next/script'
 import PillNav from '@/components/PillNav';
 import GraphyFooter from '@/components/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
+import ClarityProvider from '@/components/ClarityProvider';
 
 export default function RootLayout({
   children,
@@ -37,12 +38,27 @@ export default function RootLayout({
         <meta property="og:title" content="Sarwagyna: India's Next-Gen Multi-Industry Company" />
         <meta property="og:description" content="Discover Sarwagyna Pvt Ltd. We build enterprise AI solutions, manage global operations, and develop scalable SaaS products." />
         <meta property="twitter:card" content="summary_large_image" />
+
       </head>
+
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-C3690ECPQR"
+          strategy="afterInteractive"
+        />
+
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-C3690ECPQR');
+          `}
+        </Script>
         <ThemeProvider>
           <LayoutShell>{children}</LayoutShell>
         </ThemeProvider>
-
+        <ClarityProvider />
       </body>
     </html>
   );
