@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import ClarityProvider from '@/components/ClarityProvider';
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function RootLayout({
   children,
@@ -59,6 +60,7 @@ export default function RootLayout({
           <LayoutShell>{children}</LayoutShell>
         </ThemeProvider>
         <ClarityProvider />
+        <GoogleAnalytics />
       </body>
     </html>
   );
