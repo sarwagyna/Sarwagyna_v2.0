@@ -2,18 +2,41 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Clock, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { ArrowRight, Clock, ChevronDown, ChevronUp, ExternalLink, Share2 } from 'lucide-react';
 import DOMPurify from 'isomorphic-dompurify';
 import { getActiveJobListings } from '@/lib/careers';
 import type { JobListing } from '@/types/careers';
 
 function JobCard({ listing }: { listing: JobListing }) {
   const [expanded, setExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const sanitizedHTML = DOMPurify.sanitize(listing.description);
 
+  const handleShare = async () => {
+    const url = `${window.location.origin}/careers#job-${listing.id}`;
+    const shareText = listing.short_description || listing.job_role;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${listing.job_role} — Sarwagyna Private Limited`,
+          text: shareText,
+          url,
+        });
+      } catch {
+        // user cancelled
+      }
+    } else {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
     <motion.div
+      id={`job-${listing.id}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -74,20 +97,46 @@ function JobCard({ listing }: { listing: JobListing }) {
         )}
       </AnimatePresence>
 
-      {/* CTA */}
-      <a
-        href={listing.cta_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-amber-400 text-amber-600 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all duration-200 group/cta"
-      >
-        {listing.cta_label}
-        <ExternalLink size={14} className="group-hover/cta:translate-x-0.5 transition-transform" />
-      </a>
-    </motion.div>
+      {/* CTA + Share */}
+      <div className="flex items-center gap-3">
+
+        <a href={listing.cta_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-amber-400 text-amber-600 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all duration-200 group/cta"
+        >
+          {listing.cta_label}
+          <ExternalLink size={14} className="group-hover/cta:translate-x-0.5 transition-transform" />
+        </a>
+
+        {/* Share button */}
+        <div className="relative">
+          <button
+            onClick={handleShare}
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-border-subtle text-text-muted hover:border-amber-400 hover:text-amber-500 transition-all duration-200"
+            title="Share this listing"
+          >
+            <Share2 size={15} />
+          </button>
+
+          <AnimatePresence>
+            {copied && (
+              <motion.div
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-text text-bg shadow-md pointer-events-none"
+              >
+                Link copied!
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.div >
   );
 }
-
 
 export default function Careers() {
   const [listings, setListings] = useState<JobListing[]>([]);
@@ -102,8 +151,6 @@ export default function Careers() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text pt-16">
-
-      {/* Join the Team Section */}
       <section className="py-24 relative bg-surface overflow-hidden" id="careers">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
 
@@ -166,7 +213,7 @@ export default function Careers() {
                 { title: "Continuous Learning", description: "Every team member gets a learning budget. We expect you to grow here — and we invest in making that happen." },
                 { title: "Radical Transparency", description: "Company direction, financials, and decisions are shared openly with the team. No information silos, no closed-door strategy." },
                 { title: "Move Fast, Fix Fast", description: "We ship, we learn, we iterate. Mistakes are fine — hiding them isn't." },
-                { title: "Global Impact, Indian Heart", description: "We're proud of where we come from. We're ambitious about where we're going." }
+                { title: "Global Impact, Indian Heart", description: "We're proud of where we come from. We're ambitious about where we're going." },
               ].map((val, i) => (
                 <motion.div
                   key={i}
@@ -184,7 +231,7 @@ export default function Careers() {
             </div>
           </div>
 
-          {/* Open Positions — Dynamic from Supabase */}
+          {/* Open Positions */}
           <div className="mb-24">
             <div className="text-center mb-12">
               <motion.h3
@@ -233,8 +280,8 @@ export default function Careers() {
             <div className="mt-10 max-w-xl mx-auto p-6 rounded-xl bg-bg border border-border-subtle text-center">
               <h5 className="text-[15px] font-semibold text-text mb-2">Don't see your role?</h5>
               <p className="text-[13px] text-text-secondary mb-3">We hire for talent first. If you believe you can contribute to what we're building, send us your profile anyway.</p>
-              <a href="mailto:contact@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors inline-flex items-center gap-1">
-                contact@sarwagyna.com <ArrowRight className="w-3 h-3" />
+              <a href="mailto:carrers@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors inline-flex items-center gap-1">
+                carrers@sarwagyna.com <ArrowRight className="w-3 h-3" />
               </a>
             </div>
           </div>
@@ -250,7 +297,7 @@ export default function Careers() {
                 { title: "Learning Budget", description: "Annual budget for courses, books, conferences, and certifications — because your growth is our growth." },
                 { title: "International Exposure", description: "Work on projects with clients and partners across multiple countries. Your work has a global footprint from day one." },
                 { title: "Open-Door Leadership", description: "Direct access to founders and senior leadership. Your ideas will be heard — not filtered through three layers of management." },
-                { title: "Real Ownership", description: "You won't be a cog here. You'll own your work, your roadmap, and your outcomes." }
+                { title: "Real Ownership", description: "You won't be a cog here. You'll own your work, your roadmap, and your outcomes." },
               ].map((benefit, i) => (
                 <motion.div
                   key={i}
@@ -269,17 +316,14 @@ export default function Careers() {
           {/* Hiring Process */}
           <div className="max-w-[1000px] mx-auto text-center">
             <h3 className="text-2xl font-display font-bold text-text mb-12">Our Hiring Process</h3>
-
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-              {/* Connecting line for desktop */}
               <div className="hidden md:block absolute top-[28px] left-[10%] right-[10%] h-px bg-border-subtle z-0" />
-
               {[
-                { step: "Step 1", title: "Apply", desc: "Send us your resume and a short note on why Sarwagyna and why now." },
-                { step: "Step 2", title: "Intro Call", desc: "A 30-minute conversation with our team to understand your background." },
-                { step: "Step 3", title: "Assessment", desc: "A practical, role-specific task — taking no more than 2–3 hours. We respect your time." },
-                { step: "Step 4", title: "Final Interview", desc: "A deeper conversation with the founders. We talk about vision, values, and fit." },
-                { step: "Step 5", title: "Offer", desc: "Fast decisions. No ghost rounds." }
+                { title: "Apply", desc: "Send us your resume and a short note on why Sarwagyna and why now." },
+                { title: "Intro Call", desc: "A 30-minute conversation with our team to understand your background." },
+                { title: "Assessment", desc: "A practical, role-specific task — taking no more than 2–3 hours. We respect your time." },
+                { title: "Final Interview", desc: "A deeper conversation with the founders. We talk about vision, values, and fit." },
+                { title: "Offer", desc: "Fast decisions. No ghost rounds." },
               ].map((process, i) => (
                 <motion.div
                   key={i}
