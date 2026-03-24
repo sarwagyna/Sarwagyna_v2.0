@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Block sensitive/system paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /blogstudio/
+
+# Block query parameters (optional, prevents duplicate indexing)
+Disallow: /*?*
+
+# Sitemap
+Sitemap: https://sarwagyna.com/sitemap.xml
