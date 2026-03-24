@@ -1,9 +1,105 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Clock, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import DOMPurify from 'isomorphic-dompurify';
+import { getActiveJobListings } from '@/lib/careers';
+import type { JobListing } from '@/types/careers';
+
+function JobCard({ listing }: { listing: JobListing }) {
+  const [expanded, setExpanded] = useState(false);
+
+  const sanitizedHTML = DOMPurify.sanitize(listing.description);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      className="card p-6 sm:p-8 bg-bg border-border-subtle group hover:border-amber-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+    >
+      {/* Top row: Role + Type badge */}
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <h3 className="text-lg font-display font-bold text-text group-hover:text-amber-600 transition-colors">
+          {listing.job_role}
+        </h3>
+        <span className="shrink-0 px-3 py-1 rounded-full text-xs font-semibold border border-amber-300 text-amber-600 bg-amber-50">
+          {listing.job_type}
+        </span>
+      </div>
+
+      {/* Engagement time */}
+      <div className="flex items-center gap-1.5 text-text-secondary text-sm mb-3">
+        <Clock size={14} className="text-text-muted" />
+        {listing.engagement_time}
+      </div>
+
+      {/* Short description preview */}
+      {listing.short_description && (
+        <p className="text-sm text-text-muted leading-relaxed line-clamp-2 mb-4">
+          {listing.short_description}
+        </p>
+      )}
+
+      {/* Expandable description */}
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center gap-1 text-sm font-medium text-amber-500 hover:text-amber-600 transition-colors mb-3"
+      >
+        {expanded ? 'Hide Details' : 'View Details'}
+        {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+      </button>
+
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div
+              className="prose prose-sm max-w-none text-text-secondary mb-4 pb-4 border-b border-border-subtle
+                [&_h2]:text-base [&_h2]:font-display [&_h2]:font-bold [&_h2]:text-text [&_h2]:mb-2
+                [&_h3]:text-sm [&_h3]:font-display [&_h3]:font-semibold [&_h3]:text-text [&_h3]:mb-2
+                [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5
+                [&_blockquote]:border-l-2 [&_blockquote]:border-amber-400 [&_blockquote]:pl-4 [&_blockquote]:italic
+                [&_hr]:border-border-subtle [&_p]:text-sm [&_p]:leading-relaxed [&_li]:text-sm [&_li]:text-text-secondary"
+              dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* CTA */}
+      <a
+        href={listing.cta_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-amber-400 text-amber-600 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all duration-200 group/cta"
+      >
+        {listing.cta_label}
+        <ExternalLink size={14} className="group-hover/cta:translate-x-0.5 transition-transform" />
+      </a>
+    </motion.div>
+  );
+}
+
 
 export default function Careers() {
+  const [listings, setListings] = useState<JobListing[]>([]);
+  const [loadingJobs, setLoadingJobs] = useState(true);
+
+  useEffect(() => {
+    getActiveJobListings()
+      .then(setListings)
+      .catch(() => setListings([]))
+      .finally(() => setLoadingJobs(false));
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text pt-16">
 
@@ -88,99 +184,85 @@ export default function Careers() {
             </div>
           </div>
 
-          {/* Why Work Here + Open Positions Split */}
-          <div className="flex flex-col lg:flex-row gap-16 mb-24">
-
-            {/* Benefits List */}
-            <div className="flex-1">
-              <h3 className="text-2xl font-display font-bold text-text mb-8">Why Work Here</h3>
-              <div className="space-y-8">
-                {[
-                  { title: "Competitive Compensation", description: "Market-rate salaries with performance-linked bonuses and future equity options as the company scales." },
-                  { title: "Flexible Hours", description: "We care about when you deliver, not when you log in. Build a schedule that works for your life." },
-                  { title: "Remote-First", description: "Work from anywhere in India. We have no mandatory office days — just optional ones for team sprints and offsites." },
-                  { title: "Learning Budget", description: "Annual budget for courses, books, conferences, and certifications — because your growth is our growth." },
-                  { title: "International Exposure", description: "Work on projects with clients and partners across multiple countries. Your work has a global footprint from day one." },
-                  { title: "Open-Door Leadership", description: "Direct access to founders and senior leadership. Your ideas will be heard — not filtered through three layers of management." },
-                  { title: "Real Ownership", description: "You won't be a cog here. You'll own your work, your roadmap, and your outcomes." }
-                ].map((benefit, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                  >
-                    <h4 className="text-lg font-semibold text-text mb-1">{benefit.title}</h4>
-                    <p className="text-text-secondary text-[14px] leading-relaxed">{benefit.description}</p>
-                  </motion.div>
-                ))}
-              </div>
+          {/* Open Positions — Dynamic from Supabase */}
+          <div className="mb-24">
+            <div className="text-center mb-12">
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-3xl font-display font-bold text-text mb-3"
+              >
+                Open Positions
+              </motion.h3>
+              <div className="w-16 h-0.5 bg-amber-500 mx-auto mb-4" />
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-text-secondary text-[16px]"
+              >
+                Join us in building the future of AI
+              </motion.p>
             </div>
 
-            {/* Open Positions */}
-            <div className="flex-1 lg:max-w-[500px]">
-              <div className="card p-8 bg-bg border-border-subtle sticky top-28">
-                <h3 className="text-2xl font-display font-bold text-text mb-8">Open Positions</h3>
-
-                <div className="space-y-8">
-                  <div>
-                    <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Engineering</h4>
-                    <ul className="space-y-3">
-                      {["Full Stack Developer (React / Node.js)", "AI/ML Engineer", "Backend Engineer (Python / FastAPI)", "DevOps & Infrastructure Engineer"].map((role, i) => (
-                        <li key={i} className="text-text-secondary hover:text-text transition-colors cursor-pointer text-[15px] flex items-center gap-2 group">
-                          <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 transition-all text-amber-500" />
-                          {role}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Product & Design</h4>
-                    <ul className="space-y-3">
-                      {["Product Manager", "UI/UX Designer"].map((role, i) => (
-                        <li key={i} className="text-text-secondary hover:text-text transition-colors cursor-pointer text-[15px] flex items-center gap-2 group">
-                          <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 transition-all text-amber-500" />
-                          {role}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Sales & Growth</h4>
-                    <ul className="space-y-3">
-                      {["Business Development Manager — AI & IT", "Growth & Marketing Associate"].map((role, i) => (
-                        <li key={i} className="text-text-secondary hover:text-text transition-colors cursor-pointer text-[15px] flex items-center gap-2 group">
-                          <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 transition-all text-amber-500" />
-                          {role}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-amber-500 uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Operations</h4>
-                    <ul className="space-y-3">
-                      {["Client Success Manager"].map((role, i) => (
-                        <li key={i} className="text-text-secondary hover:text-text transition-colors cursor-pointer text-[15px] flex items-center gap-2 group">
-                          <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 transition-all text-amber-500" />
-                          {role}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="mt-10 p-5 rounded-xl bg-surface border border-border-subtle">
-                  <h5 className="text-[15px] font-semibold text-text mb-2">Don't see your role?</h5>
-                  <p className="text-[13px] text-text-secondary mb-3">We hire for talent first. If you believe you can contribute to what we're building, send us your profile anyway.</p>
-                  <a href="mailto:contact@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors flex items-center gap-1">
-                    contact@sarwagyna.com <ArrowRight className="w-3 h-3" />
-                  </a>
-                </div>
+            {loadingJobs ? (
+              <div className="flex items-center justify-center py-16">
+                <span className="animate-spin w-8 h-8 border-2 border-border-subtle border-t-text rounded-full" />
               </div>
+            ) : listings.length === 0 ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-center py-16"
+              >
+                <p className="text-text-muted text-[16px]">No open positions right now. Check back soon.</p>
+              </motion.div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {listings.map((listing) => (
+                  <JobCard key={listing.id} listing={listing} />
+                ))}
+              </div>
+            )}
+
+            {/* Don't see your role? */}
+            <div className="mt-10 max-w-xl mx-auto p-6 rounded-xl bg-bg border border-border-subtle text-center">
+              <h5 className="text-[15px] font-semibold text-text mb-2">Don't see your role?</h5>
+              <p className="text-[13px] text-text-secondary mb-3">We hire for talent first. If you believe you can contribute to what we're building, send us your profile anyway.</p>
+              <a href="mailto:contact@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors inline-flex items-center gap-1">
+                contact@sarwagyna.com <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+
+          {/* Why Work Here */}
+          <div className="mb-24">
+            <h3 className="text-2xl font-display font-bold text-text mb-8 text-center">Why Work Here</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 max-w-[900px] mx-auto">
+              {[
+                { title: "Competitive Compensation", description: "Market-rate salaries with performance-linked bonuses and future equity options as the company scales." },
+                { title: "Flexible Hours", description: "We care about when you deliver, not when you log in. Build a schedule that works for your life." },
+                { title: "Remote-First", description: "Work from anywhere in India. We have no mandatory office days — just optional ones for team sprints and offsites." },
+                { title: "Learning Budget", description: "Annual budget for courses, books, conferences, and certifications — because your growth is our growth." },
+                { title: "International Exposure", description: "Work on projects with clients and partners across multiple countries. Your work has a global footprint from day one." },
+                { title: "Open-Door Leadership", description: "Direct access to founders and senior leadership. Your ideas will be heard — not filtered through three layers of management." },
+                { title: "Real Ownership", description: "You won't be a cog here. You'll own your work, your roadmap, and your outcomes." }
+              ].map((benefit, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                >
+                  <h4 className="text-lg font-semibold text-text mb-1">{benefit.title}</h4>
+                  <p className="text-text-secondary text-[14px] leading-relaxed">{benefit.description}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
 

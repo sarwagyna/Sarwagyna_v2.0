@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { ShieldCheck, LogOut, AlertTriangle, Lock, Mail, Users } from 'lucide-react';
+import { ShieldCheck, LogOut, AlertTriangle, Lock, Mail, Users, Briefcase } from 'lucide-react';
 import { useAdminAuth } from '../hooks/useAdminAuth';
 import { supabase } from '../lib/supabaseClient';
 
@@ -26,6 +26,13 @@ const adminTools = [
     title: 'Client Management',
     desc: 'Manage clients, projects, invoices and payment tracking.',
     path: '/admin/clients',
+    badge: 'Active',
+  },
+  {
+    icon: <Briefcase className="w-8 h-8" />,
+    title: 'Careers Manager',
+    desc: 'Add, edit, and manage job listings displayed on the careers page.',
+    path: '/admin/careers',
     badge: 'Active',
   },
 ];
