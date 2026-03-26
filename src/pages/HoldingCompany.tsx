@@ -384,8 +384,9 @@ export default function HoldingCompany() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 text-center lg:grid-cols-3 gap-8">
           {[
-            { name: "Sarwan Thondamalla", role: "Chief Executive Officer", desc: "Leading the company’s vision, strategy, and innovation in artificial intelligence, software solutions, and global technology initiatives. He focuses on building scalable products and driving the company’s long-term growth.", initials: "ST" },
-            { name: "Gali Chandu Kumar", role: "Chief Operating Officer", desc: "Responsible for business development, operations, and global partnerships. He works on expanding the company’s international network and strengthening its technology-driven business ecosystem.", initials: "GCK" },
+            { name: "Sarwan Thondamalla", role: "Chief Executive Officer", desc: "As the Chief Executive Officer, Sarwan Thondamalla is responsible for setting the company’s strategic direction and driving execution. He combines entrepreneurial thinking with a strong focus on product innovation and scalable growth. Under his leadership, the company is focused on building technology-driven solutions that address real-world challenges and create lasting impact.", initials: "ST", link: "https://www.sarwan67.com" },
+            { name: "Gali Chandu Kumar", role: "Chief Operating Officer", desc: "As the Business & Growth Lead, they are responsible for driving revenue, sales strategy, and customer acquisition. They focus on identifying market opportunities, building partnerships, and converting ideas into sustainable business growth. With a strong execution mindset, they ensure the company consistently expands its customer base and market presence.", initials: "GCK", link: "/about/chandu-kumar" },
+            { name: "Roudra Ghosal", role: "Head of Tech & Management", desc: "As the Head of Technology, they are responsible for turning ideas into scalable digital products. They lead engineering teams, design system architecture, and ensure rapid yet reliable execution. With a strong focus on performance, security, and innovation, they play a key role in shaping the company’s tech-driven future.", initials: "RG", link: "/about/roudra-ghosal" },
           ].map((leader, i) => (
             <motion.div
               key={i}
@@ -393,14 +394,19 @@ export default function HoldingCompany() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="card p-8 rounded-2xl text-center group transition-colors"
+              className="card p-8 rounded-2xl text-center group transition-colors flex flex-col items-center"
             >
               <div className="w-24 h-24 rounded-full bg-green-light flex items-center justify-center mx-auto mb-6 text-2xl font-display font-bold text-green-icon">
                 {leader.initials}
               </div>
               <h3 className="text-2xl font-display font-bold text-text mb-1">{leader.name}</h3>
               <h4 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-4">{leader.role}</h4>
-              <p className="text-[15px] text-text-secondary leading-[1.6]">{leader.desc}</p>
+              <p className="text-[15px] text-text-secondary leading-[1.6] mb-6 flex-grow">{leader.desc}</p>
+              {leader.link && (
+                <a href={leader.link} target="_blank" rel="noopener noreferrer" className="text-green-icon hover:text-green-hover font-semibold text-sm transition-colors inline-flex items-center gap-1 mt-auto">
+                  Visit Bio <ArrowRight className="w-4 h-4" />
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
