@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Cpu, Globe, Briefcase, Layers } from 'lucide-react';
+import { ArrowRight, Cpu, Globe, Briefcase, Layers, Phone, Zap, Clock, Mic, Calendar, Database, CheckCircle2, AlertCircle, Users } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
 const fadeIn: Variants = {
@@ -240,119 +240,157 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      {/* Products Section */}
-      <section className="py-[120px] relative bg-bg">
-        <div className="absolute inset-0 pointer-events-none" />
+
+      {/* LeadFlow AI Section */}
+      <section className="py-[120px] relative overflow-hidden bg-surface border-y border-border-subtle">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-16"
-          >
-            <motion.div variants={fadeIn} className="section-label mb-4">Built for Modern Business</motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
-              Our SaaS Portfolio
-            </motion.h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* SarwHub */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+          <div className="flex flex-col lg:flex-row gap-16 items-start mb-24">
+            <motion.div 
+              className="lg:w-1/2"
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="card p-8 relative overflow-hidden flex flex-col h-full"
+              variants={staggerContainer}
             >
-              <h3 className="text-[20px] font-display font-semibold text-text mb-1">
-                SarwHub
-              </h3>
-              <p className="text-[13px] text-text-muted font-medium mb-6 uppercase tracking-[0.12em]">
-                Event Management &amp; Ticketing
-              </p>
+              <motion.div variants={fadeIn} className="section-label mb-4">Featured Product</motion.div>
+              <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text mb-6 tracking-tight">
+                LeadFlow <span className="text-primary italic">AI</span>
+              </motion.h2>
+              <motion.p variants={fadeIn} className="text-[18px] text-text-secondary mb-10 leading-relaxed max-w-[540px]">
+                An AI-powered voice calling agent designed to revolutionize lead follow-up for businesses in India. Never let a lead go cold again.
+              </motion.p>
+              
+              <motion.div variants={fadeIn} className="glass-panel p-8 mb-10 relative overflow-hidden bg-white/50 dark:bg-black/50">
+                <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-primary" /> What It Does
+                </h3>
+                <p className="text-[15px] text-text-secondary leading-relaxed">
+                  LeadFlow automatically calls every lead within <span className="font-bold text-text">60 seconds</span> of capture, conducts natural human-like conversations in multiple Indian languages, qualifies leads, books appointments, and updates your CRM—all without human intervention.
+                </p>
+              </motion.div>
 
-              <ul className="space-y-3 mb-8 grow">
-                {['Seamless ticket sales & QR check-ins', 'Real-time analytics dashboard', 'Multi-organizer support'].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-text-secondary">
-                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-green-icon) mt-1.5 mr-3 shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
-
-              <Link href="/products/sarwhub" className="glass-button-ghost w-full text-center">
-                Explore SarwHub
-              </Link>
+              <motion.div variants={fadeIn} className="flex items-center gap-4">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-xs font-bold uppercase tracking-wider">Live Pilot Status</span>
+                </div>
+                <p className="text-sm font-medium text-text-muted">Onboarding pilot clients with proven ROI</p>
+              </motion.div>
             </motion.div>
 
-            {/* SarwCal */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            <motion.div 
+              className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="card p-8 relative overflow-hidden flex flex-col h-full"
+              transition={{ duration: 0.8 }}
             >
-              <h3 className="text-[20px] font-display font-semibold text-text mb-1">
-                SarwCal
-              </h3>
-              <p className="text-[13px] text-text-muted font-medium mb-6 uppercase tracking-[0.12em]">
-                Smart Calendar Booking
-              </p>
+              <div className="card p-7 flex flex-col gap-5 border-red-500/10">
+                <div className="w-11 h-11 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500">
+                  <AlertCircle className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-text mb-3">The Problem</h4>
+                  <ul className="text-[14px] text-text-secondary space-y-3">
+                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> Speed kills: Calling within 5m is 21x more effective</li>
+                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> Manual calling doesn't scale during peak hours</li>
+                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> Leads go cold before teams can reach back</li>
+                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> After-hours opportunities are completely lost</li>
+                  </ul>
+                </div>
+              </div>
 
-              <ul className="space-y-3 mb-8 grow">
-                {['Automated scheduling & reminders', 'GST-compliant payment collection', 'Custom booking pages'].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-text-secondary">
-                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-green-icon) mt-1.5 mr-3 shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+              <div className="card p-7 flex flex-col gap-5 bg-primary/5 border-primary/20">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-text mb-3 text-primary">The LeadFlow Edge</h4>
+                  <p className="text-[14px] text-text-secondary leading-relaxed">
+                    AI never sleeps. We bridge the gap between intent and action, ensuring every prospect gets an immediate, high-quality response regardless of volume or timing.
+                  </p>
+                </div>
+              </div>
 
-              <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
-
-              <Link href="/products/sarwcal" className="glass-button-ghost w-full text-center">
-                Explore SarwCal
-              </Link>
+              <div className="card p-8 sm:col-span-2 flex flex-col gap-8 bg-white/40 backdrop-blur-sm">
+                <div className="flex justify-between items-center">
+                  <h4 className="font-bold text-text flex items-center gap-2">
+                    <Layers className="w-5 h-5 text-primary" /> Key Capabilities
+                  </h4>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="flex gap-5">
+                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Clock className="w-5 h-5 text-primary" /></div>
+                    <div>
+                      <h5 className="font-bold text-sm mb-1">Sub-60s Response</h5>
+                      <p className="text-xs text-text-muted leading-relaxed">Calls placed before the lead even closes their browser tab.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Mic className="w-5 h-5 text-primary" /></div>
+                    <div>
+                      <h5 className="font-bold text-sm mb-1">Natural Conversations</h5>
+                      <p className="text-xs text-text-muted leading-relaxed">Handles interruptions, answers questions, and adapts to context seamlessly.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Globe className="w-5 h-5 text-primary" /></div>
+                    <div>
+                      <h5 className="font-bold text-sm mb-1">Multi-language Support</h5>
+                      <p className="text-xs text-text-muted leading-relaxed">Eng, Hindi, Tamil, Telugu, Hinglish, and Tanglish support.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Database className="w-5 h-5 text-primary" /></div>
+                    <div>
+                      <h5 className="font-bold text-sm mb-1">CRM Integration</h5>
+                      <p className="text-xs text-text-muted leading-relaxed">Sync summaries and transcripts to HubSpot, Zoho, or Salesforce.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
+          </div>
 
-            {/* SarwBill */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="card p-8 relative overflow-hidden flex flex-col h-full"
-            >
-              <h3 className="text-[20px] font-display font-semibold text-text mb-1">
-                SarwBill
-              </h3>
-              <p className="text-[13px] text-text-muted font-medium mb-6 uppercase tracking-[0.12em]">
-                Invoicing &amp; GST Billing
-              </p>
-
-              <ul className="space-y-3 mb-8 grow">
-                {['One-click GST invoices', 'Inventory tracking & alerts', 'Client ledger management'].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-text-secondary">
-                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-green-icon) mt-1.5 mr-3 shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="h-32 rounded-xl bg-surface border border-border-subtle mb-8" />
-
-              <Link href="/products/sarwbill" className="glass-button-ghost w-full text-center">
-                Explore SarwBill
+          <div className="relative">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+              <div>
+                <h3 className="text-3xl font-display font-bold text-text mb-2">Target Industries</h3>
+                <p className="text-text-secondary">Tailored automation for high-impact sectors</p>
+              </div>
+              <div className="h-px flex-1 bg-border-subtle hidden md:block mx-12" />
+              <Link href="/contact" className="inline-flex items-center font-bold text-primary group">
+                Request a Demo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </motion.div>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { name: "Real Estate", desc: "Property inquiries & site visits", icon: <Briefcase className="w-4 h-4" /> },
+                { name: "Education", desc: "Admissions & course follow-up", icon: <Layers className="w-4 h-4" /> },
+                { name: "Finance", desc: "Loans & insurance qualification", icon: <CheckCircle2 className="w-4 h-4" /> },
+                { name: "Enterprise", desc: "High-volume inbound leads", icon: <Users className="w-4 h-4" /> }
+              ].map((industry, i) => (
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -5, borderColor: "var(--color-primary)" }}
+                  className="card p-7 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="text-primary mb-4">{industry.icon}</div>
+                  <h4 className="font-bold text-text mb-2">{industry.name}</h4>
+                  <p className="text-xs text-text-muted leading-relaxed">{industry.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Why Sarwagyna Section */}
       <section className="py-24 relative bg-bg border-t border-border-subtle overflow-hidden">

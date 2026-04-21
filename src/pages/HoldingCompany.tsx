@@ -270,7 +270,7 @@ export default function HoldingCompany() {
                   status: "done"
                 },
                 {
-                  year: "Mar 2026",
+                  year: "TBD",
                   title: "Startup India Registration",
                   desc: "DPIIT registration process to officially recognize Sarwagyna as an Indian startup.",
                   status: "in-progress"
@@ -367,68 +367,6 @@ export default function HoldingCompany() {
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section id="leadership" className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="mb-16 text-center"
-        >
-          <motion.div variants={fadeIn} className="section-label justify-center mb-4">Leadership</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
-            The Executive Team
-          </motion.h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 text-center lg:grid-cols-3 gap-8">
-          {[
-            { name: "Sarwan Thondamalla", role: "Chief Executive Officer", desc: "As the Chief Executive Officer, Sarwan Thondamalla is responsible for setting the company’s strategic direction and driving execution. He combines entrepreneurial thinking with a strong focus on product innovation and scalable growth. Under his leadership, the company is focused on building technology-driven solutions that address real-world challenges and create lasting impact.", initials: "ST", link: "https://www.sarwan67.com" },
-            { name: "Gali Chandu Kumar", role: "Chief Operating Officer", desc: "As the Business & Growth Lead, they are responsible for driving revenue, sales strategy, and customer acquisition. They focus on identifying market opportunities, building partnerships, and converting ideas into sustainable business growth. With a strong execution mindset, they ensure the company consistently expands its customer base and market presence.", initials: "GCK", link: "/about/chandu-kumar" },
-            { name: "Roudra Ghosal", role: "Head of Tech & Management", desc: "As the Head of Technology, they are responsible for turning ideas into scalable digital products. They lead engineering teams, design system architecture, and ensure rapid yet reliable execution. With a strong focus on performance, security, and innovation, they play a key role in shaping the company’s tech-driven future.", initials: "RG", link: "/about/roudra-ghosal" },
-          ].map((leader, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="card p-8 rounded-2xl text-center group transition-colors flex flex-col items-center"
-            >
-              <div className="w-24 h-24 rounded-full bg-green-light flex items-center justify-center mx-auto mb-6 text-2xl font-display font-bold text-green-icon">
-                {leader.initials}
-              </div>
-              <h3 className="text-2xl font-display font-bold text-text mb-1">{leader.name}</h3>
-              <h4 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-4">{leader.role}</h4>
-              <p className="text-[15px] text-text-secondary leading-[1.6] mb-6 flex-grow">{leader.desc}</p>
-              {leader.link && (
-                <a href={leader.link} target="_blank" rel="noopener noreferrer" className="text-green-icon hover:text-green-hover font-semibold text-sm transition-colors inline-flex items-center gap-1 mt-auto">
-                  Visit Bio <ArrowRight className="w-4 h-4" />
-                </a>
-              )}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="card rounded-3xl p-12 md:p-20 text-center relative overflow-hidden bg-surface">
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-text mb-6">Join our journey</h2>
-            <p className="text-lg text-text-secondary mb-10">Whether you're looking to partner, invest, or join our team, we're always looking for exceptional people.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact" className="glass-button-primary px-8 py-4">
-                Contact Us
-              </Link>
-              <Link href="/careers" className="glass-button-ghost px-8 py-4">
-                View Careers
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="incorporation" className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
@@ -451,7 +389,7 @@ export default function HoldingCompany() {
             { label: "GSTIN", value: "To be updated" },
             { label: "Type of Company", value: "Private Limited" },
             { label: "Registered Office Address", value: "D NO. 7-7-24/2, Block 10, VIP RD 2nd Line, Ongole, Prakasam- 523001, Andhra Pradesh" },
-            { label: "Directors / Founders", value: "Sarwan Thondamalla" },
+            { label: "Directors / Founders", value: "Dr.P.Hanumantha Rao, Sarwan Thondamalla" },
             { label: "Official Email Address", value: "contact@sarwagyna.com" },
             { label: "Corporate Website", value: "www.sarwagyna.com" },
           ].map((row, i) => (

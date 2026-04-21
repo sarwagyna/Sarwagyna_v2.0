@@ -47,15 +47,6 @@ const navColumns = [
     ],
   },
   {
-    heading: "Products",
-    links: [
-      { name: "All Products", path: "/products" },
-      { name: "SarwHub", path: "/products/sarwhub" },
-      { name: "SarwCal", path: "/products/sarwcal" },
-      { name: "SarwBill", path: "/products/sarwbill" },
-    ],
-  },
-  {
     heading: "Resources",
     links: [
       { name: "Verify Certificate", path: "/verify" },
