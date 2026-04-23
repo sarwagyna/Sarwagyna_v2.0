@@ -1,6 +1,18 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // Redirect www to non-www
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.sarwagyna.com' }],
+        destination: 'https://sarwagyna.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   images: {
     remotePatterns: [
       {
