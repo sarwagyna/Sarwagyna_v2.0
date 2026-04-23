@@ -3,9 +3,6 @@
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Handshake, Rocket, Users, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
-import type { ChangeEvent, FormEvent } from 'react';
-import { supabase } from '../lib/supabaseClient';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -25,39 +22,6 @@ interface PartnerWithUsProps {
 }
 
 export default function PartnerWithUs({ compact = false }: PartnerWithUsProps) {
-  const [form, setForm] = useState({
-    fullName: '',
-    email: '',
-    companyName: '',
-    partnershipType: '',
-    message: ''
-  });
-  const [status, setStatus] = useState<{ loading: boolean; error?: string; success?: string }>({ loading: false });
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setStatus({ loading: true });
-    const payload = {
-      full_name: form.fullName.trim(),
-      email: form.email.trim().toLowerCase(),
-      company_name: form.companyName.trim(),
-      partnership_type: form.partnershipType.trim(),
-      message: form.message.trim()
-    };
-    try {
-      const { error } = await supabase.from('partner_requests').insert(payload);
-      if (error) throw error;
-      setStatus({ loading: false, success: 'Thanks! Your partnership request has been submitted.' });
-      setForm({ fullName: '', email: '', companyName: '', partnershipType: '', message: '' });
-    } catch (err: any) {
-      setStatus({ loading: false, error: 'Sorry, something went wrong. Please try again.' });
-    }
-  };
   return (
     <div className={`flex flex-col ${compact ? '' : 'min-h-screen'}`}>
 
@@ -89,9 +53,6 @@ export default function PartnerWithUs({ compact = false }: PartnerWithUsProps) {
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
                 <button onClick={() => document.getElementById('partnership-types')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-primary px-8 py-4">
                   Explore Programs
-                </button>
-                <button onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
-                  Become a Partner
                 </button>
               </motion.div>
             </motion.div>
@@ -206,56 +167,6 @@ export default function PartnerWithUs({ compact = false }: PartnerWithUsProps) {
           </div>
         </section>
       )}
-
-      {/* Contact Form Section */}
-      <section id="contact-form" className={`${compact ? 'py-8' : 'py-[120px]'} max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 w-full`}>
-        <div className={`glass-panel rounded-3xl ${compact ? 'px-4 py-6 md:px-6 md:py-8' : 'px-6 py-8 md:px-10 md:py-12'} border-t border-t-border-subtle`}>
-          <div className={`max-w-3xl mx-auto text-center ${compact ? 'mb-8' : 'mb-12'}`}>
-            <h2 className={`${compact ? 'text-2xl' : 'text-4xl'} font-display font-bold text-text mb-4`}>Start a Conversation</h2>
-            <p className="text-text-secondary text-sm md:text-base">Tell us about your business and how you'd like to partner with Sarwagyna. Our partnership team will get back to you within 48 hours.</p>
-          </div>
-
-          <form className={`grid grid-cols-1 md:grid-cols-2 ${compact ? 'gap-4' : 'gap-5'} max-w-4xl mx-auto`} onSubmit={handleSubmit} noValidate>
-            <div className="space-y-1.5">
-              <label className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-text-secondary ml-1`}>Full Name</label>
-              <input name="fullName" value={form.fullName} onChange={handleChange} required type="text" placeholder="John Doe" className={`w-full bg-bg/5 border border-border-subtle rounded-xl ${compact ? 'px-3 py-2 text-sm' : 'px-4 py-3'} text-text focus:outline-none focus:border-border-subtle/30 transition-colors`} />
-            </div>
-            <div className="space-y-1.5">
-              <label className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-text-secondary ml-1`}>Company Email</label>
-              <input name="email" value={form.email} onChange={handleChange} required type="email" placeholder="john@company.com" className={`w-full bg-bg/5 border border-border-subtle rounded-xl ${compact ? 'px-3 py-2 text-sm' : 'px-4 py-3'} text-text focus:outline-none focus:border-border-subtle/30 transition-colors`} />
-            </div>
-            <div className="space-y-1.5">
-              <label className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-text-secondary ml-1`}>Company Name</label>
-              <input name="companyName" value={form.companyName} onChange={handleChange} required type="text" placeholder="Acme Inc." className={`w-full bg-bg/5 border border-border-subtle rounded-xl ${compact ? 'px-3 py-2 text-sm' : 'px-4 py-3'} text-text focus:outline-none focus:border-border-subtle/30 transition-colors`} />
-            </div>
-            <div className="space-y-1.5">
-              <label className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-text-secondary ml-1`}>Partnership Type</label>
-              <div className="relative">
-                <select name="partnershipType" value={form.partnershipType} onChange={handleChange} required className={`w-full bg-bg/5 border border-border-subtle rounded-xl ${compact ? 'px-3 py-2 text-sm' : 'px-4 py-3'} text-text focus:outline-none focus:border-border-subtle/30 transition-colors appearance-none`}>
-                  <option value="">Select partnership type...</option>
-                  <option value="Technology Partner">Technology Partner</option>
-                  <option value="Channel Partner">Channel Partner</option>
-                  <option value="Other">Other</option>
-                </select>
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </div>
-              </div>
-            </div>
-            <div className="md:col-span-2 space-y-1.5">
-              <label className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-text-secondary ml-1`}>Message / Proposal</label>
-              <textarea name="message" value={form.message} onChange={handleChange} required rows={compact ? 3 : 4} placeholder="Briefly describe your partnership idea..." className={`w-full bg-bg/5 border border-border-subtle rounded-xl ${compact ? 'px-3 py-2 text-sm' : 'px-4 py-3'} text-text focus:outline-none focus:border-border-subtle/30 transition-colors resize-none`}></textarea>
-            </div>
-            <div className={`md:col-span-2 ${compact ? 'mt-2' : 'mt-4'}`}>
-              <button type="submit" disabled={status.loading} className={`glass-button-primary w-full ${compact ? 'py-3 text-base' : 'py-4 text-lg'} font-bold disabled:opacity-60`}>
-                {status.loading ? 'Submitting...' : 'Submit Partnership Request'}
-              </button>
-              {status.error && <p className="text-[12px] text-center text-red-400 mt-3">{status.error}</p>}
-              {status.success && <p className="text-[12px] text-center text-emerald-300 mt-3">{status.success}</p>}
-            </div>
-          </form>
-        </div>
-      </section>
     </div>
   );
 }

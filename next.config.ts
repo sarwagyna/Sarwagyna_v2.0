@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
               "font-src 'self' data: https://fonts.gstatic.com https://core.sanity-cdn.com https://sanity-cdn.com",
 
               "img-src 'self' data: blob: https: https://www.google-analytics.com",
-              "frame-src 'self' https://*.sanity.io",
+              "frame-src 'self' https://*.sanity.io https://cal.com",
               "worker-src 'self' blob:",
             ].join("; "),
           },

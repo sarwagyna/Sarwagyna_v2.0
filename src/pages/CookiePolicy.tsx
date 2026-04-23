@@ -17,7 +17,7 @@ const CookiePolicy = () => {
           </h1>
           <p className="text-text-secondary font-medium mb-8">
             SARWAGYNA PVT LTD<br/>
-            Effective Date: June 1, 2025<br/>
+            Effective Date: April 24, 2026<br/>
             Last Updated: June 1, 2025<br/>
             Applies to: sarwagyna.com, sarwagyna.in and all Sarwagyna web applications
           </p>
