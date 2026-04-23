@@ -4,9 +4,6 @@ import { LucideIcon } from 'lucide-react';
 
 const LINKS = [
   { id: 1, title: 'Our Website', url: 'https://sarwagyna.com', icon: 'Globe' },
-  { id: 2, title: 'SarwHub', url: 'https://sarwagyna.com/products/sarwhub', icon: 'LayoutDashboard' },
-  { id: 3, title: 'SarwCal', url: 'https://sarwagyna.com/products/sarwcal', icon: 'Calendar' },
-  { id: 4, title: 'SarwBill', url: 'https://sarwagyna.com/products/sarwbill', icon: 'Receipt' },
   { id: 5, title: 'AgentZ Store', url: 'https://sarwagyna.com/products/agentz', icon: 'Bot' },
   { id: 6, title: 'Partner With Us', url: 'https://sarwagyna.com/partner', icon: 'Handshake' },
   { id: 7, title: 'Contact Us', url: 'https://sarwagyna.com/contact', icon: 'Mail' },

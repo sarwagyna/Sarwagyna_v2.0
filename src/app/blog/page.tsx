@@ -4,8 +4,8 @@ import { getAllPosts } from '@/sanity/lib/data'
 import { urlFor } from '@/sanity/lib/image'
 
 export const metadata = {
-  title: 'Blog | Sarwagyna',
-  description: 'Latest insights, updates and articles from the Sarwagyna team.',
+  title: 'Sarwagyna Blog — AI, Tech & Enterprise Insights',
+  description: 'Explore the Sarwagyna blog for expert insights on AI, enterprise technology, and SaaS. Written by the team building the future of Indian enterprise.',
 }
 
 export default async function BlogPage() {
