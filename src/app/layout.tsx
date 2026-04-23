@@ -33,11 +33,6 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="Sarwagyna Pvt Ltd." />
-        <meta name="description" content="India's emerging multi-industry powerhouse delivering enterprise-grade AI, and SaaS products." />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Sarwagyna: India's Next-Gen Multi-Industry Company" />
-        <meta property="og:description" content="Discover Sarwagyna Pvt Ltd. We build enterprise AI solutions, manage global operations, and develop scalable SaaS products." />
-        <meta property="twitter:card" content="summary_large_image" />
 
       </head>
 

@@ -165,7 +165,7 @@ export default function Careers() {
             >
               JOIN THE TEAM
             </motion.div>
-            <motion.h2
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -173,7 +173,7 @@ export default function Careers() {
               className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-text mb-6 tracking-tight"
             >
               Build the Future With Us
-            </motion.h2>
+            </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -280,8 +280,8 @@ export default function Careers() {
             <div className="mt-10 max-w-xl mx-auto p-6 rounded-xl bg-bg border border-border-subtle text-center">
               <h5 className="text-[15px] font-semibold text-text mb-2">Don't see your role?</h5>
               <p className="text-[13px] text-text-secondary mb-3">We hire for talent first. If you believe you can contribute to what we're building, send us your profile anyway.</p>
-              <a href="mailto:carrers@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors inline-flex items-center gap-1">
-                carrers@sarwagyna.com <ArrowRight className="w-3 h-3" />
+              <a href="mailto:sarwan@sarwagyna.com" className="text-amber-500 hover:text-amber-400 text-[14px] font-medium transition-colors inline-flex items-center gap-1">
+                sarwan@sarwagyna.com <ArrowRight className="w-3 h-3" />
               </a>
             </div>
           </div>
