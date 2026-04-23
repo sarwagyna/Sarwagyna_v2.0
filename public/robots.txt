@@ -12,8 +12,8 @@ Disallow: /private/
 Disallow: /internal/
 Disallow: /blogstudio/
 
-# Block query parameters (optional, prevents duplicate indexing)
+# Block query parameters (prevents duplicate indexing)
 Disallow: /*?*
 
-# Sitemap
+# Sitemaps
 Sitemap: https://sarwagyna.com/sitemap.xml
