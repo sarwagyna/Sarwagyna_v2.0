@@ -298,14 +298,24 @@ export default function GraphyFooter() {
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "space-between",
               alignItems: "center",
               paddingBottom: "32px",
+              flexWrap: "wrap",
+              gap: "20px"
             }}
           >
             <p style={{ fontSize: "12.5px", color: "#9b9b9b", margin: 0 }}>
               © 2026 SARWAGYNA Pvt Ltd. All rights reserved.
             </p>
+            <a href="https://websitelaunches.com/site/sarwagyna.com" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://websitelaunches.com/badge/sarwagyna.com.svg"
+                alt="Established online - Public launch record"
+                width={255}
+                height={55}
+              />
+            </a>
           </div>
 
           {/* Big bold watermark */}
