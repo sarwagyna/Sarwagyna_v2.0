@@ -35,7 +35,6 @@ export const eventType = defineType({
       options: {
         dateFormat: 'DD-MM-YYYY',
         timeFormat: 'HH:mm',
-        calendarTodayLabel: 'Today',
       },
       validation: (Rule) => Rule.required(),
     }),
