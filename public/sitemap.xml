@@ -4,19 +4,25 @@
   <!-- Core Pages -->
   <url>
     <loc>https://sarwagyna.com/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/ai-it</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/holding-company</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sarwagyna.com/events</loc>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -24,7 +30,7 @@
   <!-- Blog -->
   <url>
     <loc>https://sarwagyna.com/blog</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -32,19 +38,19 @@
   <!-- Company -->
   <url>
     <loc>https://sarwagyna.com/careers</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/partner</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/contact</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -52,13 +58,13 @@
   <!-- Tools -->
   <url>
     <loc>https://sarwagyna.com/links</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/verify</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -66,27 +72,44 @@
   <!-- Legal -->
   <url>
     <loc>https://sarwagyna.com/privacy-policy</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/terms-of-service</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/cookie-policy</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://sarwagyna.com/refund-policy</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
 </urlset>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠛⠻⣷⠀⠀⠀⠀⠀⢠⡾⠛⠻⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⣄⣤⡿⠀⠀⠀⠀⠀⠘⣿⣄⣠⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢠⣾⠿⢿⣦⠀⠀⣿⡇⠀⠀⣀⣤⣄⡀⠀⠀⣿⡏⠀⢠⣾⠿⢿⣦⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠹⣷⣀⣠⣿⠀⠀⣿⡇⠀⢰⡟⠉⠙⣿⠀⠀⣿⡇⠀⢸⣧⣀⣠⣿⠀⠀⠀⠀⠀
+⠀⣠⣤⣤⡀⠈⠛⠋⠙⢷⣄⣿⡇⠀⠈⢿⣶⡾⠟⠀⠀⣿⣇⣴⡿⠋⠙⠋⠁⢀⣤⣤⣄⠀
+⣾⡏⠉⢹⣿⣦⣤⣶⣶⣤⣿⣿⣧⠀⠀⠀⣿⡇⠀⠀⢀⣿⣿⣯⣤⣶⣶⣦⣶⣿⠉⠉⢻⡇
+⠙⠿⢶⠾⠋⠀⠀⠀⠀⠀⠀⠈⠙⣷⣴⡶⠿⠷⣶⣴⡿⠋⠀⠀⠀⠀⠀⠀⠀⠻⢷⣶⠿⠃
+⠀⠀⠀⠀⠀⢠⣾⠿⠿⣦⡀⠀⢀⣿⠋⠀⠀⠀⠀⠻⣧⡀⠀⢠⣾⠿⢿⣦⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠸⣷⣄⣠⣿⠛⠛⠻⣷⠀⠀⠀⠀⠀⢀⣿⠛⠛⢻⣧⣀⣰⣿⠀⠀⠀⠀⠀⠀
+⠀⣠⣤⣤⡀⠀⠉⠙⠉⠁⠀⠀⢀⣽⣷⣤⣄⣠⣴⣿⣇⠀⠀⠀⠉⠉⠉⠁⠀⢀⣤⣤⣄⠀
+⣾⡏⠉⢹⣷⣦⣤⣤⣤⣤⣤⣴⡿⠋⠀⠉⣿⡏⠉⠀⠙⣷⣦⣤⣤⣤⣤⣤⣴⣿⠋⠉⢻⡇
+⠙⢿⣶⠾⠋⠀⠀⠀⢀⣴⡿⣿⡇⠀⠀⣠⣿⣧⣀⠀⠀⣿⡟⢷⣄⠀⠀⠀⠀⠻⢷⣶⠿⠃
+⠀⠀⠀⠀⢠⣾⠟⠿⣿⠋⠀⣿⡇⠀⢸⣟⠁⠈⣿⠀⠀⣿⡇⠀⢹⡿⠟⠿⣷⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠹⣿⣄⣠⣿⠁⠀⣿⡇⠀⠈⠻⣷⠾⠟⠀⠀⣿⡇⠀⠸⣷⣄⣰⣿⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠉⠉⠁⢀⣴⠿⢷⣦⠀⠀⠀⠀⠀⢀⣴⡿⢿⣦⠀⠈⠉⠉⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣧⣐⣠⣿⠀⠀⠀⠀⠀⠸⣯⣐⣀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠛⠉⠀⠀⠀⠀⠀⠀⠙⠛⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
