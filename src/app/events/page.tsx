@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getUpcomingEvents } from '@/sanity/lib/data'
-import { MapPin, Calendar, ArrowUpRight } from 'lucide-react'
+import { MapPin, Calendar } from 'lucide-react'
+import RegisterButton from '@/components/events/RegisterButton'
 
 export const metadata = {
   title: 'Events — Sarwagyna',
@@ -36,7 +37,7 @@ export default async function EventsPage() {
         </div>
       )}
 
-      {/* Featured event (first featured, if any) */}
+      {/* Featured event */}
       {(() => {
         const featured = events.find((e: any) => e.isFeatured)
         if (!featured) return null
@@ -61,7 +62,7 @@ export default async function EventsPage() {
                       priority
                     />
                   ) : (
-                    <div className="w-full h-full bg-linear-to-br from-amber-50 to-orange-100 flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center">
                       <Calendar className="w-16 h-16 text-amber-300" />
                     </div>
                   )}
@@ -91,7 +92,6 @@ export default async function EventsPage() {
                         {featured.description}
                       </p>
                     )}
-                    {/* Tags */}
                     {featured.tags?.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-6">
                         {featured.tags.map((tag: string) => (
@@ -107,7 +107,6 @@ export default async function EventsPage() {
                   </div>
 
                   <div className="space-y-4">
-                    {/* Meta */}
                     <div className="flex flex-wrap gap-4 text-[13px] text-text-muted">
                       <span className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5 text-amber-500" />
@@ -122,19 +121,8 @@ export default async function EventsPage() {
                         </span>
                       )}
                     </div>
-
-                    {/* CTA */}
                     {featured.registrationLink && (
-                      <a
-                        href={featured.registrationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white text-[13px] font-bold px-6 py-3 rounded-full transition-colors duration-200"
-                      >
-                        Register Now
-                        <ArrowUpRight className="w-4 h-4" />
-                      </a>
+                      <RegisterButton href={featured.registrationLink} size="md" />
                     )}
                   </div>
                 </div>
@@ -175,11 +163,10 @@ export default async function EventsPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     ) : (
-                      <div className="w-full h-full bg-linear-to-br from-amber-50 to-orange-50 flex items-center justify-center">
+                      <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
                         <Calendar className="w-10 h-10 text-amber-200" />
                       </div>
                     )}
-                    {/* Date chip */}
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-sm">
                       <p className="text-[10px] font-bold tracking-widest uppercase text-amber-600 leading-none mb-0.5">
                         {new Date(event.date).toLocaleDateString('en-IN', { month: 'short' })}
@@ -200,14 +187,11 @@ export default async function EventsPage() {
                     <h2 className="text-[19px] font-display font-bold leading-snug mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">
                       {event.title}
                     </h2>
-
                     {event.description && (
                       <p className="text-[14px] text-text-secondary leading-relaxed line-clamp-2 flex-1 mb-4">
                         {event.description}
                       </p>
                     )}
-
-                    {/* Tags */}
                     {event.tags?.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {event.tags.slice(0, 3).map((tag: string) => (
@@ -221,7 +205,7 @@ export default async function EventsPage() {
                       </div>
                     )}
 
-                    {/* Footer */}
+                    {/* Footer row */}
                     <div className="mt-auto pt-5 border-t border-border-subtle flex items-center justify-between gap-4">
                       <div className="flex flex-col gap-1.5">
                         <span className="flex items-center gap-1.5 text-[12px] text-text-muted">
@@ -241,18 +225,8 @@ export default async function EventsPage() {
                           </span>
                         )}
                       </div>
-
                       {event.registrationLink && (
-                        <a
-                          href={event.registrationLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="shrink-0 inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-white text-[12px] font-bold px-4 py-2 rounded-full transition-colors duration-200"
-                        >
-                          Register
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </a>
+                        <RegisterButton href={event.registrationLink} size="sm" />
                       )}
                     </div>
                   </div>
