@@ -116,7 +116,7 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {pathname !== '/links' && (
+      {pathname !== '/links' && !pathname?.startsWith('/blogstudio') && (
         <PillNav
           logo="/favicon.svg"
           logoAlt="Sarwagyna Logo"
@@ -124,7 +124,7 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
             { label: 'Home', href: '/' },
             { label: 'AI & IT', href: '/ai-it' },
             { label: 'About', href: '/holding-company' },
-            { label: 'Partner', href: '/partner' },
+            { label: 'Events', href: '/events' },
             { label: 'Blog', href: '/blog' },
             { label: 'Careers', href: '/careers' }
           ]}
@@ -141,7 +141,7 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       {/* Footer */}
-      {pathname !== '/links' && (
+      {pathname !== '/links' && !pathname?.startsWith('/blogstudio') && (
         <div className="relative z-10" style={{ color: '#0D1F1A' }}>
           <GraphyFooter />
         </div>

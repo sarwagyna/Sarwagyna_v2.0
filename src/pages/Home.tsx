@@ -310,7 +310,7 @@ export default function Home() {
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-text mb-3 text-primary">The LeadFlow Edge</h4>
+                  <h4 className="font-bold mb-3 text-primary">The LeadFlow Edge</h4>
                   <p className="text-[14px] text-text-secondary leading-relaxed">
                     AI never sleeps. We bridge the gap between intent and action, ensuring every prospect gets an immediate, high-quality response regardless of volume or timing.
                   </p>

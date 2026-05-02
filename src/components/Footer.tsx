@@ -51,6 +51,7 @@ const navColumns = [
     links: [
       { name: "Verify Certificate", path: "/verify" },
       { name: "Blog", path: "/blog" },
+      { name: "Events", path: "/events" },
       { name: "Links", path: "/links" },
     ],
   },
