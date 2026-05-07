@@ -5,7 +5,7 @@ import { PortableText } from '@portabletext/react'
 import { getEventBySlug, getAllEventSlugs } from '@/sanity/lib/data'
 import { Calendar, MapPin, ArrowLeft, ArrowUpRight, Tag, Images, ChevronDown, CheckCircle2 } from 'lucide-react'
 import EventGallery from '@/components/events/EventGallery'
-import CopyLinkButton from '@/components/events/CopyLinkButton'
+import SocialShare from '@/components/events/SocialShare'
 
 export async function generateStaticParams() {
   const slugs = await getAllEventSlugs()
@@ -356,11 +356,8 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
               )}
             </div>
 
-            {/* Share nudge */}
-            <p className="text-center text-[12px] text-text-muted px-2">
-              Know someone who&apos;d benefit?{' '}
-              <CopyLinkButton />
-            </p>
+            {/* Social Share */}
+            <SocialShare title={event.title} description={event.description} />
           </aside>
         </div>
 
