@@ -129,9 +129,9 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-text-muted mb-5">
             <span className="flex items-center gap-1.5 shrink-0">
               <Calendar className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-              {eventDate.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              {eventDate.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata' })}
               {' at '}
-              {eventDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+              {eventDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })}
             </span>
             {event.location && (
               <>
@@ -304,10 +304,10 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
               <div>
                 <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-text-muted mb-1.5">Date & Time</p>
                 <p className="text-[15px] font-semibold text-text">
-                  {eventDate.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })}
+                  {eventDate.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' })}
                 </p>
                 <p className="text-[13px] text-text-secondary mt-0.5">
-                  {eventDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                  {eventDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })}
                 </p>
               </div>
 

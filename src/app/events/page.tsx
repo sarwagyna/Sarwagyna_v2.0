@@ -62,17 +62,17 @@ export default async function EventsPage() {
                       priority
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center">
+                    <div className="w-full h-full bg-linear-to-br from-amber-50 to-orange-100 flex items-center justify-center">
                       <Calendar className="w-16 h-16 text-amber-300" />
                     </div>
                   )}
                   {/* Date badge */}
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2 shadow-sm">
                     <p className="text-[11px] font-bold tracking-widest uppercase text-amber-600">
-                      {new Date(featured.date).toLocaleDateString('en-IN', { month: 'short' })}
+                      {new Date(featured.date).toLocaleDateString('en-IN', { month: 'short', timeZone: 'Asia/Kolkata' })}
                     </p>
                     <p className="text-[22px] font-display font-black text-text leading-none">
-                      {new Date(featured.date).toLocaleDateString('en-IN', { day: 'numeric' })}
+                      {new Date(featured.date).toLocaleDateString('en-IN', { day: 'numeric', timeZone: 'Asia/Kolkata' })}
                     </p>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export default async function EventsPage() {
                       <span className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5 text-amber-500" />
                         {new Date(featured.date).toLocaleDateString('en-IN', {
-                          weekday: 'short', year: 'numeric', month: 'long', day: 'numeric',
+                          weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kolkata',
                         })}
                       </span>
                       {featured.location && (
@@ -163,16 +163,16 @@ export default async function EventsPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
+                      <div className="w-full h-full bg-linear-to-br from-amber-50 to-orange-50 flex items-center justify-center">
                         <Calendar className="w-10 h-10 text-amber-200" />
                       </div>
                     )}
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-sm">
                       <p className="text-[10px] font-bold tracking-widest uppercase text-amber-600 leading-none mb-0.5">
-                        {new Date(event.date).toLocaleDateString('en-IN', { month: 'short' })}
+                        {new Date(event.date).toLocaleDateString('en-IN', { month: 'short', timeZone: 'Asia/Kolkata' })}
                       </p>
                       <p className="text-[18px] font-display font-black text-text leading-none">
-                        {new Date(event.date).toLocaleDateString('en-IN', { day: 'numeric' })}
+                        {new Date(event.date).toLocaleDateString('en-IN', { day: 'numeric', timeZone: 'Asia/Kolkata' })}
                       </p>
                     </div>
                     {event.isFeatured && (
@@ -211,11 +211,11 @@ export default async function EventsPage() {
                         <span className="flex items-center gap-1.5 text-[12px] text-text-muted">
                           <Calendar className="w-3 h-3 text-amber-500 shrink-0" />
                           {new Date(event.date).toLocaleDateString('en-IN', {
-                            year: 'numeric', month: 'short', day: 'numeric',
+                            year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Kolkata',
                           })}
                           {' · '}
                           {new Date(event.date).toLocaleTimeString('en-IN', {
-                            hour: '2-digit', minute: '2-digit',
+                            hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata',
                           })}
                         </span>
                         {event.location && (
