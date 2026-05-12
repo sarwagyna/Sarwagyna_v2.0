@@ -20,7 +20,7 @@ const contactCards = [
     icon: <Building2 className="w-5 h-5" />,
     title: 'Global Headquarters',
     description: 'Sarwagyna Pvt Ltd. (Remote Office)\nIndia',
-    link: { label: '+91 97047 36991', href: 'https://wa.me/919704736991' },
+    link: { label: '+91 63050 36991', href: 'https://wa.me/916305036991' },
   },
 ];
 

@@ -161,7 +161,7 @@ const RefundPolicy = () => {
             <ul className="space-y-3 text-text-secondary">
               <li className="flex gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-text-secondary shrink-0"></span><span><strong>Email:</strong> <a href="mailto:billing@sarwagyna.com" className="text-text hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors">billing@sarwagyna.com</a></span></li>
               <li className="flex gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-text-secondary shrink-0"></span><span><strong>General:</strong> <a href="mailto:sarwan@sarwagyna.com" className="text-text hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors">sarwan@sarwagyna.com</a></span></li>
-              <li className="flex gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-text-secondary shrink-0"></span><span><strong>Phone:</strong> +91-XXXXXXXXXX (Mon–Fri, 9AM–6PM IST)</span></li>
+              <li className="flex gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-text-secondary shrink-0"></span><span><strong>Phone:</strong> +91 63050 36991 (Mon–Fri, 9AM–6PM IST)</span></li>
               <li className="flex gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-text-secondary shrink-0"></span><span><strong>Address:</strong> Sarwagyna Pvt Ltd, Registered Office, India</span></li>
               <li className="flex gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-text-secondary shrink-0"></span><span><strong>Response time:</strong> Within 2 business days for refund requests</span></li>
             </ul>
