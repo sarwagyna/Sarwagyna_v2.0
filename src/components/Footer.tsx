@@ -38,8 +38,16 @@ const navColumns = [
     ],
   },
   {
+    heading: "Products",
+    links: [
+      { name: "SvaraRx Ai", path: "/products" },
+      { name: "RizzMyResume", path: "/products" },
+    ],
+  },
+  {
     heading: "Services",
     links: [
+      { name: "Our Products", path: "/products" },
       { name: "AI & IT", path: "/ai-it" },
       { name: "AI Agents", path: "/ai-it#services" },
       { name: "Web Development", path: "/ai-it#services" },
