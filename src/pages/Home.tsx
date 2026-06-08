@@ -1,8 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Cpu, Globe, Briefcase, Layers, Phone, Zap, Clock, Mic, Calendar, Database, CheckCircle2, AlertCircle, Users } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, ArrowUpRight, Cpu, Rocket, Users, Zap, Languages, Smartphone, ClipboardCheck, Target, IndianRupee, CheckCircle2, Brain, BarChart3, Code2, Shield, Database, Cloud, PieChart, Boxes, Heart, GraduationCap, Newspaper, Play, TrendingUp, LayoutGrid } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import type { Globe } from 'cobe';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -20,6 +23,104 @@ const staggerContainer: Variants = {
 };
 
 export default function Home() {
+  const globeCanvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = globeCanvasRef.current;
+    if (!canvas) return;
+
+    let globe: Globe | null = null;
+    let rafId = 0;
+    let phi = 0;
+    let width = 0;
+    let running = false;
+    let visible = false;
+    let destroyed = false;
+    let initStarted = false;
+
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
+    // Cap DPR: 2x on this 460px box meant a 920px buffer is plenty — no need to render at 2000px.
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    const measure = () => { width = canvas.offsetWidth || 460; };
+
+    const startLoop = () => {
+      if (running || !globe || reduceMotion) return;
+      running = true;
+      const render = () => {
+        if (!globe || destroyed) return;
+        phi += 0.0015;
+        globe.update({ phi, theta: Math.sin(Date.now() * 0.00018) * 0.15 });
+        rafId = requestAnimationFrame(render);
+      };
+      rafId = requestAnimationFrame(render);
+    };
+
+    const stopLoop = () => {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+
+    // Defer the (heavy) WebGL init + cobe download until the globe is near the viewport.
+    const init = async () => {
+      if (initStarted) return;
+      initStarted = true;
+      const { default: createGlobe } = await import('cobe');
+      if (destroyed) return;
+      measure();
+      globe = createGlobe(canvas, {
+        devicePixelRatio: dpr,
+        width: width * dpr,
+        height: width * dpr,
+        phi: 0,
+        theta: 0.15,
+        dark: 0.08,
+        diffuse: 0.9,
+        scale: 0.9,
+        mapSamples: 12000,
+        mapBrightness: 10,
+        baseColor: [0.96, 0.96, 0.96],
+        markerColor: [0.84, 0.84, 0.84],
+        glowColor: [1, 1, 1],
+        offset: [0, 0],
+        markers: [],
+      });
+      // Paint one frame, then fade in to avoid a hard pop.
+      globe.update({ phi: 0, theta: 0.15 });
+      requestAnimationFrame(() => { canvas.style.opacity = '0.8'; });
+      if (visible && !document.hidden) startLoop();
+    };
+
+    // rootMargin pre-warms slightly before it enters view; loop only runs while on-screen.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) {
+          if (!initStarted) init();
+          else if (!document.hidden) startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0, rootMargin: '200px' }
+    );
+    io.observe(canvas);
+
+    const onVisibility = () => {
+      if (document.hidden) stopLoop();
+      else if (visible) startLoop();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      destroyed = true;
+      stopLoop();
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+      globe?.destroy();
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
 
@@ -118,7 +219,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-black/10 dark:divide-white/[0.07]">
             {[
               { number: '10+', label: 'Enterprise Clients' },
-              { number: '3', label: 'Business Verticals' },
+              { number: '4', label: 'Business Verticals' },
               { number: '2+', label: 'Countries Reached' },
               { number: '3', label: 'SaaS Products' }
             ].map((stat, i) => (
@@ -138,259 +239,575 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Divisions Section */}
-      <section className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="mb-16"
-        >
-          <motion.div variants={fadeIn} className="section-label mb-4">Our Business Verticals</motion.div>
-          <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
-            Engineered for Scale
-          </motion.h2>
-        </motion.div>
+      {/* Divisions Section — Our Business Verticals */}
+      <section className="lg:min-h-screen lg:flex lg:flex-col lg:justify-center py-16 bg-[#f4f5f7]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          {/* Header */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="mb-7"
+          >
+            <motion.div variants={fadeIn} className="flex items-center gap-3 mb-3">
+              <span className="w-8 h-px bg-gray-400" />
+              <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-gray-500">Our Business Verticals</span>
+            </motion.div>
+            <motion.h2 variants={fadeIn} className="text-[32px] md:text-[42px] font-display font-extrabold tracking-[-0.03em] text-[#0f1115] leading-[1.02] mb-2">
+              Engineered for Scale
+            </motion.h2>
+            <motion.p variants={fadeIn} className="text-[15px] text-gray-500 max-w-[460px] leading-relaxed">
+              From intelligent services and digital products to strategic investments and future-ready education.
+            </motion.p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="card p-8 group relative overflow-hidden flex flex-col h-full"
-          >
-            <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
-              <Cpu className="w-6 h-6" />
+          {/* Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
+
+            {/* ---------- Column 1: AI-First Technology Services ---------- */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="md:col-span-4 bg-white rounded-[24px] border border-gray-100 shadow-sm p-6 flex flex-col"
+            >
+              <h3 className="text-[19px] font-bold text-[#0f1115] tracking-tight mb-2">
+                AI-First Technology Services
+              </h3>
+              <p className="text-[13px] text-gray-500 leading-relaxed">
+                Enterprise AI agents, custom software, web platforms, and startup solutions designed to automate workflows and accelerate growth.
+              </p>
+
+              {/* AI chip diagram */}
+              <div className="relative flex-1 my-5 min-h-[180px]">
+                {/* connecting lines */}
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
+                  {[[50, 9], [16, 27], [84, 27], [16, 73], [84, 73], [50, 91]].map(([x, y], i) => (
+                    <line key={i} x1="50" y1="50" x2={x} y2={y} stroke="#d1d5db" strokeWidth="0.4" strokeDasharray="1.5 1.5" />
+                  ))}
+                </svg>
+                {/* surrounding nodes */}
+                {[
+                  { Icon: Brain, top: '9%', left: '50%' },
+                  { Icon: BarChart3, top: '27%', left: '16%' },
+                  { Icon: Code2, top: '27%', left: '84%' },
+                  { Icon: Shield, top: '73%', left: '16%' },
+                  { Icon: Database, top: '73%', left: '84%' },
+                  { Icon: Cloud, top: '91%', left: '50%' },
+                ].map(({ Icon, top, left }, i) => (
+                  <div
+                    key={i}
+                    style={{ top, left }}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-[#171717] flex items-center justify-center text-white shadow-[0_8px_20px_rgba(15,23,42,0.18)]"
+                  >
+                    <Icon className="w-[18px] h-[18px]" />
+                  </div>
+                ))}
+                {/* center AI cube */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2a2a2a] to-[#0a0a0a] flex items-center justify-center text-white shadow-[0_20px_40px_rgba(15,23,42,0.35)]">
+                  <span className="text-xl font-display font-extrabold tracking-tight">AI</span>
+                </div>
+              </div>
+
+              {/* chips */}
+              <div className="flex items-center gap-2 flex-wrap">
+                {['AI Agents', 'Web Dev', 'Automation'].map((c) => (
+                  <span key={c} className="px-3.5 py-1.5 rounded-full bg-gray-100 text-[12px] font-medium text-gray-700">{c}</span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ---------- Column 2: stacked cards ---------- */}
+            <div className="md:col-span-4 flex flex-col gap-4">
+
+              {/* AI Products & Digital Platforms */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                className="bg-white rounded-[24px] border border-gray-100 shadow-sm p-6 flex-1 flex flex-col"
+              >
+                <div className="flex items-start justify-between gap-4 mb-2.5">
+                  <h3 className="text-[19px] font-bold text-[#0f1115] tracking-tight leading-snug">
+                    AI Products &amp;<br />Digital Platforms
+                  </h3>
+                  <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 shrink-0">
+                    <Rocket className="w-[18px] h-[18px]" />
+                  </div>
+                </div>
+                <p className="text-[13px] text-gray-500 leading-relaxed mb-4">
+                  Development and commercialization of AI-powered software products, SaaS platforms, mobile applications, and automation tools for global markets.
+                </p>
+
+                {/* mock dashboard */}
+                <div className="mt-auto rounded-2xl bg-[#fafafa] border border-gray-100 p-3 flex gap-3">
+                  <div className="flex flex-col items-center gap-3 pt-1 text-gray-300">
+                    <LayoutGrid className="w-3.5 h-3.5" />
+                    <BarChart3 className="w-3.5 h-3.5" />
+                    <PieChart className="w-3.5 h-3.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <Boxes className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="grid grid-cols-2 gap-2 mb-2">
+                      <div className="rounded-lg bg-white border border-gray-100 p-2.5">
+                        <div className="text-[9px] text-gray-400 mb-1">Monthly Active Users</div>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="text-[15px] font-bold text-[#0f1115]">24.8K</span>
+                          <span className="text-[9px] font-semibold text-emerald-500">↑ 18.6%</span>
+                        </div>
+                      </div>
+                      <div className="rounded-lg bg-white border border-gray-100 p-2.5">
+                        <div className="text-[9px] text-gray-400 mb-1">Revenue</div>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="text-[15px] font-bold text-[#0f1115]">$142.6K</span>
+                          <span className="text-[9px] font-semibold text-emerald-500">↑ 24.7%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-white border border-gray-100 p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[10px] font-medium text-gray-500">Growth Overview</span>
+                        <span className="text-[9px] font-semibold text-emerald-500">+27.4%</span>
+                      </div>
+                      <svg viewBox="0 0 200 50" preserveAspectRatio="none" className="w-full h-12">
+                        <polyline
+                          points="0,40 25,32 50,36 75,22 100,28 125,16 150,20 175,8 200,12"
+                          fill="none"
+                          stroke="#111827"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        {[[0,40],[25,32],[50,36],[75,22],[100,28],[125,16],[150,20],[175,8],[200,12]].map(([x,y],i)=>(
+                          <circle key={i} cx={x} cy={y} r="1.6" fill="#111827" />
+                        ))}
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Strategic Holdings & Investments */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-white rounded-[24px] border border-gray-100 shadow-sm p-6 flex-1 flex flex-col"
+              >
+                <div className="flex items-start justify-between gap-4 mb-2.5">
+                  <h3 className="text-[19px] font-bold text-[#0f1115] tracking-tight leading-snug">
+                    Strategic Holdings &amp;<br />Investments
+                  </h3>
+                  <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 shrink-0">
+                    <PieChart className="w-[18px] h-[18px]" />
+                  </div>
+                </div>
+                <p className="text-[13px] text-gray-500 leading-relaxed mb-4">
+                  Cross-vertical portfolio management, strategic investments, and the incubation of high-potential SaaS products.
+                </p>
+
+                <div className="mt-auto">
+                  <div className="rounded-2xl bg-[#fafafa] border border-gray-100 p-4 grid grid-cols-5 gap-1">
+                    {[
+                      { Icon: Cpu, label: 'AI' },
+                      { Icon: Boxes, label: 'SaaS' },
+                      { Icon: Heart, label: 'HealthTech' },
+                      { Icon: GraduationCap, label: 'EdTech' },
+                      { Icon: Newspaper, label: 'Media' },
+                    ].map(({ Icon, label }) => (
+                      <div key={label} className="flex flex-col items-center gap-1.5">
+                        <div className="w-8 h-8 rounded-lg bg-white border border-gray-100 flex items-center justify-center text-gray-700">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <span className="text-[9px] font-medium text-gray-500 text-center leading-tight">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-center gap-2 text-[11px] font-medium text-gray-400 mt-4">
+                    <span>Building</span><span className="text-gray-300">•</span>
+                    <span>Scaling</span><span className="text-gray-300">•</span>
+                    <span>Investing</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-            <h3 className="text-[20px] font-display font-semibold text-text mb-4">
-              AI-First Technology Services
-            </h3>
-            <p className="text-[15px] text-text-muted mb-8 grow">
-              Enterprise AI agents, custom software, web platforms, and startup solutions designed to automate workflows and accelerate growth.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {['AI Agents', 'Web Dev', 'Automation', 'Startups'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <Link href="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
-              Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-          {/* Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="card p-8 group relative overflow-hidden flex flex-col h-full"
-          >
-            <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
-              <Cpu className="w-6 h-6" />
-            </div>
-            <h3 className="text-[20px] font-display font-semibold text-text mb-4">
-              AI Products & Digital Platforms
-            </h3>
-            <p className="text-[15px] text-text-muted mb-8 grow">
-              Development and commercialization of AI-powered software products, SaaS platforms, mobile applications, and automation tools for global markets.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {['SaaS', 'AI Platforms', 'Mobile Apps', 'Automation'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <Link href="/ai-it" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
-              Explore AI & IT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-          {/* Card 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="card p-8 group relative overflow-hidden flex flex-col h-full"
-          >
-            <div className="w-12 h-12 rounded-[8px] bg-green-light flex items-center justify-center mb-6 text-(--color-green-icon)">
-              <Briefcase className="w-6 h-6" />
-            </div>
-            <h3 className="text-[20px] font-display font-semibold text-text mb-4">
-              Strategic Holdings &amp; Investments
-            </h3>
-            <p className="text-[15px] text-text-muted mb-8 grow">
-              Cross-vertical portfolio management, strategic investments, and the incubation of high-potential SaaS products.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {['Investments', 'SaaS', 'Incubation', 'M&A'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-green-light text-[11px] font-medium text-(--color-primary)">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <Link href="/holding-company" className="inline-flex items-center text-(--color-primary) font-semibold hover:text-primary-hover transition-colors mt-auto">
-              Explore Holdings <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
+
+            {/* ---------- Column 3: Sarwagyna School ---------- */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="md:col-span-4 relative overflow-hidden rounded-[24px] bg-white border border-gray-100 shadow-sm p-6 flex flex-col"
+            >
+              {/* globe background */}
+              <div className="absolute right-[-140px] top-1/2 -translate-y-1/2 w-[460px] h-[460px] pointer-events-none">
+                <canvas ref={globeCanvasRef} aria-hidden="true" className="w-full h-full block opacity-0 transition-opacity duration-700" />
+                {/* floating badges */}
+                <div className="absolute top-[26%] right-[34%] w-8 h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-600">
+                  <Users className="w-4 h-4" />
+                </div>
+                <div className="absolute top-[48%] right-[58%] w-9 h-9 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-700">
+                  <Play className="w-4 h-4" />
+                </div>
+                <div className="absolute top-[66%] right-[42%] w-8 h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-600">
+                  <TrendingUp className="w-4 h-4" />
+                </div>
+              </div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <h3 className="text-[24px] md:text-[26px] font-bold text-[#0f1115] tracking-tight leading-[1.1] max-w-[60%]">
+                    Sarwagyna School
+                  </h3>
+                  <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 shrink-0">
+                    <GraduationCap className="w-[18px] h-[18px]" />
+                  </div>
+                </div>
+                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[58%]">
+                  Sarwagyna School brings together founders, innovators, engineers, and operators to share, learn, and grow.
+                </p>
+                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[58%] mt-3">
+                  Live sessions, workshops, and speaker programs designed for students and freshers entering the workforce.
+                </p>
+
+                <div className="mt-auto pt-6 space-y-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 shrink-0">
+                      <Users className="w-[18px] h-[18px]" />
+                    </div>
+                    <div>
+                      <div className="text-[17px] font-bold text-[#0f1115] leading-none">1,500+</div>
+                      <div className="text-[11px] text-gray-400 mt-1">Students Reached</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 shrink-0">
+                      <Play className="w-[18px] h-[18px]" />
+                    </div>
+                    <div>
+                      <div className="text-[17px] font-bold text-[#0f1115] leading-none">100+</div>
+                      <div className="text-[11px] text-gray-400 mt-1">Sessions Delivered</div>
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://school.sarwagyna.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0a0a0a] text-white font-bold text-[14px] hover:bg-[#222] transition-colors group"
+                  >
+                    Explore School <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* LeadFlow AI Section */}
-      <section className="py-[120px] relative overflow-hidden bg-surface border-y border-border-subtle">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+      {/* SvaraRx — Flagship Product Section (custom green palette) */}
+      <section className="py-16 lg:py-20 relative overflow-hidden bg-[#f6faf2] border-y border-[#e2ecd8]">
+        {/* Decorative green glows */}
+        <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-[#9ae65c]/25 rounded-full blur-[140px] -z-0" />
+        <div className="absolute bottom-0 left-0 w-[460px] h-[460px] bg-[#9ae65c]/15 rounded-full blur-[140px] -z-0" />
 
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 items-start mb-24">
-            <motion.div 
-              className="lg:w-1/2"
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+            {/* Left: label, logo, tagline, descriptor, description, CTAs */}
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.div variants={fadeIn} className="section-label mb-4">Featured Product</motion.div>
-              <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text mb-6 tracking-tight">
-                LeadFlow <span className="text-primary italic">AI</span>
-              </motion.h2>
-              <motion.p variants={fadeIn} className="text-[18px] text-text-secondary mb-10 leading-relaxed max-w-[540px]">
-                An AI-powered voice calling agent designed to revolutionize lead follow-up for businesses in India. Never let a lead go cold again.
-              </motion.p>
-              
-              <motion.div variants={fadeIn} className="glass-panel p-8 mb-10 relative overflow-hidden bg-white/50 dark:bg-black/50">
-                <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-primary" /> What It Does
-                </h3>
-                <p className="text-[15px] text-text-secondary leading-relaxed">
-                  LeadFlow automatically calls every lead within <span className="font-bold text-text">60 seconds</span> of capture, conducts natural human-like conversations in multiple Indian languages, qualifies leads, books appointments, and updates your CRM—all without human intervention.
-                </p>
+              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#9ae65c]/20 border border-[#9ae65c]/45 mb-5">
+                <span className="w-2 h-2 rounded-full bg-[#65a30d] animate-pulse" />
+                <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#3f6212]">Flagship Product</span>
               </motion.div>
 
-              <motion.div variants={fadeIn} className="flex items-center gap-4">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  <span className="text-xs font-bold uppercase tracking-wider">Live Pilot Status</span>
-                </div>
-                <p className="text-sm font-medium text-text-muted">Onboarding pilot clients with proven ROI</p>
+              <motion.div variants={fadeIn} className="mb-5">
+                <Image
+                  src="/SvaraRx-Logo-Transparent.png"
+                  alt="SvaraRx Ai"
+                  width={200}
+                  height={53}
+                  priority
+                  className="h-[48px] w-auto"
+                />
+              </motion.div>
+
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl lg:text-[42px] font-display font-bold text-[#0a0a0a] mb-4 tracking-tight leading-[1.08]">
+                Doctor speaks. <span className="text-[#65a30d]">Prescription writes itself.</span>
+              </motion.h2>
+
+              <motion.p variants={fadeIn} className="text-[16px] text-[#3f4a39] font-medium leading-relaxed mb-4">
+                AI-powered voice-to-prescription for solo and small clinic doctors across Andhra Pradesh and Telangana.
+              </motion.p>
+
+              <motion.p variants={fadeIn} className="text-[15px] text-[#4a5444] leading-relaxed mb-6">
+                Prescription writing eats 3–5 minutes per patient — over 3 hours a day at 40+ patients. <span className="font-bold text-[#0a0a0a]">SvaraRx eliminates it.</span> Speak in Telugu or English; get a bilingual prescription PDF in under 35 seconds. No hardware, no training.
+              </motion.p>
+
+              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href="https://svararx.sarwagyna.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[#9ae65c] text-[#0a0a0a] font-bold text-[15px] hover:bg-[#8ad94a] transition-colors w-full sm:w-auto"
+                >
+                  Request Early Access
+                </a>
+                <a
+                  href="https://svararx.sarwagyna.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-transparent border border-[#cdd9c2] text-[#0a0a0a] font-bold text-[15px] hover:border-[#9ae65c] hover:bg-white transition-colors w-full sm:w-auto group"
+                >
+                  See How It Works <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
               </motion.div>
             </motion.div>
 
-            <motion.div 
-              className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4"
+            {/* Right: feature points — 2×2 grid */}
+            <motion.div
+              className="grid grid-cols-2 gap-4"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.7 }}
             >
-              <div className="card p-7 flex flex-col gap-5 border-red-500/10">
-                <div className="w-11 h-11 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500">
-                  <AlertCircle className="w-6 h-6" />
+              {/* Core differentiator — dark card */}
+              <div className="rounded-[22px] p-6 bg-[#0a0a0a]">
+                <div className="w-10 h-10 rounded-xl bg-[#9ae65c]/15 flex items-center justify-center text-[#9ae65c] mb-4">
+                  <Zap className="w-5 h-5" />
                 </div>
-                <div>
-                  <h4 className="font-bold text-text mb-3">The Problem</h4>
-                  <ul className="text-[14px] text-text-secondary space-y-3">
-                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> Speed kills: Calling within 5m is 21x more effective</li>
-                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> Manual calling doesn't scale during peak hours</li>
-                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> Leads go cold before teams can reach back</li>
-                    <li className="flex gap-2 items-start"><span className="text-red-500 text-lg leading-0">•</span> After-hours opportunities are completely lost</li>
-                  </ul>
-                </div>
+                <h3 className="text-[16px] font-bold text-white mb-2">Sub-35 Second Delivery</h3>
+                <p className="text-[13px] text-white/70 leading-relaxed mb-3">
+                  Voice to structured prescription PDF — in under 35 seconds.
+                </p>
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#9ae65c]/15 text-[#9ae65c] text-[10px] font-bold uppercase tracking-wider">
+                  Core differentiator
+                </span>
               </div>
 
-              <div className="card p-7 flex flex-col gap-5 bg-primary/5 border-primary/20">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <CheckCircle2 className="w-6 h-6" />
+              {/* Telugu + English — light card */}
+              <div className="rounded-[22px] p-6 bg-white border border-[#e8eee2]">
+                <div className="w-10 h-10 rounded-xl bg-[#eef6e6] flex items-center justify-center text-[#65a30d] mb-4">
+                  <Languages className="w-5 h-5" />
                 </div>
-                <div>
-                  <h4 className="font-bold mb-3 text-primary">The LeadFlow Edge</h4>
-                  <p className="text-[14px] text-text-secondary leading-relaxed">
-                    AI never sleeps. We bridge the gap between intent and action, ensuring every prospect gets an immediate, high-quality response regardless of volume or timing.
-                  </p>
-                </div>
+                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">Telugu + English</h3>
+                <p className="text-[13px] text-[#4a5444] leading-relaxed">
+                  Bilingual output, built for AP and Telangana doctors.
+                </p>
               </div>
 
-              <div className="card p-8 sm:col-span-2 flex flex-col gap-8 bg-white/40 backdrop-blur-sm">
-                <div className="flex justify-between items-center">
-                  <h4 className="font-bold text-text flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-primary" /> Key Capabilities
-                  </h4>
+              {/* Any Smartphone — light card */}
+              <div className="rounded-[22px] p-6 bg-white border border-[#e8eee2]">
+                <div className="w-10 h-10 rounded-xl bg-[#eef6e6] flex items-center justify-center text-[#65a30d] mb-4">
+                  <Smartphone className="w-5 h-5" />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex gap-5">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Clock className="w-5 h-5 text-primary" /></div>
-                    <div>
-                      <h5 className="font-bold text-sm mb-1">Sub-60s Response</h5>
-                      <p className="text-xs text-text-muted leading-relaxed">Calls placed before the lead even closes their browser tab.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-5">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Mic className="w-5 h-5 text-primary" /></div>
-                    <div>
-                      <h5 className="font-bold text-sm mb-1">Natural Conversations</h5>
-                      <p className="text-xs text-text-muted leading-relaxed">Handles interruptions, answers questions, and adapts to context seamlessly.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-5">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Globe className="w-5 h-5 text-primary" /></div>
-                    <div>
-                      <h5 className="font-bold text-sm mb-1">Multi-language Support</h5>
-                      <p className="text-xs text-text-muted leading-relaxed">Eng, Hindi, Tamil, Telugu, Hinglish, and Tanglish support.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-5">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0"><Database className="w-5 h-5 text-primary" /></div>
-                    <div>
-                      <h5 className="font-bold text-sm mb-1">CRM Integration</h5>
-                      <p className="text-xs text-text-muted leading-relaxed">Sync summaries and transcripts to HubSpot, Zoho, or Salesforce.</p>
-                    </div>
-                  </div>
+                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">Any Smartphone</h3>
+                <p className="text-[13px] text-[#4a5444] leading-relaxed">
+                  No special hardware. Works on the device in your pocket.
+                </p>
+              </div>
+
+              {/* Review Before Print — accent green card */}
+              <div className="rounded-[22px] p-6 bg-[#e9f7dd] border border-[#cfe9b6]">
+                <div className="w-10 h-10 rounded-xl bg-[#9ae65c]/30 flex items-center justify-center text-[#3f6212] mb-4">
+                  <ClipboardCheck className="w-5 h-5" />
                 </div>
+                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">Review Before Print</h3>
+                <p className="text-[13px] text-[#3f4a39] leading-relaxed">
+                  Full edit screen before print. Doctor stays in control.
+                </p>
               </div>
             </motion.div>
           </div>
 
-          <div className="relative">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
-              <div>
-                <h3 className="text-3xl font-display font-bold text-text mb-2">Target Industries</h3>
-                <p className="text-text-secondary">Tailored automation for high-impact sectors</p>
-              </div>
-              <div className="h-px flex-1 bg-border-subtle hidden md:block mx-12" />
-              <Link href="/contact" className="inline-flex items-center font-bold text-primary group">
-                Request a Demo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Stats strip + footer */}
+          <motion.div
+            className="mt-10 pt-8 border-t border-[#e2ecd8] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex flex-wrap gap-x-10 gap-y-4">
               {[
-                { name: "Real Estate", desc: "Property inquiries & site visits", icon: <Briefcase className="w-4 h-4" /> },
-                { name: "Education", desc: "Admissions & course follow-up", icon: <Layers className="w-4 h-4" /> },
-                { name: "Finance", desc: "Loans & insurance qualification", icon: <CheckCircle2 className="w-4 h-4" /> },
-                { name: "Enterprise", desc: "High-volume inbound leads", icon: <Users className="w-4 h-4" /> }
-              ].map((industry, i) => (
-                <motion.div 
-                  key={i}
-                  whileHover={{ y: -5, borderColor: "var(--color-primary)" }}
-                  className="card p-7 hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="text-primary mb-4">{industry.icon}</div>
-                  <h4 className="font-bold text-text mb-2">{industry.name}</h4>
-                  <p className="text-xs text-text-muted leading-relaxed">{industry.desc}</p>
-                </motion.div>
+                { value: '8,000–15,000', label: 'Reachable clinics, AP + Telangana' },
+                { value: '₹2,499/mo', label: 'Per doctor, ARPU' },
+                { value: '< 35 sec', label: 'End-to-end latency' },
+              ].map((stat) => (
+                <div key={stat.value}>
+                  <div className="text-[22px] font-display font-extrabold text-[#0a0a0a] tracking-tight leading-none mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-[12px] font-medium uppercase tracking-[0.06em] text-[#6b7560]">
+                    {stat.label}
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
+            <p className="text-[12px] text-[#6b7560] max-w-[300px] lg:text-right">
+              First product of Sarwagyna Private Limited. Built for Indian doctors. Launching in Andhra Pradesh.
+            </p>
+          </motion.div>
         </div>
       </section>
 
+      {/* RizzMyResume — Product Section (monochrome palette) */}
+      <section className="py-16 lg:py-20 relative overflow-hidden bg-[#fafafa] border-b border-[#ececec]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+            {/* Left: label, logo, tagline, descriptor, description, CTAs */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0a0a0a]/5 border border-[#0a0a0a]/10 mb-5">
+                <span className="w-2 h-2 rounded-full bg-[#0a0a0a] animate-pulse" />
+                <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0a0a0a]">Product</span>
+              </motion.div>
+
+              <motion.div variants={fadeIn} className="flex items-center gap-3 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-[#0a0a0a] flex items-center justify-center text-white font-display font-extrabold text-[20px]">
+                  R
+                </div>
+                <span className="text-[26px] font-display font-extrabold tracking-tight text-[#0a0a0a]">
+                  RizzMyResume
+                </span>
+              </motion.div>
+
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl lg:text-[42px] font-display font-bold text-[#0a0a0a] mb-4 tracking-tight leading-[1.08]">
+                Your resume. AI-written. <span className="text-[#6b7280]">Job-ready in 60 seconds.</span>
+              </motion.h2>
+
+              <motion.p variants={fadeIn} className="text-[16px] text-[#3f4046] font-medium leading-relaxed mb-4">
+                Pay-per-use AI resume builder for students, freshers, and early-career professionals. No subscription. No fluff.
+              </motion.p>
+
+              <motion.p variants={fadeIn} className="text-[15px] text-[#52555c] leading-relaxed mb-6">
+                ATS systems filter out 75% of applications automatically — not because candidates are unqualified, but because the resume isn't written correctly. <span className="font-bold text-[#0a0a0a]">RizzMyResume fixes that.</span> Enter your details, get a fully structured, ATS-optimised resume in under 60 seconds. Pay only when you use it — ₹50 per resume.
+              </motion.p>
+
+              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href="https://rizzmyresume.sarwagyna.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[#0a0a0a] text-white font-bold text-[15px] hover:bg-[#222] transition-colors w-full sm:w-auto"
+                >
+                  Build My Resume — ₹50
+                </a>
+                <a
+                  href="https://rizzmyresume.sarwagyna.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-transparent border border-[#d4d4d4] text-[#0a0a0a] font-bold text-[15px] hover:border-[#0a0a0a] hover:bg-white transition-colors w-full sm:w-auto group"
+                >
+                  See Sample Output <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: feature points — 2×2 grid */}
+            <motion.div
+              className="grid grid-cols-2 gap-4"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              {/* ATS-Optimised — dark card */}
+              <div className="rounded-[22px] p-6 bg-[#0a0a0a]">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-4">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h3 className="text-[16px] font-bold text-white mb-2">ATS-Optimised Output</h3>
+                <p className="text-[13px] text-white/70 leading-relaxed mb-3">
+                  Structured for applicant tracking systems. Passes filters before a recruiter even sees it.
+                </p>
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider">
+                  Core differentiator
+                </span>
+              </div>
+
+              {/* 60-Second — light card */}
+              <div className="rounded-[22px] p-6 bg-white border border-[#ececec]">
+                <div className="w-10 h-10 rounded-xl bg-[#f3f4f6] flex items-center justify-center text-[#0a0a0a] mb-4">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">60-Second Turnaround</h3>
+                <p className="text-[13px] text-[#52555c] leading-relaxed">
+                  Input your details. Get a ready-to-send resume. Instantly.
+                </p>
+              </div>
+
+              {/* ₹50 Per Resume — light card */}
+              <div className="rounded-[22px] p-6 bg-white border border-[#ececec]">
+                <div className="w-10 h-10 rounded-xl bg-[#f3f4f6] flex items-center justify-center text-[#0a0a0a] mb-4">
+                  <IndianRupee className="w-5 h-5" />
+                </div>
+                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">₹50 Per Resume</h3>
+                <p className="text-[13px] text-[#52555c] leading-relaxed">
+                  No subscription. No hidden charges. Pay only when you need it.
+                </p>
+              </div>
+
+              {/* Built for Indian Freshers — accent gray card */}
+              <div className="rounded-[22px] p-6 bg-[#f3f4f6] border border-[#e5e7eb]">
+                <div className="w-10 h-10 rounded-xl bg-[#0a0a0a]/5 flex items-center justify-center text-[#0a0a0a] mb-4">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">Built for Indian Freshers</h3>
+                <p className="text-[13px] text-[#3f4046] leading-relaxed">
+                  Designed for students and early-career professionals entering the Indian job market.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats strip + footer */}
+          <motion.div
+            className="mt-10 pt-8 border-t border-[#ececec] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex flex-wrap gap-x-10 gap-y-4">
+              {[
+                { value: '₹50 flat', label: 'Per resume' },
+                { value: '< 60 sec', label: 'Turnaround time' },
+                { value: 'Zero', label: 'Subscription, no lock-in' },
+              ].map((stat) => (
+                <div key={stat.value}>
+                  <div className="text-[22px] font-display font-extrabold text-[#0a0a0a] tracking-tight leading-none mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-[12px] font-medium uppercase tracking-[0.06em] text-[#6b7280]">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-[12px] text-[#6b7280] max-w-[320px] lg:text-right">
+              Built and operated by Sarwagyna Private Limited. Powered by AI. Priced for every fresher in India.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Why Sarwagyna Section */}
       <section className="py-24 relative bg-bg border-t border-border-subtle overflow-hidden">

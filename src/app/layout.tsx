@@ -124,6 +124,7 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
             { label: 'Home', href: '/' },
             { label: 'AI & IT', href: '/ai-it' },
             { label: 'About', href: '/holding-company' },
+            { label: 'Products', href: '/products' },
             { label: 'Events', href: '/events' },
             { label: 'Blog', href: '/blog' },
             { label: 'Careers', href: '/careers' }
