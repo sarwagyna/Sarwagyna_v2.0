@@ -482,7 +482,7 @@ export default function Home() {
                       <Users className="w-[18px] h-[18px]" />
                     </div>
                     <div>
-                      <div className="text-[17px] font-bold text-[#0f1115] leading-none">1,500+</div>
+                      <div className="text-[17px] font-bold text-[#0f1115] leading-none">2,500+</div>
                       <div className="text-[11px] text-gray-400 mt-1">Students Reached</div>
                     </div>
                   </div>
@@ -491,7 +491,7 @@ export default function Home() {
                       <Play className="w-[18px] h-[18px]" />
                     </div>
                     <div>
-                      <div className="text-[17px] font-bold text-[#0f1115] leading-none">100+</div>
+                      <div className="text-[17px] font-bold text-[#0f1115] leading-none">1+</div>
                       <div className="text-[11px] text-gray-400 mt-1">Sessions Delivered</div>
                     </div>
                   </div>
