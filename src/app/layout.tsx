@@ -50,6 +50,12 @@ export default function RootLayout({
             gtag('config', 'G-C3690ECPQR');
           `}
         </Script>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7266890598523714"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <ThemeProvider>
           <LayoutShell>{children}</LayoutShell>
         </ThemeProvider>
