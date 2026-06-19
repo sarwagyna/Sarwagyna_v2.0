@@ -41,7 +41,7 @@ export default function HoldingCompany() {
             </motion.h1>
 
             <motion.p variants={fadeIn} className="text-[17px] text-text-secondary font-normal mb-10 max-w-2xl mx-auto leading-[1.75]">
-              Sarwagyna is an AI-first technology company building enterprise AI agents, SaaS platforms, and strategic investments — founded in India by an 18-year-old. We build resilient businesses that power the modern economy.
+              Sarwagyna is an AI-first technology company building enterprise AI agents, SaaS platforms, and strategic investments — founded in India. We build resilient businesses that power the modern economy.
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex justify-center">
@@ -269,18 +269,6 @@ export default function HoldingCompany() {
                   desc: "Successfully incorporated under MCA, India. A major milestone in our corporate history.",
                   status: "done"
                 },
-                {
-                  year: "TBD",
-                  title: "Startup India Registration",
-                  desc: "DPIIT registration process to officially recognize Sarwagyna as an Indian startup.",
-                  status: "in-progress"
-                },
-                {
-                  year: "TBD",
-                  title: "Public Launch",
-                  desc: "The official public launch of sarwagyna.com and our primary digital presence.",
-                  status: "in-progress"
-                }
               ].map((milestone, i) => (
                 <motion.div
                   key={i}
@@ -386,7 +374,7 @@ export default function HoldingCompany() {
           {[
             { label: "Legal Company Name", value: "Sarwagyna Pvt Ltd" },
             { label: "Corporate Identification Number (CIN)", value: "U62013AP2026PTC124652" },
-            { label: "GSTIN", value: "To be updated" },
+            { label: "GSTIN", value: "7ABTCS0879E1ZR" },
             { label: "Type of Company", value: "Private Limited" },
             { label: "Registered Office Address", value: "D NO. 7-7-24/2, Block 10, VIP RD 2nd Line, Ongole, Prakasam- 523001, Andhra Pradesh" },
             { label: "Directors / Founders", value: "Dr.P.Hanumantha Rao, Sarwan Thondamalla" },

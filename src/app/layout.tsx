@@ -34,6 +34,25 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="Sarwagyna Pvt Ltd." />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Sarwagyna Pvt Ltd.',
+              alternateName: 'Sarwagyna',
+              url: 'https://sarwagyna.com',
+              logo: 'https://sarwagyna.com/favicon.svg',
+              description:
+                'Sarwagyna is India\'s next-gen multi-industry company with a 20+ member team delivering enterprise-grade AI solutions, strategic holdings, and scalable SaaS products.',
+              numberOfEmployees: {
+                '@type': 'QuantitativeValue',
+                minValue: 20,
+              },
+            }),
+          }}
+        />
       </head>
 
       <body>
