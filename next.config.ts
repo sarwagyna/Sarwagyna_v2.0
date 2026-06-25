@@ -41,11 +41,11 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self'",
 
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://core.sanity-cdn.com https://sanity-cdn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://core.sanity-cdn.com https://sanity-cdn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://fundingchoicesmessages.google.com",
 
-              "script-src-elem 'self' 'unsafe-inline' https://core.sanity-cdn.com https://sanity-cdn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms",
+              "script-src-elem 'self' 'unsafe-inline' https://core.sanity-cdn.com https://sanity-cdn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://fundingchoicesmessages.google.com",
 
-              "connect-src 'self' https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io wss://*.sanity.io https://core.sanity-cdn.com https://sanity-cdn.com https://hzvhbnohuiodjhndotpb.supabase.co wss://hzvhbnohuiodjhndotpb.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms https://*.clarity.ms",
+              "connect-src 'self' https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io wss://*.sanity.io https://core.sanity-cdn.com https://sanity-cdn.com https://hzvhbnohuiodjhndotpb.supabase.co wss://hzvhbnohuiodjhndotpb.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.googleadservices.com https://fundingchoicesmessages.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
 
               "style-src 'self' 'unsafe-inline' https://core.sanity-cdn.com https://sanity-cdn.com https://fonts.googleapis.com",
               "style-src-elem 'self' 'unsafe-inline' https://core.sanity-cdn.com https://sanity-cdn.com https://fonts.googleapis.com",
@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
               "font-src 'self' data: https://fonts.gstatic.com https://core.sanity-cdn.com https://sanity-cdn.com",
 
               "img-src 'self' data: blob: https: https://www.google-analytics.com",
-              "frame-src 'self' https://*.sanity.io https://cal.com",
+              "frame-src 'self' https://*.sanity.io https://cal.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com https://fundingchoicesmessages.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google",
               "worker-src 'self' blob:",
             ].join("; "),
           },
