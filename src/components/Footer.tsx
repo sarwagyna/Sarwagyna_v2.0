@@ -317,36 +317,13 @@ export default function GraphyFooter() {
             <p style={{ fontSize: "12.5px", color: "#595959", margin: 0 }}>
               © 2026 SARWAGYNA Pvt Ltd. All rights reserved.
             </p>
-            <a
-              href="https://websitelaunches.com/site/sarwagyna.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "10px 16px",
-                borderRadius: "8px",
-                border: "1px solid #d4d4d4",
-                backgroundColor: "#fafafa",
-                color: "#404040",
-                fontSize: "12px",
-                fontWeight: 600,
-                textDecoration: "none",
-                letterSpacing: "0.02em",
-                whiteSpace: "nowrap",
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Established online — Public launch record
+            <a href="https://websitelaunches.com/site/sarwagyna.com" target="_blank" rel="noopener">
+              <img
+                src="https://websitelaunches.com/badge/sarwagyna.com.svg"
+                alt="Established online - Public launch record"
+                width="255"
+                height="55"
+              />
             </a>
           </div>
 
@@ -354,13 +331,14 @@ export default function GraphyFooter() {
           <div aria-hidden="true" style={{ overflow: "hidden", lineHeight: 1, marginLeft: "-4px" }}>
             <span
               style={{
-                fontSize: "clamp(80px, 16vw, 180px)",
+                fontSize: "clamp(2.5rem, 14vw, 180px)",
                 fontWeight: 800,
                 color: "#949494",
-                letterSpacing: "-10px",
+                letterSpacing: "-0.056em",
                 whiteSpace: "nowrap",
                 display: "block",
                 userSelect: "none",
+                opacity: 0.15,
               }}
             >
               SARWAGYNA
