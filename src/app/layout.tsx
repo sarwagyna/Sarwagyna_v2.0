@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import ClarityProvider from '@/components/ClarityProvider';
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { jetbrainsMono, poppins } from '@/app/fonts';
 
 export default function RootLayout({
   children,
@@ -16,17 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${poppins.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
-          rel="stylesheet" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

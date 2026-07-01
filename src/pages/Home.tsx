@@ -2,10 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, Cpu, Rocket, Users, Zap, Languages, Smartphone, ClipboardCheck, Target, IndianRupee, CheckCircle2, Brain, BarChart3, Code2, Shield, Database, Cloud, PieChart, Boxes, Heart, GraduationCap, Newspaper, Play, TrendingUp, LayoutGrid } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { ArrowRight, ArrowUpRight, Cpu, Rocket, Users, Zap, Languages, Smartphone, ClipboardCheck, Target, IndianRupee, CheckCircle2, Brain, BarChart3, Code2, Shield, Database, Cloud, PieChart, Boxes, Heart, GraduationCap, Newspaper, Play, TrendingUp, LayoutGrid, PhoneCall } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import type { Globe } from 'cobe';
+import SchoolGlobeCanvas from '@/components/SchoolGlobeCanvas';
+
+const Globe = dynamic(
+  () => import('@/components/ui/globe').then((mod) => mod.Globe),
+  { ssr: false }
+);
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -22,219 +27,109 @@ const staggerContainer: Variants = {
   }
 };
 
+const heroDivisions = [
+  { label: 'AI & IT Services', desc: 'Enterprise AI agents & custom software', href: '/ai-it', Icon: Cpu },
+  { label: 'SaaS Products', desc: 'SvaraRx, RizzMyResume & platforms', href: '/products', Icon: Rocket },
+  { label: 'Strategic Holdings', desc: 'Portfolio management & investments', href: '/holding-company', Icon: Target },
+  { label: 'Sarwagyna School', desc: 'Workshops for founders & freshers', href: 'https://school.sarwagyna.com', Icon: GraduationCap, external: true },
+];
+
 export default function Home() {
-  const globeCanvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  useEffect(() => {
-    const canvas = globeCanvasRef.current;
-    if (!canvas) return;
-
-    let globe: Globe | null = null;
-    let rafId = 0;
-    let phi = 0;
-    let width = 0;
-    let running = false;
-    let visible = false;
-    let destroyed = false;
-    let initStarted = false;
-
-    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
-    // Cap DPR: 2x on this 460px box meant a 920px buffer is plenty — no need to render at 2000px.
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-
-    const measure = () => { width = canvas.offsetWidth || 460; };
-
-    const startLoop = () => {
-      if (running || !globe || reduceMotion) return;
-      running = true;
-      const render = () => {
-        if (!globe || destroyed) return;
-        phi += 0.0015;
-        globe.update({ phi, theta: Math.sin(Date.now() * 0.00018) * 0.15 });
-        rafId = requestAnimationFrame(render);
-      };
-      rafId = requestAnimationFrame(render);
-    };
-
-    const stopLoop = () => {
-      running = false;
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-
-    // Defer the (heavy) WebGL init + cobe download until the globe is near the viewport.
-    const init = async () => {
-      if (initStarted) return;
-      initStarted = true;
-      const { default: createGlobe } = await import('cobe');
-      if (destroyed) return;
-      measure();
-      globe = createGlobe(canvas, {
-        devicePixelRatio: dpr,
-        width: width * dpr,
-        height: width * dpr,
-        phi: 0,
-        theta: 0.15,
-        dark: 0.08,
-        diffuse: 0.9,
-        scale: 0.9,
-        mapSamples: 12000,
-        mapBrightness: 10,
-        baseColor: [0.96, 0.96, 0.96],
-        markerColor: [0.84, 0.84, 0.84],
-        glowColor: [1, 1, 1],
-        offset: [0, 0],
-        markers: [],
-      });
-      // Paint one frame, then fade in to avoid a hard pop.
-      globe.update({ phi: 0, theta: 0.15 });
-      requestAnimationFrame(() => { canvas.style.opacity = '0.8'; });
-      if (visible && !document.hidden) startLoop();
-    };
-
-    // rootMargin pre-warms slightly before it enters view; loop only runs while on-screen.
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        visible = entry.isIntersecting;
-        if (visible) {
-          if (!initStarted) init();
-          else if (!document.hidden) startLoop();
-        } else {
-          stopLoop();
-        }
-      },
-      { threshold: 0, rootMargin: '200px' }
-    );
-    io.observe(canvas);
-
-    const onVisibility = () => {
-      if (document.hidden) stopLoop();
-      else if (visible) startLoop();
-    };
-    document.addEventListener('visibilitychange', onVisibility);
-
-    return () => {
-      destroyed = true;
-      stopLoop();
-      io.disconnect();
-      document.removeEventListener('visibilitychange', onVisibility);
-      globe?.destroy();
-    };
-  }, []);
-
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-bg">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <motion.div
-              className="flex-1 text-left"
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-            >
-              <motion.div variants={fadeIn} className="section-label mb-6">
-                INDIA'S NEXT-GEN MULTI-INDUSTRY COMPANY
-              </motion.div>
+      <section className="relative min-h-svh flex items-center pt-[5.5rem] pb-20 sm:pb-24 lg:pb-28 overflow-hidden bg-bg">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-15%,rgba(0,0,0,0.045),transparent)]" />
+          <div className="absolute top-[12%] -right-20 w-[min(28vw,380px)] h-[min(28vw,380px)] rounded-full bg-[radial-gradient(circle,rgba(154,230,92,0.09),transparent_68%)]" />
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+        </div>
 
-              <motion.h1 variants={fadeIn} className="text-[46px] sm:text-[56px] lg:text-[64px] font-display font-extrabold leading-[1.05] tracking-[-0.06em] mb-6">
+        {/* Globe — centered at bottom, background layer */}
+        <div
+          className="absolute left-1/2 bottom-0 z-0 h-[min(82vh,980px)] w-[min(82vh,980px)] max-w-[min(150vw,1100px)] -translate-x-1/2 translate-y-[29%] pointer-events-none opacity-[0.42] sm:opacity-50"
+          aria-hidden="true"
+        >
+          <Globe className="relative inset-auto mx-auto max-w-none w-full h-full" />
+        </div>
+        <div
+          className="absolute inset-x-0 bottom-0 z-[1] h-48 sm:h-56 bg-gradient-to-t from-bg via-bg/95 to-transparent pointer-events-none"
+          aria-hidden="true"
+        />
+
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-4 lg:py-6">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 items-center">
+            <div className="hero-enter text-left max-w-xl">
+              <p className="section-label mb-4 lg:mb-5">
+                India&apos;s next-gen multi-industry company
+              </p>
+
+              <h1 className="text-[clamp(2.125rem,4.2vw,3.5rem)] font-display font-extrabold leading-[1.08] tracking-[-0.04em] mb-4 lg:mb-5">
                 <span className="text-text block">Where Intelligence</span>
                 <span className="text-gradient block">Meets Enterprise</span>
-              </motion.h1>
+              </h1>
 
-              <motion.p variants={fadeIn} className="text-[17px] text-text-secondary font-normal mb-8 max-w-[520px] leading-[1.75]">
-                AI & IT Solutions. Strategic Holdings. We build the infrastructure for modern business, combining deep technical expertise with global market access to drive unprecedented growth.
-              </motion.p>
+              <p className="text-[15px] sm:text-[16px] lg:text-[17px] text-text-secondary font-normal mb-6 lg:mb-7 max-w-[32rem] leading-[1.7]">
+                AI &amp; IT solutions, strategic holdings, and scalable SaaS — built in India for global markets. One company, four verticals, enterprise-grade delivery.
+              </p>
 
-              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Link href="/ai-it" className="glass-button-primary px-8 py-4 text-center">
+              <div className="flex flex-col sm:flex-row gap-3 mb-6 lg:mb-7">
+                <Link href="/ai-it" className="glass-button-primary px-6 sm:px-8 py-3.5 sm:py-4 text-center text-[14px] sm:text-[15px]">
                   Explore Our Divisions
                 </Link>
-                <Link href="/partner" className="glass-button-ghost px-8 py-4 text-center">
+                <Link href="/partner" className="glass-button-ghost px-6 sm:px-8 py-3.5 sm:py-4 text-center text-[14px] sm:text-[15px]">
                   Partner with Us
                 </Link>
-              </motion.div>
+              </div>
 
-              <motion.div variants={fadeIn} className="flex flex-wrap gap-2">
-                {['AI-Powered', 'Global Reach', 'DPIIT Recognized(under process)'].map((chip) => (
-                  <span key={chip} className="px-4 py-2 rounded-full bg-green-light text-[13px] font-medium tracking-[0.08em] uppercase text-(--color-primary)">
+              <div className="flex flex-wrap gap-2">
+                {['AI-Powered', 'Global Reach', 'DPIIT recognition in progress'].map((chip) => (
+                  <span key={chip} className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-surface/90 border border-border-subtle text-[11px] sm:text-[12px] font-semibold tracking-[0.05em] uppercase text-text-secondary backdrop-blur-sm">
                     {chip}
                   </span>
                 ))}
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="flex-1 w-full max-w-lg lg:max-w-none relative"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="relative rounded-2xl glass-panel p-1 overflow-hidden group">
-                <div className="absolute inset-0 bg-bg-[var(--color-bg)]/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative bg-white dark:bg-black/80 backdrop-blur-xl rounded-xl p-6 h-[400px] flex flex-col border border-black/5 dark:border-white/5 transition-colors duration-300">
-                  {/* Mock Dashboard UI */}
-                  <div className="flex justify-between items-center mb-6 pb-4 border-b border-border-subtle transition-colors duration-300">
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 rounded-full bg-bg/10 dark:bg-white/20" />
-                      <div className="w-3 h-3 rounded-full bg-bg/20 dark:bg-white/40" />
-                      <div className="w-3 h-3 rounded-full bg-bg/30 dark:bg-white/60" />
-                    </div>
-                    <div className="text-xs font-mono text-text-muted dark:text-white/40">SYSTEM.STATUS: OPTIMAL</div>
-                  </div>
-                  <div className="flex-1 flex flex-col gap-4">
-                    <div className="h-24 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex items-end p-4 gap-2 transition-colors duration-300">
-                      {[40, 70, 45, 90, 65, 85, 100].map((h, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ height: 0 }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                          className="flex-1 bg-(--color-lavender) dark:bg-white/40 rounded-t-sm opacity-80"
-                        />
-                      ))}
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="h-20 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 p-4 flex flex-col justify-center transition-colors duration-300">
-                        <div className="text-xs text-text-muted dark:text-white/40 mb-1">Global Nodes</div>
-                        <div className="text-xl font-display font-bold text-text dark:text-white">15+ Active</div>
-                      </div>
-                      <div className="h-20 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 p-4 flex flex-col justify-center transition-colors duration-300">
-                        <div className="text-xs text-text-muted dark:text-white/40 mb-1">Processing</div>
-                        <div className="text-xl font-display font-bold text-text dark:text-white">99.99%</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* Stats Bar */}
-      <section className="border-y border-border-subtle bg-surface py-12">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-black/10 dark:divide-white/[0.07]">
-            {[
-              { number: '10+', label: 'Enterprise Clients' },
-              { number: '4', label: 'Business Verticals' },
-              { number: '2+', label: 'Countries Reached' },
-              { number: '3', label: 'SaaS Products' }
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-center px-4"
-              >
-                <div className="text-4xl md:text-[56px] font-display font-extrabold text-gradient mb-2">{stat.number}</div>
-                <div className="text-[13px] text-text-secondary font-medium uppercase tracking-wider">{stat.label}</div>
-              </motion.div>
-            ))}
+            <div className="hero-enter hero-enter-delay w-full max-w-[34rem] lg:max-w-none lg:justify-self-end">
+              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-2.5 sm:gap-3">
+                {heroDivisions.map(({ label, desc, href, Icon, external }) => {
+                  const card = (
+                    <>
+                      <div className="w-9 h-9 rounded-xl bg-surface/90 border border-border-subtle flex items-center justify-center text-text mb-3 group-hover:border-[#cbd5d0] transition-colors">
+                        <Icon className="w-[17px] h-[17px]" aria-hidden="true" />
+                      </div>
+                      <p className="text-[14px] font-bold text-text tracking-tight mb-1">{label}</p>
+                      <p className="text-[12px] sm:text-[13px] text-text-secondary leading-snug line-clamp-2">{desc}</p>
+                      <span className="inline-flex items-center gap-1 mt-3 text-[11px] sm:text-[12px] font-semibold text-text group-hover:gap-1.5 transition-all">
+                        {external ? 'Visit' : 'Explore'}
+                        <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                      </span>
+                    </>
+                  );
+
+                  const className = "group card p-4 rounded-2xl bg-white/85 backdrop-blur-sm hover:-translate-y-0.5 transition-transform duration-200 min-h-[9.5rem]";
+
+                  return external ? (
+                    <a
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                      aria-label={`${label} — ${desc}`}
+                    >
+                      {card}
+                    </a>
+                  ) : (
+                    <Link key={href} href={href} className={className} aria-label={`${label} — ${desc}`}>
+                      {card}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -428,9 +323,9 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-[11px] font-medium text-gray-400 mt-4">
-                    <span>Building</span><span className="text-gray-300">•</span>
-                    <span>Scaling</span><span className="text-gray-300">•</span>
+                  <div className="flex items-center justify-center gap-2 text-[11px] font-medium text-gray-500 mt-4">
+                    <span>Building</span><span className="text-gray-400" aria-hidden="true">•</span>
+                    <span>Scaling</span><span className="text-gray-400" aria-hidden="true">•</span>
                     <span>Investing</span>
                   </div>
                 </div>
@@ -445,34 +340,37 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="md:col-span-4 relative overflow-hidden rounded-[24px] bg-white border border-gray-100 shadow-sm p-6 flex flex-col"
             >
-              {/* globe background */}
-              <div className="absolute right-[-140px] top-1/2 -translate-y-1/2 w-[460px] h-[460px] pointer-events-none">
-                <canvas ref={globeCanvasRef} aria-hidden="true" className="w-full h-full block opacity-0 transition-opacity duration-700" />
+              {/* globe background — lightweight cobe canvas (same style as original hero/school) */}
+              <div
+                className="absolute pointer-events-none w-[24rem] h-[24rem] right-[-6rem] top-1/2 -translate-y-1/2 sm:w-[26rem] sm:h-[26rem] sm:right-[-6.5rem] md:w-[400px] md:h-[400px] md:right-[-120px]"
+                aria-hidden="true"
+              >
+                <SchoolGlobeCanvas />
                 {/* floating badges */}
-                <div className="absolute top-[26%] right-[34%] w-8 h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-600">
-                  <Users className="w-4 h-4" />
+                <div className="absolute top-[24%] right-[32%] z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-600">
+                  <Users className="w-3.5 h-3.5 md:w-4 md:h-4" aria-hidden="true" />
                 </div>
-                <div className="absolute top-[48%] right-[58%] w-9 h-9 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-700">
-                  <Play className="w-4 h-4" />
+                <div className="absolute top-[48%] left-[20%] z-10 w-7 h-7 md:w-9 md:h-9 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-700">
+                  <Play className="w-3.5 h-3.5 md:w-4 md:h-4" aria-hidden="true" />
                 </div>
-                <div className="absolute top-[66%] right-[42%] w-8 h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-600">
-                  <TrendingUp className="w-4 h-4" />
+                <div className="absolute top-[70%] right-[30%] z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center text-gray-600">
+                  <TrendingUp className="w-3.5 h-3.5 md:w-4 md:h-4" aria-hidden="true" />
                 </div>
               </div>
 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <h3 className="text-[24px] md:text-[26px] font-bold text-[#0f1115] tracking-tight leading-[1.1] max-w-[60%]">
+                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] font-bold text-[#0f1115] tracking-tight leading-[1.1] max-w-[68%] md:max-w-[60%]">
                     Sarwagyna School
                   </h3>
                   <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 shrink-0">
-                    <GraduationCap className="w-[18px] h-[18px]" />
+                    <GraduationCap className="w-[18px] h-[18px]" aria-hidden="true" />
                   </div>
                 </div>
-                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[58%]">
+                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[68%] md:max-w-[58%]">
                   Sarwagyna School brings together founders, innovators, engineers, and operators to share, learn, and grow.
                 </p>
-                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[58%] mt-3">
+                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[68%] md:max-w-[58%] mt-3">
                   Live sessions, workshops, and speaker programs designed for students and freshers entering the workforce.
                 </p>
 
@@ -511,7 +409,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SvaraRx — Flagship Product Section (custom green palette) */}
+      {/* Svara Health — SvaraRx flagship + SvaraCall AI (custom green palette) */}
       <section className="py-16 lg:py-20 relative overflow-hidden bg-[#f6faf2] border-y border-[#e2ecd8]">
         {/* Decorative green glows */}
         <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-[#9ae65c]/25 rounded-full blur-[140px] -z-0" />
@@ -527,9 +425,14 @@ export default function Home() {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#9ae65c]/20 border border-[#9ae65c]/45 mb-5">
-                <span className="w-2 h-2 rounded-full bg-[#65a30d] animate-pulse" />
-                <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#3f6212]">Flagship Product</span>
+              <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-2 mb-5">
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0a0a0a]/5 border border-[#0a0a0a]/10">
+                  <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#3f6212]">Healthcare Ecosystem</span>
+                </span>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#9ae65c]/20 border border-[#9ae65c]/45">
+                  <span className="w-2 h-2 rounded-full bg-[#65a30d] animate-pulse" />
+                  <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#3f6212]">Svara Health · Flagship</span>
+                </span>
               </motion.div>
 
               <motion.div variants={fadeIn} className="mb-5">
@@ -640,13 +543,15 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex flex-wrap gap-x-10 gap-y-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-5">
               {[
-                { value: '8,000–15,000', label: 'Reachable clinics, AP + Telangana' },
-                { value: '₹2,499/mo', label: 'Per doctor, ARPU' },
+                { value: '1,200+', label: 'Prescriptions generated (pilot)' },
+                { value: '95%', label: 'Doctor satisfaction' },
+                { value: '32 sec', label: 'Avg prescription time' },
+                { value: 'From ₹1,750/mo', label: 'Starter tier pricing' },
                 { value: '< 35 sec', label: 'End-to-end latency' },
               ].map((stat) => (
-                <div key={stat.value}>
+                <div key={stat.label}>
                   <div className="text-[22px] font-display font-extrabold text-[#0a0a0a] tracking-tight leading-none mb-1">
                     {stat.value}
                   </div>
@@ -657,154 +562,38 @@ export default function Home() {
               ))}
             </div>
             <p className="text-[12px] text-[#6b7560] max-w-[300px] lg:text-right">
-              First product of Sarwagyna Private Limited. Built for Indian doctors. Launching in Andhra Pradesh.
+              SvaraRx is the flagship product of the SvaraHealth ecosystem. Live in pilot across Andhra Pradesh.
             </p>
           </motion.div>
-        </div>
-      </section>
 
-      {/* RizzMyResume — Product Section (monochrome palette) */}
-      <section className="py-16 lg:py-20 relative overflow-hidden bg-[#fafafa] border-b border-[#ececec]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-            {/* Left: label, logo, tagline, descriptor, description, CTAs */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-            >
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0a0a0a]/5 border border-[#0a0a0a]/10 mb-5">
-                <span className="w-2 h-2 rounded-full bg-[#0a0a0a] animate-pulse" />
-                <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0a0a0a]">Product</span>
-              </motion.div>
-
-              <motion.div variants={fadeIn} className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-[#0a0a0a] flex items-center justify-center text-white font-display font-extrabold text-[20px]">
-                  R
-                </div>
-                <span className="text-[26px] font-display font-extrabold tracking-tight text-[#0a0a0a]">
-                  RizzMyResume
-                </span>
-              </motion.div>
-
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl lg:text-[42px] font-display font-bold text-[#0a0a0a] mb-4 tracking-tight leading-[1.08]">
-                Your resume. AI-written. <span className="text-[#6b7280]">Job-ready in 60 seconds.</span>
-              </motion.h2>
-
-              <motion.p variants={fadeIn} className="text-[16px] text-[#3f4046] font-medium leading-relaxed mb-4">
-                Pay-per-use AI resume builder for students, freshers, and early-career professionals. No subscription. No fluff.
-              </motion.p>
-
-              <motion.p variants={fadeIn} className="text-[15px] text-[#52555c] leading-relaxed mb-6">
-                ATS systems filter out 75% of applications automatically — not because candidates are unqualified, but because the resume isn't written correctly. <span className="font-bold text-[#0a0a0a]">RizzMyResume fixes that.</span> Enter your details, get a fully structured, ATS-optimised resume in under 60 seconds. Pay only when you use it — ₹50 per resume.
-              </motion.p>
-
-              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center gap-3">
-                <a
-                  href="https://rizzmyresume.sarwagyna.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[#0a0a0a] text-white font-bold text-[15px] hover:bg-[#222] transition-colors w-full sm:w-auto"
-                >
-                  Build My Resume — ₹50
-                </a>
-                <a
-                  href="https://rizzmyresume.sarwagyna.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-transparent border border-[#d4d4d4] text-[#0a0a0a] font-bold text-[15px] hover:border-[#0a0a0a] hover:bg-white transition-colors w-full sm:w-auto group"
-                >
-                  See Sample Output <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </motion.div>
-            </motion.div>
-
-            {/* Right: feature points — 2×2 grid */}
-            <motion.div
-              className="grid grid-cols-2 gap-4"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              {/* ATS-Optimised — dark card */}
-              <div className="rounded-[22px] p-6 bg-[#0a0a0a]">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-4">
-                  <Target className="w-5 h-5" />
-                </div>
-                <h3 className="text-[16px] font-bold text-white mb-2">ATS-Optimised Output</h3>
-                <p className="text-[13px] text-white/70 leading-relaxed mb-3">
-                  Structured for applicant tracking systems. Passes filters before a recruiter even sees it.
-                </p>
-                <span className="inline-block px-2.5 py-0.5 rounded-full bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider">
-                  Core differentiator
-                </span>
-              </div>
-
-              {/* 60-Second — light card */}
-              <div className="rounded-[22px] p-6 bg-white border border-[#ececec]">
-                <div className="w-10 h-10 rounded-xl bg-[#f3f4f6] flex items-center justify-center text-[#0a0a0a] mb-4">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">60-Second Turnaround</h3>
-                <p className="text-[13px] text-[#52555c] leading-relaxed">
-                  Input your details. Get a ready-to-send resume. Instantly.
-                </p>
-              </div>
-
-              {/* ₹50 Per Resume — light card */}
-              <div className="rounded-[22px] p-6 bg-white border border-[#ececec]">
-                <div className="w-10 h-10 rounded-xl bg-[#f3f4f6] flex items-center justify-center text-[#0a0a0a] mb-4">
-                  <IndianRupee className="w-5 h-5" />
-                </div>
-                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">₹50 Per Resume</h3>
-                <p className="text-[13px] text-[#52555c] leading-relaxed">
-                  No subscription. No hidden charges. Pay only when you need it.
-                </p>
-              </div>
-
-              {/* Built for Indian Freshers — accent gray card */}
-              <div className="rounded-[22px] p-6 bg-[#f3f4f6] border border-[#e5e7eb]">
-                <div className="w-10 h-10 rounded-xl bg-[#0a0a0a]/5 flex items-center justify-center text-[#0a0a0a] mb-4">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <h3 className="text-[16px] font-bold text-[#0a0a0a] mb-2">Built for Indian Freshers</h3>
-                <p className="text-[13px] text-[#3f4046] leading-relaxed">
-                  Designed for students and early-career professionals entering the Indian job market.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Stats strip + footer */}
+          {/* SvaraCall AI — in development */}
           <motion.div
-            className="mt-10 pt-8 border-t border-[#ececec] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="mt-8 rounded-[22px] p-6 bg-white border border-[#e8eee2] flex flex-col sm:flex-row sm:items-center gap-4"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex flex-wrap gap-x-10 gap-y-4">
-              {[
-                { value: '₹50 flat', label: 'Per resume' },
-                { value: '< 60 sec', label: 'Turnaround time' },
-                { value: 'Zero', label: 'Subscription, no lock-in' },
-              ].map((stat) => (
-                <div key={stat.value}>
-                  <div className="text-[22px] font-display font-extrabold text-[#0a0a0a] tracking-tight leading-none mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-[12px] font-medium uppercase tracking-[0.06em] text-[#6b7280]">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+            <div className="w-10 h-10 rounded-xl bg-[#eef6e6] flex items-center justify-center text-[#65a30d] shrink-0">
+              <PhoneCall className="w-5 h-5" />
             </div>
-            <p className="text-[12px] text-[#6b7280] max-w-[320px] lg:text-right">
-              Built and operated by Sarwagyna Private Limited. Powered by AI. Priced for every fresher in India.
-            </p>
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="text-[15px] font-bold text-[#0a0a0a]">SvaraCall AI</span>
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#fef3c7] border border-[#fcd34d] text-[#92400e] text-[10px] font-bold uppercase tracking-wider">
+                  In Development
+                </span>
+              </div>
+              <p className="text-[13px] text-[#4a5444] leading-relaxed">
+                Outbound voice agent for hospital follow-up, NPS collection &amp; appointment reminders. Integrates with SvaraRx — same voice-AI core, same patient records.
+              </p>
+            </div>
+            <Link
+              href="/products#svacall-ai"
+              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full border border-[#cdd9c2] text-[#0a0a0a] font-bold text-[13px] hover:border-[#9ae65c] hover:bg-[#f6faf2] transition-colors shrink-0 group"
+            >
+              Learn more about SvaraCall AI <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+            </Link>
           </motion.div>
         </div>
       </section>

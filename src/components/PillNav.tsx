@@ -262,7 +262,6 @@ const PillNav: React.FC<PillNavProps> = ({
             href={items[0].href}
             aria-label="Home"
             onMouseEnter={handleLogoEnter}
-            role="menuitem"
             ref={el => {
               logoRef.current = el as any;
             }}
@@ -273,7 +272,7 @@ const PillNav: React.FC<PillNavProps> = ({
               background: 'var(--base, #000)'
             }}
           >
-            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover block" />
+            <img src={logo} alt={logoAlt} width={42} height={42} ref={logoImgRef} className="w-full h-full object-cover block" />
           </Link>
         ) : (
           <a
@@ -290,7 +289,7 @@ const PillNav: React.FC<PillNavProps> = ({
               background: 'var(--base, #000)'
             }}
           >
-            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover block" />
+            <img src={logo} alt={logoAlt} width={42} height={42} ref={logoImgRef} className="w-full h-full object-cover block" />
           </a>
         )}
 
@@ -303,7 +302,6 @@ const PillNav: React.FC<PillNavProps> = ({
           }}
         >
           <ul
-            role="menubar"
             className="list-none flex items-stretch m-0 p-[3px] h-full"
             style={{ gap: 'var(--pill-gap)' }}
           >
@@ -362,10 +360,9 @@ const PillNav: React.FC<PillNavProps> = ({
                 'relative overflow-hidden inline-flex items-center justify-center h-full no-underline rounded-full box-border font-semibold text-[16px] leading-[0] tracking-[0.2px] whitespace-nowrap cursor-pointer px-0';
 
               return (
-                <li key={item.href} role="none" className="flex h-full">
+                <li key={item.href} className="flex h-full">
                   {isRouterLink(item.href) ? (
                     <Link
-                      role="menuitem"
                       href={item.href}
                       className={basePillClasses}
                       style={pillStyle}
@@ -377,7 +374,6 @@ const PillNav: React.FC<PillNavProps> = ({
                     </Link>
                   ) : (
                     <a
-                      role="menuitem"
                       href={item.href}
                       className={basePillClasses}
                       style={pillStyle}

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Products from '@/pages/Products';
 
 export const metadata: Metadata = {
-  title: 'Products — SvaraRx, RizzMyResume & Sarwagyna School | Sarwagyna',
-  description: 'Explore Sarwagyna\'s AI products built for India: SvaraRx voice-to-prescription for clinics, RizzMyResume ATS-optimised resume builder, Sarwagyna School live learning, and SvaraRx HMS clinic management (coming soon).',
+  title: 'Products — Svara Health, SvaraRx, SvaraCall AI, RizzMyResume & Sarwagyna School | Sarwagyna',
+  description: 'Explore Sarwagyna\'s AI products built for India: the Svara Health ecosystem (SvaraRx voice-to-prescription, live in pilot; SvaraCall AI outbound voice agent, in development), RizzMyResume ATS-optimised resume builder, and Sarwagyna School live learning.',
 };
 
 export default function ProductsPage() {

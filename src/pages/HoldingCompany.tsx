@@ -355,6 +355,60 @@ export default function HoldingCompany() {
         </div>
       </section>
 
+      {/* Team */}
+      <section id="team" className="py-[120px] relative bg-surface border-y border-border-subtle">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="mb-16 text-center"
+          >
+            <motion.div variants={fadeIn} className="section-label justify-center mb-4">Our Team</motion.div>
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-display font-bold text-text">
+              The People Building Sarwagyna
+            </motion.h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Sarwan Thondamalla',
+                role: 'Founder & CEO',
+                bio: 'Co-builds the product, AI pipeline & full stack alongside engineering. B.Tech CSE (AI/ML), SRMIST.',
+              },
+              {
+                name: 'Gali Chandu Kumar',
+                role: 'Co-Founder, Sales & BD',
+                bio: 'Leads doctor outreach, clinic acquisition & GTM across AP & Telangana. B.Tech CSE (Data Science), Parul University.',
+              },
+              {
+                name: 'Yaswanth Kumar C.',
+                role: 'Head of Engineering',
+                bio: 'Owns cloud infra, DevOps & deployment reliability. B.Tech CSE, QIS College.',
+              },
+            ].map((member, i) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="card p-8 rounded-2xl"
+              >
+                <div className="w-14 h-14 rounded-full bg-green-light flex items-center justify-center mb-5 text-green-icon">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h4 className="text-xl font-display font-bold text-text mb-1">{member.name}</h4>
+                <p className="text-sm font-semibold text-(--color-primary) mb-3">{member.role}</p>
+                <p className="text-sm text-text-secondary leading-[1.75]">{member.bio}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       <section id="incorporation" className="py-[120px] max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
@@ -374,7 +428,7 @@ export default function HoldingCompany() {
           {[
             { label: "Legal Company Name", value: "Sarwagyna Pvt Ltd" },
             { label: "Corporate Identification Number (CIN)", value: "U62013AP2026PTC124652" },
-            { label: "GSTIN", value: "7ABTCS0879E1ZR" },
+            { label: "GSTIN", value: "37ABTCS0879E1ZR" },
             { label: "Type of Company", value: "Private Limited" },
             { label: "Registered Office Address", value: "D NO. 7-7-24/2, Block 10, VIP RD 2nd Line, Ongole, Prakasam- 523001, Andhra Pradesh" },
             { label: "Directors / Founders", value: "Dr.P.Hanumantha Rao, Sarwan Thondamalla" },
