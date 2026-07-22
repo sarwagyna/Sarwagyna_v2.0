@@ -99,6 +99,37 @@
     @apply rounded-[100px] font-sans font-semibold text-[15px] px-7 py-[14px] bg-button-outline text-text border border-button-outline transition-colors duration-150 hover:border-[#CBD5D0];
   }
 
+  /* Uiverse.io by Masoodaykhan — CTA button hover fill */
+  .uiverse-cta {
+    isolation: isolate;
+    cursor: pointer;
+  }
+
+  .uiverse-cta::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    left: -100%;
+    top: 50%;
+    translate: 0 -50%;
+    border-radius: 9999px;
+    background: #ffffff;
+    z-index: -1;
+    transition: all 700ms;
+  }
+
+  .uiverse-cta:hover {
+    color: #000000;
+  }
+
+  .uiverse-cta:hover::before {
+    left: 0;
+    width: 100%;
+    scale: 2;
+    transition-duration: 500ms;
+  }
+
   .text-gradient {
     @apply text-primary;
   }

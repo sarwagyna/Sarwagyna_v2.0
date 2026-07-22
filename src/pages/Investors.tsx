@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { TrendingUp, Shield, Globe, Zap, ArrowRight, Download, Building2, BarChart3, Users, Briefcase, Layers } from 'lucide-react';
 import Link from 'next/link';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -48,9 +49,9 @@ export default function Investors() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={() => document.getElementById('ir-form')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-primary px-8 py-4">
+              <CtaButton onClick={() => document.getElementById('ir-form')?.scrollIntoView({ behavior: 'smooth' })}>
                 Request Investor Deck
-              </button>
+              </CtaButton>
               <button onClick={() => document.getElementById('thesis')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
                 Explore Our Thesis
               </button>
@@ -220,9 +221,9 @@ export default function Investors() {
                 <option value="institutional">Institutional Investor</option>
               </select>
             </div>
-            <button type="button" className="w-full glass-button-primary py-4 mt-4 flex items-center justify-center">
-              Request Access <ArrowRight className="ml-2 w-4 h-4" />
-            </button>
+            <CtaButton type="button" className="w-full mt-4">
+              Request Access
+            </CtaButton>
             <p className="text-[11px] text-center text-white/40 mt-4">By requesting access, you agree to our NDA and Terms of Service.</p>
           </form>
         </div>

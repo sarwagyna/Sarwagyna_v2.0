@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Bot, Workflow, Code2, BrainCircuit, Rocket, Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -48,9 +49,9 @@ export default function AiIt() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact" className="glass-button-primary px-8 py-4">
+              <CtaButton href="/contact">
                 Contact Us
-              </Link>
+              </CtaButton>
               <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
                 Explore Services
               </button>

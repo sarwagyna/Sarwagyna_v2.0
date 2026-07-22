@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import { ArrowRight, ArrowUpRight, Cpu, Rocket, Users, Zap, Languages, Smartphone, ClipboardCheck, Target, IndianRupee, CheckCircle2, Brain, BarChart3, Code2, Shield, Database, Cloud, PieChart, Boxes, Heart, GraduationCap, Newspaper, Play, TrendingUp, LayoutGrid, PhoneCall } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 import SchoolGlobeCanvas from '@/components/SchoolGlobeCanvas';
+import CtaButton from '@/components/ui/CtaButton';
+import DpiitRecognitionPopup from '@/components/DpiitRecognitionPopup';
 
 const Globe = dynamic(
   () => import('@/components/ui/globe').then((mod) => mod.Globe),
@@ -37,12 +39,12 @@ const heroDivisions = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-bg text-text">
+      <DpiitRecognitionPopup />
 
       {/* Hero Section */}
       <section className="relative min-h-svh flex items-center pt-[5.5rem] pb-20 sm:pb-24 lg:pb-28 overflow-hidden bg-bg">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-15%,rgba(0,0,0,0.045),transparent)]" />
-          <div className="absolute top-[12%] -right-20 w-[min(28vw,380px)] h-[min(28vw,380px)] rounded-full bg-[radial-gradient(circle,rgba(154,230,92,0.09),transparent_68%)]" />
           <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
         </div>
 
@@ -74,17 +76,20 @@ export default function Home() {
                 AI &amp; IT solutions, strategic holdings, and scalable SaaS — built in India for global markets. One company, four verticals, enterprise-grade delivery.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-6 lg:mb-7">
-                <Link href="/ai-it" className="glass-button-primary px-6 sm:px-8 py-3.5 sm:py-4 text-center text-[14px] sm:text-[15px]">
+              <div className="flex flex-wrap items-center gap-3 mb-6 lg:mb-7">
+                <CtaButton href="/ai-it">
                   Explore Our Divisions
-                </Link>
-                <Link href="/partner" className="glass-button-ghost px-6 sm:px-8 py-3.5 sm:py-4 text-center text-[14px] sm:text-[15px]">
+                </CtaButton>
+                <Link
+                  href="/partner"
+                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-button-outline text-text border border-button-outline text-[15px] font-semibold no-underline hover:border-[#CBD5D0] transition-colors"
+                >
                   Partner with Us
                 </Link>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {['AI-Powered', 'Global Reach', 'DPIIT recognition in progress'].map((chip) => (
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                {['AI-Powered', 'Global Reach'].map((chip) => (
                   <span key={chip} className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-surface/90 border border-border-subtle text-[11px] sm:text-[12px] font-semibold tracking-[0.05em] uppercase text-text-secondary backdrop-blur-sm">
                     {chip}
                   </span>
@@ -394,14 +399,9 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <a
-                    href="https://school.sarwagyna.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#0a0a0a] text-white font-bold text-[14px] hover:bg-[#222] transition-colors group"
-                  >
-                    Explore School <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
+                  <CtaButton href="https://school.sarwagyna.com">
+                    Explore School
+                  </CtaButton>
                 </div>
               </div>
             </motion.div>
@@ -867,14 +867,16 @@ export default function Home() {
                   Most founders are told to focus. We disagreed — here's why building across AI, and software made us stronger, not thinner.
                 </p>
 
-                <div className="flex flex-col gap-4">
-                  <Link href="/insights" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
+                <div className="flex flex-col items-start gap-3">
+                  <CtaButton href="/insights">
                     Read Our Latest
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                  <Link href="/newsletter" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
+                  </CtaButton>
+                  <Link
+                    href="/newsletter"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-button-outline text-text border border-button-outline text-[15px] font-semibold whitespace-nowrap no-underline hover:border-[#CBD5D0] transition-colors"
+                  >
                     Subscribe to Our Newsletter
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
@@ -1038,14 +1040,16 @@ export default function Home() {
                 ))}
               </ul>
 
-              <div className="flex flex-col gap-4">
-                <Link href="/contact" className="glass-button-primary w-full text-center flex items-center justify-center gap-2 group/btn">
+              <div className="flex flex-col items-start gap-3">
+                <CtaButton href="/contact">
                   Start a Conversation
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Link>
-                <Link href="/" className="glass-button-ghost w-full text-center flex items-center justify-center gap-2 group/btn">
+                </CtaButton>
+                <Link
+                  href="/"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-button-outline text-text border border-button-outline text-[15px] font-semibold whitespace-nowrap no-underline hover:border-[#CBD5D0] transition-colors"
+                >
                   See How We've Worked With Others
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>

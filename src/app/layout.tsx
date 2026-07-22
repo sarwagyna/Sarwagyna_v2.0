@@ -140,6 +140,7 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
       {pathname !== '/links' && !pathname?.startsWith('/blogstudio') && (
         <PillNav
           logo="/favicon.svg"
+          logoFull="/logo.svg"
           logoAlt="Sarwagyna Logo"
           items={[
             { label: 'Home', href: '/' },
@@ -148,15 +149,16 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
             { label: 'Products', href: '/products' },
             { label: 'Events', href: '/events' },
             { label: 'Blog', href: '/blog' },
-            { label: 'Careers', href: '/careers' }
+            { label: 'Careers', href: '/careers' },
+            { label: 'Contact', href: '/contact' }
           ]}
-          cta={{ label: 'Contact', href: '/contact' }}
           activeHref={pathname ?? undefined}
-          className="fixed top-4 left-1/2 -translate-x-1/2 w-max! px-0!"
-          baseColor="var(--color-primary)"
-          pillColor="var(--color-surface)"
-          hoveredPillTextColor="var(--color-primary)"
-          pillTextColor="var(--color-text)"
+          baseColor="#000000"
+          pillColor="#ffffff"
+          hoveredPillTextColor="#ffffff"
+          pillTextColor="#000000"
+          ease="power2.easeOut"
+          initialLoadAnimation
         />
       )}
       <main id="main-content" className="grow relative z-10">

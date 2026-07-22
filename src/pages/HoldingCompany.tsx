@@ -3,6 +3,7 @@
 import { motion, Variants } from 'framer-motion';
 import { Target, Eye, Users, ArrowRight, Building2, Globe, Zap, ShieldCheck, Layers, BarChart3, Cpu } from 'lucide-react';
 import Link from 'next/link';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -45,9 +46,9 @@ export default function HoldingCompany() {
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex justify-center">
-              <button onClick={() => document.getElementById('mission-vision')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-primary px-8 py-4">
+              <CtaButton onClick={() => document.getElementById('mission-vision')?.scrollIntoView({ behavior: 'smooth' })}>
                 Discover Our Story
-              </button>
+              </CtaButton>
             </motion.div>
           </motion.div>
         </div>

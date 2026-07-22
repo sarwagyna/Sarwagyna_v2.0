@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Handshake, Rocket, Users, ArrowRight } from 'lucide-react';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -51,9 +52,9 @@ export default function PartnerWithUs({ compact = false }: PartnerWithUsProps) {
               </motion.p>
 
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-                <button onClick={() => document.getElementById('partnership-types')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-primary px-8 py-4">
+                <CtaButton onClick={() => document.getElementById('partnership-types')?.scrollIntoView({ behavior: 'smooth' })}>
                   Explore Programs
-                </button>
+                </CtaButton>
               </motion.div>
             </motion.div>
           </div>

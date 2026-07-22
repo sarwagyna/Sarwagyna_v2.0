@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Globe, Ship, ShieldCheck, ArrowRight, Package, TrendingUp, Anchor, FileText } from 'lucide-react';
 import Link from 'next/link';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -48,9 +49,9 @@ export default function Trade() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact" className="glass-button-primary px-8 py-4 text-[var(--color-text)]">
+              <CtaButton href="/contact">
                 Discuss Your Supply Chain
-              </Link>
+              </CtaButton>
               <button onClick={() => document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4 text-[var(--color-text)]">
                 View Capabilities
               </button>
@@ -150,9 +151,9 @@ export default function Trade() {
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-[var(--color-text)] mb-6">Ready to expand your market?</h2>
             <p className="text-lg text-[var(--color-text-secondary)] mb-10">Partner with Sarwagyna to navigate the complexities of international trade with confidence.</p>
-            <Link href="/contact" className="glass-button-primary px-10 py-5 text-lg inline-flex items-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
-              Contact Trade Desk <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+            <CtaButton href="/contact" className="mx-auto">
+              Contact Trade Desk
+            </CtaButton>
           </div>
         </div>
       </section>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { ArrowRight, Check, Play, GraduationCap, Users, Sparkles, PhoneCall, Shield } from 'lucide-react';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -110,7 +111,7 @@ export default function Products() {
                         'Proprietary speech & Rx-structuring pipeline live (Whisper + Groq LLaMA 3.3 + WeasyPrint)',
                         'Multi-tenant healthcare AI platform in build; pricing tiers defined',
                         '5 active pilot clinics; high intent to continue post-beta',
-                        'Incorporated Mar 2026 · DPIIT recognition in progress',
+                        'Incorporated Mar 2026 · DPIIT Recognised',
                       ].map((item) => (
                         <li key={item} className="flex gap-3 items-start text-[14px] text-[#3f4a39]">
                           <span className="w-5 h-5 rounded-full bg-[#9ae65c]/30 flex items-center justify-center shrink-0 mt-0.5"><Check className="w-3 h-3 text-[#3f6212]" /></span>
@@ -119,9 +120,9 @@ export default function Products() {
                       ))}
                     </ul>
                     <div className="flex flex-col sm:flex-row items-center gap-3">
-                      <a href="https://svararx.sarwagyna.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[#9ae65c] text-[#0a0a0a] font-bold text-[15px] hover:bg-[#8ad94a] transition-colors w-full sm:w-auto">
+                      <CtaButton href="https://svararx.sarwagyna.com" className="w-full sm:w-auto">
                         Request Early Access
-                      </a>
+                      </CtaButton>
                       <a href="https://svararx.sarwagyna.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-[#cdd9c2] text-[#0a0a0a] font-bold text-[15px] hover:border-[#9ae65c] hover:bg-white transition-colors w-full sm:w-auto group">
                         <Play className="w-4 h-4" /> Watch Demo <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </a>
@@ -227,9 +228,9 @@ export default function Products() {
                     <p>Post-visit follow-up, NPS collection, and appointment reminders — a vernacular voice agent for hospitals, not another SMS tool.</p>
                   </div>
                   <div className="flex flex-col sm:flex-row items-center gap-3">
-                    <Link href="/contact" className="inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[#9ae65c] text-[#0a0a0a] font-bold text-[15px] hover:bg-[#8ad94a] transition-colors w-full sm:w-auto">
+                    <CtaButton href="/contact" className="w-full sm:w-auto">
                       Join the Waitlist
-                    </Link>
+                    </CtaButton>
                     <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-[#cdd9c2] text-[#0a0a0a] font-bold text-[15px] hover:border-[#9ae65c] hover:bg-white transition-colors w-full sm:w-auto group">
                       Talk to Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
@@ -404,9 +405,9 @@ export default function Products() {
                 <p className="text-[16px] text-white/70 leading-relaxed mb-8 grow">
                   From AI agents and automation to full-stack platforms — we design and build tailored products and services for your business, end to end.
                 </p>
-                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#0a0a0a] font-bold text-[15px] hover:bg-white/90 transition-colors w-full sm:w-auto self-start group">
-                  Build with Sarwagyna <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <CtaButton href="/contact" className="w-full sm:w-auto self-start">
+                  Build with Sarwagyna
+                </CtaButton>
               </div>
             </motion.div>
 
@@ -423,9 +424,9 @@ export default function Products() {
                 <p className="text-[16px] text-text-secondary leading-relaxed mb-8 grow">
                   See SvaraRx, SvaraCall AI, RizzMyResume, or Sarwagyna School in action with a free, guided walkthrough — no commitment required.
                 </p>
-                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-(--color-primary) text-white font-bold text-[15px] hover:bg-primary-hover transition-colors w-full sm:w-auto self-start group">
-                  Get a Free Demo <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <CtaButton href="/contact" className="w-full sm:w-auto self-start">
+                  Get a Free Demo
+                </CtaButton>
               </div>
             </motion.div>
 

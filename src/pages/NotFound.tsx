@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { AlertTriangle } from 'lucide-react';
+import CtaButton from '@/components/ui/CtaButton';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -25,9 +26,9 @@ export default function NotFound() {
               The page you requested could not be found. Check the URL or use the actions below to continue.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/" className="glass-button-primary px-8 py-4 text-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
+              <CtaButton href="/">
                 Go to Homepage
-              </Link>
+              </CtaButton>
               <Link href="/ai-it" className="glass-button-ghost px-8 py-4 text-center text-[var(--color-text)] hover:text-[var(--color-text)]/80 transition-colors">
                 Explore AI & IT
               </Link>

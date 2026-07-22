@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import CtaButton from '@/components/ui/CtaButton';
 
 const TwitterIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -146,28 +147,9 @@ export default function GraphyFooter() {
             Let's talk about your next AI project, business partnership, or investment opportunity.
           </p>
 
-          <button
-            style={{
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              border: "none",
-              borderRadius: "9px",
-              padding: "12px 28px",
-              fontSize: "14px",
-              fontWeight: 600,
-              cursor: "pointer",
-              letterSpacing: "-0.1px",
-              position: "relative",
-            }}
-            onMouseOver={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#e8e8e8")
-            }
-            onMouseOut={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#ffffff")
-            }
-          >
-            <Link href="/contact" className="px-2 py-1">Schedule a Call</Link>
-          </button>
+          <CtaButton href="/contact" className="mx-auto">
+            Schedule a Call
+          </CtaButton>
         </div>
 
         {/* ── Footer Card ── */}

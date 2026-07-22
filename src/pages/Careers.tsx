@@ -6,6 +6,7 @@ import { ArrowRight, Clock, ChevronDown, ChevronUp, ExternalLink, Share2 } from 
 import DOMPurify from 'isomorphic-dompurify';
 import { getActiveJobListings } from '@/lib/careers';
 import type { JobListing } from '@/types/careers';
+import CtaButton from '@/components/ui/CtaButton';
 
 function JobCard({ listing }: { listing: JobListing }) {
   const [expanded, setExpanded] = useState(false);
@@ -343,10 +344,9 @@ export default function Careers() {
             </div>
 
             <div className="mt-16 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:contact@sarwagyna.com" className="glass-button-primary px-8 py-4 text-center flex items-center justify-center gap-2 group/btn">
+              <CtaButton href="mailto:contact@sarwagyna.com">
                 Send Speculative Application
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </a>
+              </CtaButton>
             </div>
           </div>
 
