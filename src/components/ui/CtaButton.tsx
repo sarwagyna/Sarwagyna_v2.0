@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 const baseClasses =
-  'uiverse-cta font-sans inline-flex justify-center gap-1.5 sm:gap-2 items-center w-full max-w-[320px] sm:w-fit sm:max-w-none mx-auto sm:mx-0 shadow-md text-[13px] sm:text-[15px] font-semibold relative z-10 px-4 py-2 sm:px-5 sm:py-2.5 overflow-hidden border rounded-full group no-underline whitespace-nowrap';
+  'uiverse-cta font-sans inline-flex justify-center gap-2 items-center w-full sm:w-fit min-w-0 shadow-md text-[15px] font-semibold relative z-10 px-5 py-2.5 overflow-hidden border rounded-full group no-underline whitespace-nowrap';
 
 const variantClasses = {
   primary:
@@ -52,12 +52,12 @@ function ButtonInner({
 
   return (
     <>
-      <span className="min-w-0 truncate">{children}</span>
+      <span>{children}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 19"
         className={cn(
-          'w-5 h-5 sm:w-6 sm:h-6 shrink-0 justify-end text-gray-50 ease-linear duration-300 rounded-full border p-1 sm:p-1.5 rotate-45 group-hover:rotate-90',
+          'w-6 h-6 shrink-0 justify-end text-gray-50 ease-linear duration-300 rounded-full border p-1.5 rotate-45 group-hover:rotate-90',
           iconClass
         )}
       >

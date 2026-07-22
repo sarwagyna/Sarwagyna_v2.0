@@ -51,7 +51,7 @@ export default function PartnerWithUs({ compact = false }: PartnerWithUsProps) {
                 We believe in the power of collaboration. Partner with Sarwagyna to leverage our technology, and industry expertise to scale your vision.
               </motion.p>
 
-              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
+              <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <CtaButton onClick={() => document.getElementById('partnership-types')?.scrollIntoView({ behavior: 'smooth' })}>
                   Explore Programs
                 </CtaButton>

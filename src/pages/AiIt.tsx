@@ -48,7 +48,7 @@ export default function AiIt() {
               AI agents, intelligent workflows, enterprise web development, custom AI models, startup launchpads, and scalable enterprise software. We build the future of your business.
             </motion.p>
             
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-max max-w-full mx-auto sm:w-auto">
               <CtaButton href="/contact">
                 Contact Us
               </CtaButton>

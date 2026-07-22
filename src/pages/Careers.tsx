@@ -343,10 +343,9 @@ export default function Careers() {
               ))}
             </div>
 
-            <div className="mt-16 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center px-2">
+            <div className="mt-16 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center w-full sm:w-auto px-2">
               <CtaButton href="mailto:contact@sarwagyna.com">
-                <span className="sm:hidden">Send Application</span>
-                <span className="hidden sm:inline">Send Speculative Application</span>
+                Send Speculative Application
               </CtaButton>
             </div>
           </div>

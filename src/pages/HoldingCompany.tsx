@@ -45,7 +45,7 @@ export default function HoldingCompany() {
               Sarwagyna is an AI-first technology company building enterprise AI agents, SaaS platforms, and strategic investments — founded in India. We build resilient businesses that power the modern economy.
             </motion.p>
 
-            <motion.div variants={fadeIn} className="flex justify-center w-full max-w-md sm:max-w-none mx-auto px-2">
+            <motion.div variants={fadeIn} className="flex justify-center w-full sm:w-auto">
               <CtaButton onClick={() => document.getElementById('mission-vision')?.scrollIntoView({ behavior: 'smooth' })}>
                 Discover Our Story
               </CtaButton>

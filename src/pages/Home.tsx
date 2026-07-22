@@ -76,10 +76,9 @@ export default function Home() {
                 AI &amp; IT solutions, strategic holdings, and scalable SaaS — built in India for global markets. One company, four verticals, enterprise-grade delivery.
               </p>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 mb-6 lg:mb-7 w-full max-w-sm sm:max-w-none">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 mb-6 lg:mb-7 w-max max-w-full sm:w-auto">
                 <CtaButton href="/ai-it">
-                  <span className="sm:hidden">Explore Divisions</span>
-                  <span className="hidden sm:inline">Explore Our Divisions</span>
+                  Explore Our Divisions
                 </CtaButton>
                 <CtaButton href="/partner" variant="secondary">
                   Partner with Us
@@ -865,13 +864,12 @@ export default function Home() {
                   Most founders are told to focus. We disagreed — here's why building across AI, and software made us stronger, not thinner.
                 </p>
 
-                <div className="flex flex-col items-stretch sm:items-start gap-3 w-full max-w-sm sm:max-w-none">
+                <div className="flex flex-col items-stretch sm:items-start gap-3 w-max max-w-full sm:w-auto">
                   <CtaButton href="/insights">
                     Read Our Latest
                   </CtaButton>
                   <CtaButton href="/newsletter" variant="secondary">
-                    <span className="sm:hidden">Subscribe</span>
-                    <span className="hidden sm:inline">Subscribe to Our Newsletter</span>
+                    Subscribe to Our Newsletter
                   </CtaButton>
                 </div>
               </div>
@@ -1035,13 +1033,12 @@ export default function Home() {
                 ))}
               </ul>
 
-              <div className="flex flex-col items-stretch sm:items-start gap-3 w-full max-w-sm sm:max-w-none">
+              <div className="flex flex-col items-stretch sm:items-start gap-3 w-max max-w-full sm:w-auto">
                 <CtaButton href="/contact">
                   Start a Conversation
                 </CtaButton>
                 <CtaButton href="/" variant="secondary">
-                  <span className="sm:hidden">See Our Work</span>
-                  <span className="hidden sm:inline">See How We&apos;ve Worked With Others</span>
+                  See How We&apos;ve Worked With Others
                 </CtaButton>
               </div>
             </div>
