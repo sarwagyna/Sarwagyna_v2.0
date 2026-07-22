@@ -48,13 +48,14 @@ export default function Investors() {
               Sarwagyna's diversified portfolio across high-margin IT services, global trade, and scalable SaaS products creates a resilient, high-growth investment opportunity.
             </motion.p>
             
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
               <CtaButton onClick={() => document.getElementById('ir-form')?.scrollIntoView({ behavior: 'smooth' })}>
-                Request Investor Deck
+                <span className="sm:hidden">Request Deck</span>
+                <span className="hidden sm:inline">Request Investor Deck</span>
               </CtaButton>
-              <button onClick={() => document.getElementById('thesis')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
+              <CtaButton onClick={() => document.getElementById('thesis')?.scrollIntoView({ behavior: 'smooth' })}>
                 Explore Our Thesis
-              </button>
+              </CtaButton>
             </motion.div>
           </motion.div>
         </div>

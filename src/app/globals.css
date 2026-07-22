@@ -119,8 +119,16 @@
     transition: all 700ms;
   }
 
+  .uiverse-cta.cta-secondary::before {
+    background: #000000;
+  }
+
   .uiverse-cta:hover {
     color: #000000;
+  }
+
+  .uiverse-cta.cta-secondary:hover {
+    color: #ffffff;
   }
 
   .uiverse-cta:hover::before {

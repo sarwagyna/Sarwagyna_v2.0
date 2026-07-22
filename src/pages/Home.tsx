@@ -76,16 +76,14 @@ export default function Home() {
                 AI &amp; IT solutions, strategic holdings, and scalable SaaS — built in India for global markets. One company, four verticals, enterprise-grade delivery.
               </p>
 
-              <div className="flex flex-wrap items-center gap-3 mb-6 lg:mb-7">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 mb-6 lg:mb-7 w-full max-w-sm sm:max-w-none">
                 <CtaButton href="/ai-it">
-                  Explore Our Divisions
+                  <span className="sm:hidden">Explore Divisions</span>
+                  <span className="hidden sm:inline">Explore Our Divisions</span>
                 </CtaButton>
-                <Link
-                  href="/partner"
-                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-button-outline text-text border border-button-outline text-[15px] font-semibold no-underline hover:border-[#CBD5D0] transition-colors"
-                >
+                <CtaButton href="/partner" variant="secondary">
                   Partner with Us
-                </Link>
+                </CtaButton>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -867,17 +865,14 @@ export default function Home() {
                   Most founders are told to focus. We disagreed — here's why building across AI, and software made us stronger, not thinner.
                 </p>
 
-                <div className="flex flex-col items-start gap-3">
+                <div className="flex flex-col items-stretch sm:items-start gap-3 w-full max-w-sm sm:max-w-none">
                   <CtaButton href="/insights">
                     Read Our Latest
                   </CtaButton>
-                  <Link
-                    href="/newsletter"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-button-outline text-text border border-button-outline text-[15px] font-semibold whitespace-nowrap no-underline hover:border-[#CBD5D0] transition-colors"
-                  >
-                    Subscribe to Our Newsletter
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <CtaButton href="/newsletter" variant="secondary">
+                    <span className="sm:hidden">Subscribe</span>
+                    <span className="hidden sm:inline">Subscribe to Our Newsletter</span>
+                  </CtaButton>
                 </div>
               </div>
             </motion.div>
@@ -1040,17 +1035,14 @@ export default function Home() {
                 ))}
               </ul>
 
-              <div className="flex flex-col items-start gap-3">
+              <div className="flex flex-col items-stretch sm:items-start gap-3 w-full max-w-sm sm:max-w-none">
                 <CtaButton href="/contact">
                   Start a Conversation
                 </CtaButton>
-                <Link
-                  href="/"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-button-outline text-text border border-button-outline text-[15px] font-semibold whitespace-nowrap no-underline hover:border-[#CBD5D0] transition-colors"
-                >
-                  See How We've Worked With Others
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                <CtaButton href="/" variant="secondary">
+                  <span className="sm:hidden">See Our Work</span>
+                  <span className="hidden sm:inline">See How We&apos;ve Worked With Others</span>
+                </CtaButton>
               </div>
             </div>
 

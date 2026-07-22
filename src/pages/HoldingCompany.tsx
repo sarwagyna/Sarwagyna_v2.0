@@ -45,7 +45,7 @@ export default function HoldingCompany() {
               Sarwagyna is an AI-first technology company building enterprise AI agents, SaaS platforms, and strategic investments — founded in India. We build resilient businesses that power the modern economy.
             </motion.p>
 
-            <motion.div variants={fadeIn} className="flex justify-center">
+            <motion.div variants={fadeIn} className="flex justify-center w-full max-w-md sm:max-w-none mx-auto px-2">
               <CtaButton onClick={() => document.getElementById('mission-vision')?.scrollIntoView({ behavior: 'smooth' })}>
                 Discover Our Story
               </CtaButton>
@@ -270,6 +270,12 @@ export default function HoldingCompany() {
                   desc: "Successfully incorporated under MCA, India. A major milestone in our corporate history.",
                   status: "done"
                 },
+                {
+                  year: "03 Jul 2026",
+                  title: "DPIIT Recognistion",
+                  desc: "Recognized as an Indian Start-up by the Department of Promotion and Infrastructure, Government of India.",
+                  status: "done"
+                },
               ].map((milestone, i) => (
                 <motion.div
                   key={i}
@@ -428,7 +434,7 @@ export default function HoldingCompany() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             { label: "Legal Company Name", value: "Sarwagyna Pvt Ltd" },
-            { label: "Corporate Identification Number (CIN)", value: "U62013AP2026PTC124652" },
+            { label: "CIN", value: "U62013AP2026PTC124652" },
             { label: "GSTIN", value: "37ABTCS0879E1ZR" },
             { label: "Type of Company", value: "Private Limited" },
             { label: "Registered Office Address", value: "D NO. 7-7-24/2, Block 10, VIP RD 2nd Line, Ongole, Prakasam- 523001, Andhra Pradesh" },

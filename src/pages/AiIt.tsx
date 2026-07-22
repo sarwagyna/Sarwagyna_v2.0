@@ -48,13 +48,13 @@ export default function AiIt() {
               AI agents, intelligent workflows, enterprise web development, custom AI models, startup launchpads, and scalable enterprise software. We build the future of your business.
             </motion.p>
             
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
               <CtaButton href="/contact">
                 Contact Us
               </CtaButton>
-              <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4">
+              <CtaButton onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
                 Explore Services
-              </button>
+              </CtaButton>
             </motion.div>
           </motion.div>
         </div>

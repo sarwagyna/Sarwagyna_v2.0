@@ -48,13 +48,14 @@ export default function Trade() {
               End-to-end import and export facilitation. We handle sourcing, logistics, customs compliance, and risk management to streamline your international supply chain.
             </motion.p>
             
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
               <CtaButton href="/contact">
-                Discuss Your Supply Chain
+                <span className="sm:hidden">Discuss Supply Chain</span>
+                <span className="hidden sm:inline">Discuss Your Supply Chain</span>
               </CtaButton>
-              <button onClick={() => document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' })} className="glass-button-ghost px-8 py-4 text-[var(--color-text)]">
+              <CtaButton onClick={() => document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' })}>
                 View Capabilities
-              </button>
+              </CtaButton>
             </motion.div>
           </motion.div>
         </div>
